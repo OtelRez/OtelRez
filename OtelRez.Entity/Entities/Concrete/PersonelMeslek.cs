@@ -1,4 +1,5 @@
 ﻿using OtelRez.Entity.Entities.Abstract;
+using OtinternalEntity.Entitieste;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace OtelRez.Entity.Entities.Concrete
     {
         public string Meslek {  get; set; }
         public int Maas { get; set; }
+        public ICollection<Personel> Personeller { get; set; }
+
     }
 }

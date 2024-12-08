@@ -16,7 +16,5 @@ namespace OtelRez.Entity.Entities.Concrete
         public string Sifre { get; set; }
         public DateOnly? DogumTarihi { get; set; }
         public ICollection<Rezervasyon> Rezervasyonlar { get; set; }
-
-
     }
 }

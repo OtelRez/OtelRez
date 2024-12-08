@@ -22,6 +22,15 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p => p.Fiyat).IsRequired();
             builder.Property(p => p.Musait).IsRequired();
             builder.Property(p => p.Musait).HasDefaultValue(true);
+
+            builder.HasOne(p => p.Rezervasyon)
+               .WithOne(p => p.Oda)
+               .HasForeignKey<Rezervasyon>(p => p.OdaId);
+
+            builder.HasOne(p => p.OdaTur)
+                .WithMany(p => p.Odalar)
+                .HasForeignKey(p => p.OdaTurId);
         }
     }
 }
+

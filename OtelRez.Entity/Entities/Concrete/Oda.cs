@@ -10,10 +10,10 @@ namespace OtelRez.Entity.Entities.Concrete
     public class Oda:BaseEntity
     {
         public string OdaNumarasi { get; set; }
-        public ICollection<OdaTur> Turler { get; set; }
+        public OdaTur OdaTur{ get; set; }
+        public int OdaTurId { get; set; }
         public int Fiyat { get; set; }
         public bool Musait { get; set; }
-        public ICollection<Rezervasyon> Rezervasyonlar { get; set; }
-
+        public Rezervasyon Rezervasyon { get; set; }
     }
 }

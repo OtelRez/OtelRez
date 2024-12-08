@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OtelRez.Entity.Config.Abstract;
 using OtelRez.Entity.Entities.Concrete;
 using System;
@@ -16,6 +17,14 @@ namespace OtelRez.Entity.Config.Concrete
             base.Configure(builder);
             builder.Property(p => p.Giris).IsRequired();
             builder.Property(p => p.Cikis).IsRequired();
+
+            builder.Property(p => p.CreateTime).HasDefaultValueSql("GETDATE()");
+
+            builder.Property(p => p.KullaniciId).IsRequired();
+
+            builder.HasOne(p => p.Kullanici)
+                .WithMany(p => p.Rezervasyonlar)
+                .HasForeignKey(p => p.KullaniciId);
         }
     }
 }

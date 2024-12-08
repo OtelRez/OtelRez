@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace OtelRez.Entity.Entities.Abstract
 {
-    public abstract class BaseEntity 
+    public interface IEntity
     {
-        public int Id { get; set; }
     }
 }

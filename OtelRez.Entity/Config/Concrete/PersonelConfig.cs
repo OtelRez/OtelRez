@@ -23,6 +23,13 @@ namespace OtelRez.Entity.Config.Concrete
 
             builder.Property(p => p.IzinHakki).IsRequired();
             builder.Property(p=>p.IzinHakki).HasDefaultValue(30);
+
+            builder.Property(p => p.PersonelMeslekId).IsRequired();
+
+            builder.HasOne(p => p.PersonelMeslek)
+               .WithMany(p => p.Personeller)
+               .HasForeignKey(p => p.PersonelMeslekId);
+
         }
     }
 }

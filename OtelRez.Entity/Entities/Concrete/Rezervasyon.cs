@@ -11,8 +11,13 @@ namespace OtelRez.Entity.Entities.Concrete
     {
         public DateTime Giris { get; set; }
         public DateTime Cikis { get; set; }
-        public ICollection<Oda> Odalar { get; set; }
-        public ICollection<Kullanici> Kullaniciler { get; set; }
 
+        public DateTime CreateTime { get; set; }
+
+        public Kullanici Kullanici { get; set; }
+        public int KullaniciId { get; set; }
+
+        public int OdaId { get; set; }
+        public Oda Oda { get; set; }
     }
 }
