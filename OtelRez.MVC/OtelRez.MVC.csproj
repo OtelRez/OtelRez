@@ -8,14 +8,11 @@
     <ContainerRuntimeIdentifier>win-x64</ContainerRuntimeIdentifier>
     <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0-nanoserver-1809</ContainerBaseImage>
     <EnableSdkContainerDebugging>True</EnableSdkContainerDebugging>
-    <UserSecretsId>ffb472e4-51ff-40ce-b028-b6ab2adf171f</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <UserSecretsId>c1b45b1f-ed62-4484-9020-66096a1231b5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ContainerEnvironmentVariable Include="ASPNETCORE_HTTPS_PORTS">
-      <Value>8081</Value>
-    </ContainerEnvironmentVariable>
+    <ContainerPort Include="8081" />
   </ItemGroup>
 
 </Project>

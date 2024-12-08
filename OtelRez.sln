@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtelRez.DAL", "OtelRez.DAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtelRez.BL", "OtelRez.BL\OtelRez.BL.csproj", "{41BEF910-2E45-4B25-9F0D-4764E2FB89D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtelRez.MVC", "OtelRez.MVC\OtelRez.MVC.csproj", "{3BA7519F-1EC0-47B9-ADA2-8BF77A0A1125}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtelRez.MVC", "OtelRez.MVC\OtelRez.MVC.csproj", "{9D509501-B3F5-4ECD-B090-0D3A5872111F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{41BEF910-2E45-4B25-9F0D-4764E2FB89D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41BEF910-2E45-4B25-9F0D-4764E2FB89D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41BEF910-2E45-4B25-9F0D-4764E2FB89D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BA7519F-1EC0-47B9-ADA2-8BF77A0A1125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BA7519F-1EC0-47B9-ADA2-8BF77A0A1125}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BA7519F-1EC0-47B9-ADA2-8BF77A0A1125}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BA7519F-1EC0-47B9-ADA2-8BF77A0A1125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D509501-B3F5-4ECD-B090-0D3A5872111F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D509501-B3F5-4ECD-B090-0D3A5872111F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D509501-B3F5-4ECD-B090-0D3A5872111F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D509501-B3F5-4ECD-B090-0D3A5872111F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
