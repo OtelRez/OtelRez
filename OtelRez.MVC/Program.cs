@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using OtelRez.DAL.DbContexts;
+
 namespace OtelRez.MVC
 {
     public class Program
@@ -8,6 +11,12 @@ namespace OtelRez.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //    .AddRazorRuntimeCompilation();
+
+            //#region DbContext Registiration
+            //var constr = builder.Configuration.GetConnectionString("OtelRez");
+            //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(constr));
+            //#endregion
 
             var app = builder.Build();
 

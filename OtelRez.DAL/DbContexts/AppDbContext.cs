@@ -32,7 +32,7 @@ namespace OtelRez.DAL.DbContexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("server=.;Database=OtelRezDb_2;Trusted_Connection=true;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("server=.;Database=OtelRezDb;Trusted_Connection=true;TrustServerCertificate=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

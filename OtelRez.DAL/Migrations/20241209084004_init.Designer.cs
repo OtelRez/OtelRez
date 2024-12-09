@@ -12,7 +12,7 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241208143421_init")]
+    [Migration("20241209084004_init")]
     partial class init
     {
         /// <inheritdoc />
