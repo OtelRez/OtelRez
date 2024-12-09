@@ -1,5 +1,8 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.EntityFrameworkCore;
 using OtelRez.DAL.DbContexts;
+using OtelRez.MVC.Extensions;
 
 namespace OtelRez.MVC
 {
@@ -11,12 +14,23 @@ namespace OtelRez.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            //    .AddRazorRuntimeCompilation();
 
-            //#region DbContext Registiration
-            //var constr = builder.Configuration.GetConnectionString("OtelRez");
-            //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(constr));
-            //#endregion
+            #region DbContext Registiration
+            var constr = builder.Configuration.GetConnectionString("OtelRez");
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(constr));
+            #endregion
+
+            #region Notify Service Configuration
+            builder.Services.AddNotyf(p =>
+            {
+                p.Position = NotyfPosition.BottomRight;
+                p.DurationInSeconds = 7;
+                p.IsDismissable = true;
+
+            });
+            #endregion
+
+            builder.Services.AddOtelService();
 
             var app = builder.Build();
 
@@ -30,9 +44,10 @@ namespace OtelRez.MVC
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseNotyf();
             app.UseRouting();
-
+            //app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

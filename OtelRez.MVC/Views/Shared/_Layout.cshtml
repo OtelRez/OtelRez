@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/OtelRez.MVC.styles.css" asp-append-version="true" />
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/gijgo.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/slicknav.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/animate.min.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/slick.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/nice-select.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/style.css">
+    <link rel="stylesheet" href="~/OtelTemp/assets/css/responsive.css">
 </head>
 <body>
 
@@ -22,7 +36,7 @@
                                 <a href="index.html"><img src="~/OtelTemp/assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
-                        <div class="col-xl-8 col-lg-8">
+                        <div class="col-xl-6 col-lg-6">
                             <!-- main-menu -->
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
@@ -30,25 +44,20 @@
                                         <li><a href="index.html">Home</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="services.html">Service</a></li>
-                                        <li>
-                                            <a href="blog.html">Blog</a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">Pages</a>
-                                            <ul class="submenu">
-                                                <li><a href="rooms.html">Rooms</a>
-                                                <li><a href="elements.html">Element</a></li>
-                                            </ul>
-                                        </li>
+
+                                        <li><a href="rooms.html">Rooms</a> </li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
+
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="header-btn">
+                                <a asp-area="" asp-controller="Hesap" asp-action="Giris" class="btn btn-success">Giriş</a>
+                            </div>
+                        </div>
+
                         <div class="col-xl-2 col-lg-2">
                             <!-- header-btn -->
                             <div class="header-btn">
@@ -157,6 +166,12 @@
         </div>
         <!-- Footer End-->
     </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>

@@ -11,64 +11,71 @@ using System.Threading.Tasks;
 
 namespace OtelRez.DAL.Repositories.Concrete
 {
-    public class Repository<T> : IRepository<T> where T : BaseEntity, IEntity
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly AppDbContext db;
-
-        public Repository(AppDbContext db)
+        readonly AppDbContext _dbContext;
+        public Repository()
         {
-            this.db = db;
-        }
-        public async virtual Task<int> CreateAsync(T entity)
-        {
-            db.Set<T>().Add(entity);
-            return await db.SaveChangesAsync();
+            _dbContext = new AppDbContext();
         }
 
-        public async virtual Task<int> DeleteAsync(T entity)
+
+        #region CRUD Islemleri
+        public int Create(T entity)
         {
-            db.Set<T>().Remove(entity);
-            return await db.SaveChangesAsync();
+            /*
+             * Buradaki Set<T> metodu DbContext icerisindeki 
+             * DbSet<T> property'sinine konumlanir
+             */
+            _dbContext.Set<T>().Add(entity);
+            return _dbContext.SaveChanges();
         }
 
-        public async virtual Task<List<T>?> GetAllAsync(Expression<Func<T, bool>> predicate = null)
+        public int Update(T entity)
+        {
+            _dbContext.Set<T>().Update(entity);
+            return _dbContext.SaveChanges();
+        }
+        public int Delete(T entity)
+        {
+            _dbContext.Set<T>().Remove(entity);
+            return _dbContext.SaveChanges();
+        }
+        #endregion
+
+
+        #region Select Metodlari
+        public T? GetById(int id)
+        {
+            return _dbContext.Set<T>().Find(id);
+
+        }
+        public T? Get(Expression<Func<T, bool>> predicate)
+        {
+            return _dbContext.Set<T>().FirstOrDefault(predicate);
+        }
+        public List<T>? GetAll(Expression<Func<T, bool>> predicate = null)
         {
             if (predicate != null)
             {
-                return await db.Set<T>().Where(predicate).ToListAsync();
+                return _dbContext.Set<T>().Where(predicate).ToList();
             }
-            return await db.Set<T>().ToListAsync();
+            return _dbContext.Set<T>().ToList();
+
+            //return predicate == null ? _dbContext.Set<T>().ToList() : _dbContext.Set<T>().Where(predicate).ToList();
 
         }
 
-        public async virtual Task<IQueryable<T>?> GetAllIncludeAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] include)
+        public IQueryable<T>? GetAllInclude(Expression<Func<T, bool>> predicate = null,
+            params Expression<Func<T, object>>[] include)
         {
-            IQueryable<T> query = db.Set<T>();
+            IQueryable<T> query = _dbContext.Set<T>();
             if (predicate != null)
             {
-                query = db.Set<T>().Where(predicate);
+                query = _dbContext.Set<T>().Where(predicate);
             }
             return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
-
-        public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
-        {
-            if (predicate != null)
-            {
-                return await db.Set<T>().FirstOrDefaultAsync(predicate);
-            }
-            return await db.Set<T>().FirstOrDefaultAsync();
-        }
-
-        public async virtual Task<T?> GetByIdAsync(string id)
-        {
-            return await db.Set<T>().FindAsync(id);
-        }
-
-        public async virtual Task<int> UpdateAsync(T entity)
-        {
-            db.Set<T>().Update(entity);
-            return await db.SaveChangesAsync();
-        }
+        #endregion
     }
 }

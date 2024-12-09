@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace OtelRez.DAL.Repositories.Abstract
 {
-    public interface IRepository<T> where T : BaseEntity, IEntity
+    public interface IRepository<T> where T : BaseEntity
     {
-        public Task<int> CreateAsync(T entity);
-        public Task<int> UpdateAsync(T entity);
-        public Task<int> DeleteAsync(T entity);
+        public int Create(T entity);
+        public int Update(T entity);
+        public int Delete(T entity);
 
-        public Task<T?> GetByIdAsync(string id);
-        public Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
-        public Task<List<T>?> GetAllAsync(Expression<Func<T, bool>> predicate = null);
+        public T? GetById(int id);
+        public T? Get(Expression<Func<T, bool>> predicate);
+        public List<T>? GetAll(Expression<Func<T, bool>> predicate = null);
 
-        public Task<IQueryable<T>?> GetAllIncludeAsync(Expression<Func<T, bool>> predicate = null
+        public IQueryable<T>? GetAllInclude(Expression<Func<T, bool>> predicate = null
             , params Expression<Func<T, object>>[] include);
 
     }
