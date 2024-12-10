@@ -1,16 +1,16 @@
-﻿@using OtelRez.MVC.Models.VMs
+﻿@using OtelRez.MVC.Models.VMs.Hesap
 @model GirisVM
 <div class="row">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Admin</b>LTE</a>
+            <a>GİRİŞ</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form asp-action="Login" method="post">
+                <form asp-action="Giris" method="post">
                     <div class="input-group mb-3">
                         <input asp-for="Mail" class="form-control" placeholder="Mail">
                         <div class="input-group-append">

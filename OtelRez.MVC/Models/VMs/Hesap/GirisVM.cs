@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OtelRez.MVC.Models.VMs
+namespace OtelRez.MVC.Models.VMs.Hesap
 {
     public class GirisVM
     {

@@ -26,7 +26,6 @@ namespace OtelRez.MVC
                 p.Position = NotyfPosition.BottomRight;
                 p.DurationInSeconds = 7;
                 p.IsDismissable = true;
-
             });
             #endregion
 

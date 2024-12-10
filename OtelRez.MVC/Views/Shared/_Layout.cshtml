@@ -33,7 +33,7 @@
                         <!-- logo -->
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="index.html"><img src="~/OtelTemp/assets/img/logo/logo.png" alt=""></a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/OtelTemp/assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6">
@@ -41,12 +41,9 @@
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="services.html">Service</a></li>
-
-                                        <li><a href="rooms.html">Rooms</a> </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a asp-area="" asp-controller="Sayfa" asp-action="Hizmetler">Hizmetlerimiz</a></li>
+                                        <li><a asp-area="" asp-controller="Sayfa" asp-action="Odalar">Odalar</a> </li>
+                                        <li><a asp-area="" asp-controller="Sayfa" asp-action="Iletisim">İletişim</a></li>
                                     </ul>
                                 </nav>
                             </div>

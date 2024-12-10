@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.Entity.Entities.Concrete;
-using OtelRez.MVC.Models.VMs;
+using OtelRez.MVC.Models.VMs.Hesap;
 
 namespace OtelRez.MVC.Controllers
 {
@@ -29,14 +29,20 @@ namespace OtelRez.MVC.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
-            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre);
             if (user == null)
             {
-                notyfService.Error("Email yada Password Hatali.");
+                notyfService.Error("Mail ya da şifre hatalı.");
                 return View(girisVM);
             }
 
             return RedirectToAction("Index", "Home"); ;
+        }
+
+        public IActionResult Kayit()
+        {
+            KayitVM kayitVM = new KayitVM();
+            return View(kayitVM);
         }
     }
 }
