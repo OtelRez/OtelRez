@@ -15,5 +15,6 @@ namespace OtinternalEntity.Entitieste
 
         public int PersonelMeslekId { get; set; }
         public PersonelMeslek PersonelMeslek { get; set; }
+        public PersonelGiris PersonelGiris { get; set; }
     }
 }

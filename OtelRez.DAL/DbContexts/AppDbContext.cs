@@ -19,6 +19,7 @@ namespace OtelRez.DAL.DbContexts
         public DbSet<Personel> Personeller { get; set; }
         public DbSet<PersonelMeslek> PersonelMeslekler { get; set; }
         public DbSet<Rezervasyon> Rezervasyonlar { get; set; }
+        public DbSet<PersonelGiris> PersonelGiris { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OtelRez.Entity.Config.Abstract;
+using OtelRez.Entity.Entities.Concrete;
 using OtinternalEntity.Entitieste;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,17 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p => p.Soyadi).IsRequired();
 
             builder.Property(p => p.IzinHakki).IsRequired();
-            builder.Property(p=>p.IzinHakki).HasDefaultValue(30);
+            builder.Property(p => p.IzinHakki).HasDefaultValue(30);
 
             builder.Property(p => p.PersonelMeslekId).IsRequired();
 
             builder.HasOne(p => p.PersonelMeslek)
                .WithMany(p => p.Personeller)
                .HasForeignKey(p => p.PersonelMeslekId);
+
+            builder.HasOne(p => p.PersonelGiris)
+                .WithOne(p => p.Personel)
+                .HasForeignKey<PersonelGiris>(p => p.PersonelId);
 
         }
     }
