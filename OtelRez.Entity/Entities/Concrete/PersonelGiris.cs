@@ -1,5 +1,4 @@
 ﻿using OtelRez.Entity.Entities.Abstract;
-using OtinternalEntity.Entitieste;
 using System;
 using System.Collections.Generic;
 using System.Linq;

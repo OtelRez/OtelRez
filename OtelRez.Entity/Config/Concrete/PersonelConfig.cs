@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OtelRez.Entity.Config.Abstract;
 using OtelRez.Entity.Entities.Concrete;
-using OtinternalEntity.Entitieste;
 using System;
 using System.Collections.Generic;
 using System.Linq;
