@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OtelRez.Entity.Config.Concrete;
 using OtelRez.Entity.Entities.Concrete;
-using OtinternalEntity.Entitieste;
 using System;
 using System.Collections.Generic;
 using System.Linq;

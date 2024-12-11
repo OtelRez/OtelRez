@@ -29,7 +29,7 @@ namespace OtelRez.MVC.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
-            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre);
+            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault(); ;
             if (user == null)
             {
                 notyfService.Error("Mail ya da şifre hatalı.");
