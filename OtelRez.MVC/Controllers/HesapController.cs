@@ -39,6 +39,8 @@ namespace OtelRez.MVC.Controllers
             return RedirectToAction("Index", "Home"); ;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Kayit()
         {
             KayitVM kayitVM = new KayitVM();
