@@ -43,14 +43,16 @@
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Hizmetler">Hizmetlerimiz</a></li>
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Odalar">Odalar</a> </li>
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Iletisim">İletişim</a></li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li><a asp-area="" asp-controller="Sayfa" asp-action="Iletisim">Hesabım</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-area="" asp-controller="Hesap" asp-action="Giris">Giriş</a></li>
+                                        }
                                     </ul>
                                 </nav>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-2">
-                            <div class="header-btn">
-                                <a asp-area="" asp-controller="Hesap" asp-action="Giris" id="giris" class="btn btn-success">Giriş</a>
                             </div>
                         </div>
 
@@ -163,13 +165,6 @@
         <!-- Footer End-->
     </footer>
 
-@*     <script>
-        var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault(); ;
-       if(user){
-        document.getElementById("giris").innerText="Kullanıcı"
-       }
-    </script>
- *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -46,5 +46,27 @@ namespace OtelRez.MVC.Controllers
             KayitVM kayitVM = new KayitVM();
             return View(kayitVM);
         }
+
+        [HttpPost]
+        public IActionResult Kayit(KayitVM kayitVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                notyfService.Error("Düzeltilmesi gereken yerler var");
+                return View(kayitVM);
+            }
+            Kullanici kullanici = new Kullanici();
+            kullanici.Adi = kayitVM.Adi;
+            kullanici.Soyadi = kayitVM.Soyadi;
+            kullanici.Mail = kayitVM.Mail;
+            kullanici.Tel = kayitVM.Tel;
+            kullanici.DogumTarihi = kayitVM.DogumTarihi;
+            kullanici.Sifre = kayitVM.Sifre;
+
+            kullaniciManager.Create(kullanici);
+            notyfService.Success("Islem Basarili");
+
+            return RedirectToAction("Giris", "Hesap");
+        }
     }
 }
