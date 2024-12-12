@@ -43,6 +43,7 @@
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Hizmetler">Hizmetlerimiz</a></li>
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Odalar">Odalar</a> </li>
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Iletisim">İletişim</a></li>
+                                       
                                         @if (User.Identity.IsAuthenticated)
                                         {
                                             <li><a asp-area="" asp-controller="Sayfa" asp-action="Iletisim">Hesabım</a></li>
