@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using OtelRez.BL.Attributes;
 
 namespace OtelRez.MVC.Models.VMs.Hesap
 {
     public class KayitVM
     {
+        private string _tel;
+
         [Required(ErrorMessage = "Ad alanı zorunludur")]
         [MinLength(3, ErrorMessage = "En az 3 karakter olmalıdır")]
         [MaxLength(15, ErrorMessage = "En fazla 15 karakter olmalıdır")]
@@ -20,8 +23,14 @@ namespace OtelRez.MVC.Models.VMs.Hesap
         public string Mail { get; set; }
 
         [Required(ErrorMessage = "Telefon alanı zorunludur")]
+        [StringLength(11, ErrorMessage = "Telefon numarası 11 karakter olmalıdır")]
         [DataType(DataType.PhoneNumber)]
-        public string Tel { get; set; }
+        [NoSpaces]
+        public string Tel
+        {
+            get => _tel;
+            set => _tel = value?.Replace(" ", "");
+        }
 
         [Required(ErrorMessage = "Doğum tarihi alanı zorunludur")]
         [DataType(DataType.Date)]

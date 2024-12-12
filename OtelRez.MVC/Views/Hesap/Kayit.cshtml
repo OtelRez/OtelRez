@@ -18,35 +18,35 @@
             <!-- Registration form -->
             <form asp-action="Kayit" method="post">
                 <div class="user-details">
-                    <!-- Input for Full Name -->
+                    <!-- Input for Name -->
                     <div class="input-box">
-                        <span class="details">Full Name</span>
-                        <input type="text" placeholder="Enter your name" required>
+                        <span asp-validation-for="Adi" class="details">Adınız</span>
+                        <input asp-for="Adi" placeholder="Adınızı Giriniz" required>
                     </div>
-                    <!-- Input for Username -->
+                    <!-- Input for Surname -->
                     <div class="input-box">
-                        <span class="details">Username</span>
-                        <input type="text" placeholder="Enter your username" required>
+                        <span asp-validation-for="Soyadi" class="details">Soyadınız</span>
+                        <input asp-for="Soyadi" placeholder="Soyadınızı Giriniz" required>
                     </div>
                     <!-- Input for Email -->
                     <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" placeholder="Enter your email" required>
+                        <span asp-validation-for="Mail" class="details">Mailiniz</span>
+                        <input asp-for="Mail" type="email" placeholder="Mailinizi Giriniz" required>
                     </div>
                     <!-- Input for Phone Number -->
                     <div class="input-box">
-                        <span class="details">Phone Number</span>
-                        <input type="text" placeholder="Enter your number" required>
+                        <span asp-validation-for="Tel" class="details">Telefon Numaranız</span>
+                            <input asp-for="Tel" placeholder="0(50*)*** ** **" required>
+                    </div>
+                    <!-- Input for Birth date -->
+                    <div class="input-box">
+                        <span asp-validation-for="DogumTarihi" class="details">Doğum Tarihiniz</span>
+                        <input asp-for="DogumTarihi" type="date" required>
                     </div>
                     <!-- Input for Password -->
                     <div class="input-box">
-                        <span class="details">Password</span>
-                        <input type="text" placeholder="Enter your password" required>
-                    </div>
-                    <!-- Input for Confirm Password -->
-                    <div class="input-box">
-                        <span class="details">Confirm Password</span>
-                        <input type="text" placeholder="Confirm your password" required>
+                        <span asp-validation-for="Sifre" class="details">Şifreniz</span>
+                        <input asp-for="Sifre" type="password" placeholder="Şifrenizi Giriniz" required>
                     </div>
                 </div>
                 <!-- Submit button -->
