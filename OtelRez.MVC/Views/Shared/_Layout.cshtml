@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="~/OtelTemp/assets/css/responsive.css">
 </head>
 <body>
-
     <header>
         <!-- Header Start -->
         <div class="header-area header-sticky">
@@ -51,7 +50,7 @@
 
                         <div class="col-xl-2 col-lg-2">
                             <div class="header-btn">
-                                <a asp-area="" asp-controller="Hesap" asp-action="Giris" class="btn btn-success">Giriş</a>
+                                <a asp-area="" asp-controller="Hesap" asp-action="Giris" id="giris" class="btn btn-success">Giriş</a>
                             </div>
                         </div>
 
@@ -164,7 +163,13 @@
         <!-- Footer End-->
     </footer>
 
-
+@*     <script>
+        var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault(); ;
+       if(user){
+        document.getElementById("giris").innerText="Kullanıcı"
+       }
+    </script>
+ *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

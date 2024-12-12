@@ -1,23 +1,19 @@
 /* Importing Google Fonts - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+
+
+.register-body {
+    height: 100vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(135deg, #53ae51, #efb134);
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background: linear-gradient(135deg, #53ae51, #efb134);
-}
-
-.container {
+.container-register {
   max-width: 700px;
   width: 100%;
   background-color: #fff;
@@ -26,13 +22,13 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
-.container .title {
+.container-register .title {
   font-size: 25px;
   font-weight: 500;
   position: relative;
 }
 
-.container .title::before {
+.container-register .title::before {
   content: "";
   position: absolute;
   left: 0;
