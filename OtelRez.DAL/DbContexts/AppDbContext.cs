@@ -37,7 +37,9 @@ namespace OtelRez.DAL.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            // olmasi gereken kod asagidaki 
+              modelBuilder.ApplyConfigurationsFromAssembly(typeof(BaseConfig<>).Assembly);
         }
 
     }
