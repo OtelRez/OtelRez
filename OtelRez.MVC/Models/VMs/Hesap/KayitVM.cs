@@ -6,7 +6,7 @@ namespace OtelRez.MVC.Models.VMs.Hesap
 {
     public class KayitVM
     {
-        private string _tel;
+        //private string _tel;
 
         [Required(ErrorMessage = "Ad alanı zorunludur")]
         [MinLength(3, ErrorMessage = "En az 3 karakter olmalıdır")]
@@ -24,13 +24,9 @@ namespace OtelRez.MVC.Models.VMs.Hesap
 
         [Required(ErrorMessage = "Telefon alanı zorunludur")]
         [StringLength(11, ErrorMessage = "Telefon numarası 11 karakter olmalıdır")]
+        [RegularExpression("^[0-9]{11}$", ErrorMessage = "Telefon numarası sadece 0-9 arasında rakamlardan oluşmalı ve 11 karakter olmalıdır")]
         [DataType(DataType.PhoneNumber)]
-        [NoSpaces]
-        public string Tel
-        {
-            get => _tel;
-            set => _tel = value?.Replace(" ", "");
-        }
+        public string Tel { get; set; }
 
         [Required(ErrorMessage = "Doğum tarihi alanı zorunludur")]
         [DataType(DataType.Date)]

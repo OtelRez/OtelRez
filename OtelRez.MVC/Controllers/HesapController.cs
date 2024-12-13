@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,12 @@ namespace OtelRez.MVC.Controllers
             return RedirectToAction("Index", "Home"); ;
         }
 
+        public async Task<IActionResult> Cikis()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Kayit()
@@ -55,6 +62,7 @@ namespace OtelRez.MVC.Controllers
                 notyfService.Error("Düzeltilmesi gereken yerler var");
                 return View(kayitVM);
             }
+
             Kullanici kullanici = new Kullanici();
             kullanici.Adi = kayitVM.Adi;
             kullanici.Soyadi = kayitVM.Soyadi;

@@ -15,6 +15,9 @@ namespace OtelRez.MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSession();
+            builder.Services.AddDistributedMemoryCache(); 
+
             #region DbContext Registiration
             var constr = builder.Configuration.GetConnectionString("OtelRez");
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(constr));
@@ -45,7 +48,7 @@ namespace OtelRez.MVC
             app.UseStaticFiles();
             app.UseNotyf();
             app.UseRouting();
-            //app.UseSession();
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
 
