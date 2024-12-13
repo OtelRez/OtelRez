@@ -32,28 +32,41 @@ namespace OtelRez.DAL.Migrations
 
                     b.Property<string>("Adi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateOnly?>("DogumTarihi")
                         .HasColumnType("date");
 
                     b.Property<string>("Mail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Sifre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("Soyadi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Tel")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("Mail")
+                        .IsUnique();
+
+                    b.HasIndex("Tel")
+                        .IsUnique();
 
                     b.ToTable("Kullanicilar");
                 });
@@ -70,16 +83,24 @@ namespace OtelRez.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("Musait")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("OdaNumarasi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<int>("OdaTurId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("OdaNumarasi")
+                        .IsUnique();
 
                     b.HasIndex("OdaTurId");
 
@@ -99,15 +120,57 @@ namespace OtelRez.DAL.Migrations
 
                     b.Property<string>("TurAdi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("TurDetay")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Id");
+
+                    b.HasIndex("TurAdi")
+                        .IsUnique();
+
                     b.ToTable("OdaTurleri");
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Personel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Adi")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("IzinHakki")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(30);
+
+                    b.Property<int>("PersonelMeslekId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Soyadi")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("PersonelMeslekId");
+
+                    b.ToTable("Personeller");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.PersonelGiris", b =>
@@ -120,16 +183,23 @@ namespace OtelRez.DAL.Migrations
 
                     b.Property<string>("Mail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("PersonelId")
                         .HasColumnType("int");
 
                     b.Property<string>("Sifre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("Mail")
+                        .IsUnique();
 
                     b.HasIndex("PersonelId")
                         .IsUnique();
@@ -150,9 +220,15 @@ namespace OtelRez.DAL.Migrations
 
                     b.Property<string>("Meslek")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("Meslek")
+                        .IsUnique();
 
                     b.ToTable("PersonelMeslekler");
                 });
@@ -169,7 +245,9 @@ namespace OtelRez.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<DateTime>("Giris")
                         .HasColumnType("datetime2");
@@ -182,41 +260,14 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Id");
+
                     b.HasIndex("KullaniciId");
 
                     b.HasIndex("OdaId")
                         .IsUnique();
 
                     b.ToTable("Rezervasyonlar");
-                });
-
-            modelBuilder.Entity("OtinternalEntity.Entitieste.Personel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Adi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IzinHakki")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonelMeslekId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Soyadi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonelMeslekId");
-
-                    b.ToTable("Personeller");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Oda", b =>
@@ -230,9 +281,20 @@ namespace OtelRez.DAL.Migrations
                     b.Navigation("OdaTur");
                 });
 
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Personel", b =>
+                {
+                    b.HasOne("OtelRez.Entity.Entities.Concrete.PersonelMeslek", "PersonelMeslek")
+                        .WithMany("Personeller")
+                        .HasForeignKey("PersonelMeslekId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PersonelMeslek");
+                });
+
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.PersonelGiris", b =>
                 {
-                    b.HasOne("OtinternalEntity.Entitieste.Personel", "Personel")
+                    b.HasOne("OtelRez.Entity.Entities.Concrete.Personel", "Personel")
                         .WithOne("PersonelGiris")
                         .HasForeignKey("OtelRez.Entity.Entities.Concrete.PersonelGiris", "PersonelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -260,17 +322,6 @@ namespace OtelRez.DAL.Migrations
                     b.Navigation("Oda");
                 });
 
-            modelBuilder.Entity("OtinternalEntity.Entitieste.Personel", b =>
-                {
-                    b.HasOne("OtelRez.Entity.Entities.Concrete.PersonelMeslek", "PersonelMeslek")
-                        .WithMany("Personeller")
-                        .HasForeignKey("PersonelMeslekId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PersonelMeslek");
-                });
-
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Kullanici", b =>
                 {
                     b.Navigation("Rezervasyonlar");
@@ -287,15 +338,15 @@ namespace OtelRez.DAL.Migrations
                     b.Navigation("Odalar");
                 });
 
-            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.PersonelMeslek", b =>
-                {
-                    b.Navigation("Personeller");
-                });
-
-            modelBuilder.Entity("OtinternalEntity.Entitieste.Personel", b =>
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Personel", b =>
                 {
                     b.Navigation("PersonelGiris")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.PersonelMeslek", b =>
+                {
+                    b.Navigation("Personeller");
                 });
 #pragma warning restore 612, 618
         }

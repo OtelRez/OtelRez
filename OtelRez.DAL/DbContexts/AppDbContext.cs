@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OtelRez.Entity.Config.Abstract;
 using OtelRez.Entity.Config.Concrete;
 using OtelRez.Entity.Entities.Concrete;
 using System;
@@ -20,24 +21,25 @@ namespace OtelRez.DAL.DbContexts
         public DbSet<Rezervasyon> Rezervasyonlar { get; set; }
         public DbSet<PersonelGiris> PersonelGiris { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AppDbContext()
         {
 
         }
-        public AppDbContext()
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //base.OnConfiguring(optionsBuilder);
+            base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("server=.;Database=OtelRezDb;Trusted_Connection=true;TrustServerCertificate=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BaseConfig<>).Assembly);
         }
 
     }

@@ -13,6 +13,7 @@ namespace OtelRez.MVC.Controllers
 {
     public class HesapController(IManager<Kullanici> kullaniciManager, INotyfService notyfService) : Controller
     {
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -40,6 +41,8 @@ namespace OtelRez.MVC.Controllers
             return RedirectToAction("Index", "Home"); ;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Cikis()
         {
             await HttpContext.SignOutAsync();
