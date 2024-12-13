@@ -15,7 +15,7 @@ namespace OtelRez.MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddSession();
+            builder.Services.AddSession();//TODO:Burasini nerede kullaniyorsunuz
             builder.Services.AddDistributedMemoryCache(); 
 
             #region DbContext Registiration
