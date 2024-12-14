@@ -30,6 +30,12 @@ namespace OtelRez.Entity.Config.Concrete
 
             builder.Property(p => p.Sifre).HasMaxLength(16);
             builder.Property(p => p.Sifre).IsRequired();
+
+            builder.HasOne(p => p.Role)
+                .WithMany(p => p.Kullanicilar)
+                .HasForeignKey(p => p.RoleId);
+
+            builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre="qweasd",RoleId=3 });
         }
     }
 }

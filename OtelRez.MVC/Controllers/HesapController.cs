@@ -11,9 +11,10 @@ using OtelRez.MVC.Models.VMs.Hesap;
 
 namespace OtelRez.MVC.Controllers
 {
+    [Authorize]
     public class HesapController(IManager<Kullanici> kullaniciManager, INotyfService notyfService) : Controller
     {
-        [Authorize]
+        
         public IActionResult Index()
         {
             return View();

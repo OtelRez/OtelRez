@@ -25,6 +25,8 @@ namespace OtelRez.Entity.Config.Concrete
             builder.HasOne(p => p.Kullanici)
                 .WithMany(p => p.Rezervasyonlar)
                 .HasForeignKey(p => p.KullaniciId);
+
+            builder.HasData(new Rezervasyon() { Id = 1, Giris = DateOnly.Parse("2024-12-18"), Cikis=DateOnly.Parse("2024-12-22"),CreateTime=DateOnly.FromDateTime(DateTime.Now), KullaniciId=1,OdaId=12});
         }
     }
 }

@@ -9,9 +9,9 @@ namespace OtelRez.Entity.Entities.Concrete
 {
     public class Rezervasyon:BaseEntity
     {
-        public DateTime Giris { get; set; }
-        public DateTime Cikis { get; set; }
-        public DateTime CreateTime { get; set; }
+        public DateOnly Giris { get; set; }
+        public DateOnly Cikis { get; set; }
+        public DateOnly CreateTime { get; set; }
 
         public int KullaniciId { get; set; }
         public Kullanici Kullanici { get; set; }

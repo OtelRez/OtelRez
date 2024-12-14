@@ -21,6 +21,8 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p=>p.Sifre).HasMaxLength(16);
             builder.Property(p => p.Sifre).IsRequired();
 
+            builder.HasData(new PersonelGiris() { Id = 1, Mail = "ahmet@gmail.com", PersonelId = 1, Sifre = "qweasd" });
+            builder.HasData(new PersonelGiris() { Id = 2, Mail = "busr.ar@gmail.com", PersonelId = 2, Sifre = "qweasd" });
         }
     }
 }

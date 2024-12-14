@@ -12,8 +12,8 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241213203636_mig")]
-    partial class mig
+    [Migration("20241214110535_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,9 @@ namespace OtelRez.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Sifre")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -63,10 +66,13 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("Mail")
                         .IsUnique();
+
+                    b.HasIndex("RoleId");
 
                     b.HasIndex("Tel")
                         .IsUnique();
@@ -100,7 +106,8 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("OdaNumarasi")
                         .IsUnique();
@@ -133,12 +140,57 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("TurAdi")
                         .IsUnique();
 
                     b.ToTable("OdaTurleri");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Kapasite = (short)1,
+                            TurAdi = "Tek Kisilik",
+                            TurDetay = "Tek yataklı oda"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Kapasite = (short)2,
+                            TurAdi = "İki Kisilik",
+                            TurDetay = "İki yataklı oda"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Kapasite = (short)2,
+                            TurAdi = "İki Kisilik Double",
+                            TurDetay = "İki kişilik tek yatak"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Kapasite = (short)3,
+                            TurAdi = "Uc Kisilik",
+                            TurDetay = "Üç tek kişilik"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Kapasite = (short)3,
+                            TurAdi = "Uc Kisilik Double",
+                            TurDetay = "1 double yatak 1 tek kişilik yatak"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Kapasite = (short)2,
+                            TurAdi = "King",
+                            TurDetay = "Double yatak"
+                        });
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Personel", b =>
@@ -162,6 +214,9 @@ namespace OtelRez.DAL.Migrations
                     b.Property<int>("PersonelMeslekId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Soyadi")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -169,9 +224,12 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("PersonelMeslekId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Personeller");
                 });
@@ -199,7 +257,8 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("Mail")
                         .IsUnique();
@@ -228,7 +287,8 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("Meslek")
                         .IsUnique();
@@ -263,7 +323,8 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("KullaniciId");
 
@@ -271,6 +332,58 @@ namespace OtelRez.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Rezervasyonlar");
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("RoleAdi")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("RoleAdi")
+                        .IsUnique();
+
+                    b.ToTable("Roller");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoleAdi = "Yonetici"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RoleAdi = "Resepsiyonist"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RoleAdi = "Kullanici"
+                        });
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Kullanici", b =>
+                {
+                    b.HasOne("OtelRez.Entity.Entities.Concrete.Role", "Role")
+                        .WithMany("Kullanicilar")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Oda", b =>
@@ -292,7 +405,13 @@ namespace OtelRez.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OtelRez.Entity.Entities.Concrete.Role", "Role")
+                        .WithMany("Personeller")
+                        .HasForeignKey("RoleId");
+
                     b.Navigation("PersonelMeslek");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.PersonelGiris", b =>
@@ -349,6 +468,13 @@ namespace OtelRez.DAL.Migrations
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.PersonelMeslek", b =>
                 {
+                    b.Navigation("Personeller");
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Role", b =>
+                {
+                    b.Navigation("Kullanicilar");
+
                     b.Navigation("Personeller");
                 });
 #pragma warning restore 612, 618
