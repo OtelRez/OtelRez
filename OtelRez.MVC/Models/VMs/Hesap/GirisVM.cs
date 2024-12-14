@@ -11,5 +11,6 @@ namespace OtelRez.MVC.Models.VMs.Hesap
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Şifre  girilmesi zorunludur")]
         public string Sifre { get; set; }
+        public bool RememberMe { get; set; } = false;
     }
 }
