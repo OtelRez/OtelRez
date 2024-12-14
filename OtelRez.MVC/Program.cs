@@ -1,5 +1,6 @@
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using OtelRez.DAL.DbContexts;
 using OtelRez.MVC.Extensions;
@@ -15,7 +16,8 @@ namespace OtelRez.MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddSession();//TODO:Burasini nerede kullaniyorsunuz
+
+            //builder.Services.AddSession();//TODO:Burasini nerede kullaniyorsunuz
             builder.Services.AddDistributedMemoryCache(); 
 
             #region DbContext Registiration
@@ -31,6 +33,19 @@ namespace OtelRez.MVC
                 p.IsDismissable = true;
             });
             #endregion
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.Cookie.Name = "OtelRez";
+                options.LoginPath = "/Hesap/Giris";
+                options.LogoutPath = "/Hesap/Cikis";
+                options.AccessDeniedPath = "/Hesap/ErisimHatasý";
+                options.Cookie.HttpOnly = true; //Taray?c?daki di?er scriptler okuyamas?n diye güvenlik 
+                options.Cookie.SameSite = SameSiteMode.Strict; //Ba?ka taray?c?lar taraf?ndan ula??lamas?n diye güvenlik önlemi
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10); //
+                options.SlidingExpiration = true; //Herhangi sitede bir hareket oldu?unda süreyi 10 dk uzatýr
+
+            });
 
             builder.Services.AddOtelService();
 

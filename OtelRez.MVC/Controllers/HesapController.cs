@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +9,12 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.Entity.Entities.Concrete;
 using OtelRez.MVC.Models.VMs.Hesap;
+using System.Security.Claims;
 
 namespace OtelRez.MVC.Controllers
 {
     [Authorize]
-    public class HesapController(IManager<Kullanici> kullaniciManager, INotyfService notyfService) : Controller
+    public class HesapController(IManager<Kullanici> kullaniciManager,IManager<PersonelGiris> personelManager, INotyfService notyfService) : Controller
     {
         
         public IActionResult Index()
@@ -32,12 +34,41 @@ namespace OtelRez.MVC.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
-            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault(); ;
+            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+            var personel = personelManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
             if (user == null)
             {
-                notyfService.Error("Mail ya da şifre hatalı.");
-                return View(girisVM);
+                if (personel == null)
+                {
+                    notyfService.Error("Mail ya da şifre hatalı.");
+                    return View(girisVM);
+                }
+                if (personel.Id == 1)
+                {
+                    return RedirectToAction("Hizmetler", "Sayfa");
+                }
+                else if (personel.Id == 2)
+                {
+                    return RedirectToAction("Iletisim", "Sayfa");
+                }
             }
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier,girisVM.Mail),
+                
+            };
+
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authenticationProperty = new AuthenticationProperties()
+            {
+                IsPersistent = girisVM.RememberMe
+            };
+
+            var userPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                userPrincipal, authenticationProperty);
 
             return RedirectToAction("Index", "Home"); ;
         }
