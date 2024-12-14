@@ -23,6 +23,9 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p => p.SubTitle).HasMaxLength(50);
 
             builder.Property(p => p.Description).IsRequired();
+
+            builder.HasData(new Hizmetler() { Id = 1, Title = "Restoranımız", SubTitle = "Akşam yemeği ve kahvaltı", Description = "asjhvhdsvhfsvdhsbh" });
+            builder.HasData(new Hizmetler() { Id = 2, Title = "Havuzumuz", SubTitle = "Büyük yüzme havuzu", Description = "asjhvhdsvhfsvdhsbh" });
         }
     }
 }
