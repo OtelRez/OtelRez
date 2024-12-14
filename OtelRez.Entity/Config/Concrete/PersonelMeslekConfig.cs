@@ -19,6 +19,10 @@ namespace OtelRez.Entity.Config.Concrete
             builder.HasIndex(p => p.Meslek).IsUnique();
 
             builder.Property(p => p.Maas).IsRequired();
+
+            builder.HasData(new PersonelMeslek() { Id = 1, Meslek = "Yönetici", Maas = 50000 });
+            builder.HasData(new PersonelMeslek() { Id = 2, Meslek = "Resepsiyonist", Maas = 18002 });
+            builder.HasData(new PersonelMeslek() { Id =3, Meslek = "Aşçı", Maas = 25000 });
         }
     }
 }

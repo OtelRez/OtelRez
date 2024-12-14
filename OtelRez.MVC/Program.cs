@@ -48,7 +48,7 @@ namespace OtelRez.MVC
             app.UseStaticFiles();
             app.UseNotyf();
             app.UseRouting();
-            app.UseSession();
+            //app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
 

@@ -34,6 +34,13 @@ namespace OtelRez.Entity.Config.Concrete
                 .WithOne(p => p.Personel)
                 .HasForeignKey<PersonelGiris>(p => p.PersonelId);
 
+            builder.HasOne(p => p.Role)
+                .WithMany(p => p.Personeller)
+                .HasForeignKey(p => p.RoleId);
+
+            builder.HasData(new Personel { Id = 1, Adi = "Ahmet", Soyadi = "Ak", IzinHakki = 30, PersonelMeslekId = 1, RoleId = 1 });
+            builder.HasData(new Personel { Id = 2, Adi = "Büşra", Soyadi = "Aksoy", IzinHakki = 20, PersonelMeslekId = 2, RoleId = 2 });
+            builder.HasData(new Personel { Id = 3, Adi = "Betüş", Soyadi = "Lol", IzinHakki = 14 ,PersonelMeslekId = 3});
         }
     }
 }

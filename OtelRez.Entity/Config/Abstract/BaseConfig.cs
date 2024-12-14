@@ -13,7 +13,10 @@ namespace OtelRez.Entity.Config.Abstract
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
-            builder.HasIndex(p => p.Id);
+            builder.HasKey(p => p.Id);
+            builder.HasIndex(p => p.Id).IsUnique();
+            
+            
         }
     }
 }
