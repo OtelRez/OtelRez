@@ -14,6 +14,6 @@ namespace OtelRez.Entity.Entities.Concrete
         public Int16 Kapasite { get; set; }
         public int Fiyat { get; set; }
         public ICollection<Oda> Odalar { get; set; }
-
+        public string? PhotoPath { get; set; }
     }
 }

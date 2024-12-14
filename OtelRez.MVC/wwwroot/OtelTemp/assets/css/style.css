@@ -1615,20 +1615,20 @@ label {
       padding-top: 0px; } }
 
 .testimonial-padding {
-  padding-top: 175px;
-  padding-bottom: 180px; }
+  padding-top: 35px;
+  padding-bottom: 36px; }
   @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .testimonial-padding {
-      padding-top: 100px;
-      padding-bottom: 50px; } }
+      padding-top: 20px;
+      padding-bottom: 10px; } }
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     .testimonial-padding {
-      padding-top: 50px;
-      padding-bottom: 50px; } }
+      padding-top:10px;
+      padding-bottom: 10px; } }
   @media (max-width: 767px) {
     .testimonial-padding {
-      padding-top: 35px;
-      padding-bottom: 50px; } }
+      padding-top: 7px;
+      padding-bottom: 10px; } }
 
 .blog-padding {
   padding-bottom: 168px; }

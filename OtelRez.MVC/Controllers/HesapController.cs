@@ -14,7 +14,7 @@ using System.Security.Claims;
 namespace OtelRez.MVC.Controllers
 {
     [Authorize]
-    public class HesapController(IManager<Kullanici> kullaniciManager,IManager<PersonelGiris> personelManager, INotyfService notyfService) : Controller
+    public class HesapController(IManager<Kullanici> kullaniciManager, IManager<PersonelGiris> personelManager, INotyfService notyfService) : Controller
     {
         
         public IActionResult Index()

@@ -46,16 +46,22 @@
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Hizmetler">Hizmetlerimiz</a></li>
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Odalar">Odalar</a> </li>
                                         <li><a asp-area="" asp-controller="Sayfa" asp-action="Iletisim">İletişim</a></li>
+                                        
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <li><a asp-area="" asp-controller="Hesap" asp-action="Hesabim">Hesabım</a></li>
+                                            <li><a>Hesabım</a>
+                                                <ul class="submenu">
+                                                    <li><a asp-controller="Hesap" asp-action="Rezervasyonlarım">Rezervasyonlarım</a></li>
+                                                    <li><a asp-controller="Hesap" asp-action="Ayarlar">Ayarlar</a></li>
+                                                    <li><a asp-controller="Hesap" asp-action="Cikis">Çıkış</a></li>
+                                                </ul>
+                                            </li>
                                         }
                                         else
                                         {
                                             <li><a asp-area="" asp-controller="Hesap" asp-action="Giris">Giriş</a></li>
                                         }
                                     </ul>
-                                    
                                 </nav>
                             </div>
                         </div>
@@ -63,7 +69,14 @@
                         <div class="col-xl-2 col-lg-2">
                             <!-- header-btn -->
                             <div class="header-btn">
-                                <a href="#" class="btn btn1 d-none d-lg-block ">Book Online</a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-area="" asp-controller="Rezervasyon" asp-action="rezervasyon" class="btn btn1 d-none d-lg-block ">Rezervasyon</a>
+                                }
+                                else
+                                {
+                                    <a asp-area="" asp-controller="Hesap" asp-action="Giris" class="btn btn1 d-none d-lg-block ">Rezervasyon</a>
+                                }
                             </div>
                         </div>
                         <!-- Mobile Menu -->
