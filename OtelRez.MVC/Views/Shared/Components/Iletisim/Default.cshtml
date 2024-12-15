@@ -1,0 +1,28 @@
+﻿@using OtelRez.Entity.Entities.Concrete
+@model List<Iletisim>
+
+	@foreach(var item in Model)
+	{
+		<div class="media contact-info">
+			<span class="contact-info__icon"><i class="ti-home"></i></span>
+			<div class="media-body">
+				<h3>@item.Adres</h3>
+			</div>
+		</div>
+
+		<div class="media contact-info">
+			<span class="contact-info__icon"><i class="ti-tablet"></i></span>
+			<div class="media-body">
+				<h3>@item.Tel</h3>
+				<p>7/24 Arayabilirsiniz</p>
+			</div>
+		</div>
+
+		<div class="media contact-info">
+			<span class="contact-info__icon"><i class="ti-email"></i></span>
+			<div class="media-body">
+				<h3>@item.Mail</h3>
+				<p>İstediğiniz zaman bize ulaşın!</p>
+			</div>
+		</div>
+	}

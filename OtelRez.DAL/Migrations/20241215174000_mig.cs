@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class mig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,37 @@ namespace OtelRez.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hizmetler", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Iletisim",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tel = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Adres = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Iletisim", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IletisimeGec",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Adi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Konu = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Mesaj = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IletisimeGec", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,6 +238,11 @@ namespace OtelRez.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Iletisim",
+                columns: new[] { "Id", "Adres", "Mail", "Tel" },
+                values: new object[] { 1, "İstanbul,Beşiktaş", "istkafullkata@gmail.com", "0505 121 41 22" });
+
+            migrationBuilder.InsertData(
                 table: "OdaTurleri",
                 columns: new[] { "Id", "Fiyat", "Kapasite", "PhotoPath", "TurAdi", "TurDetay" },
                 values: new object[,]
@@ -308,6 +344,18 @@ namespace OtelRez.DAL.Migrations
                 name: "IX_Hizmetler_Title",
                 table: "Hizmetler",
                 column: "Title",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Iletisim_Id",
+                table: "Iletisim",
+                column: "Id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IletisimeGec_Id",
+                table: "IletisimeGec",
+                column: "Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -443,6 +491,12 @@ namespace OtelRez.DAL.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Hizmetler");
+
+            migrationBuilder.DropTable(
+                name: "Iletisim");
+
+            migrationBuilder.DropTable(
+                name: "IletisimeGec");
 
             migrationBuilder.DropTable(
                 name: "PersonelGiris");

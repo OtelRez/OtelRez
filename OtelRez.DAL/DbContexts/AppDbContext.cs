@@ -21,6 +21,8 @@ namespace OtelRez.DAL.DbContexts
         public DbSet<Rezervasyon> Rezervasyonlar { get; set; }
         public DbSet<PersonelGiris> PersonelGiris { get; set; }
         public DbSet<Role> Roller {  get; set; } 
+        public DbSet<Iletisim> Iletisim { get; set; }
+        public DbSet<IletisimeGec> IletisimeGec { get; set; }
 
         public AppDbContext()
         {
