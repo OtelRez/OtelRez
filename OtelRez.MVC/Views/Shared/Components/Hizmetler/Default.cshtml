@@ -1,0 +1,41 @@
+﻿@model List<Hizmetler>
+
+@foreach (var item in Model)
+{
+    if (item.Id % 2 == 0)
+    {
+        <div class="single-dining-area left-img">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="dining-caption">
+                            <span>@item.Title</span>
+                            <h3>@item.SubTitle</h3>
+                            <p>@item.Description</p>
+                            <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- single Right img -->
+        <div class="single-dining-area right-img">
+            <div class="container">
+                <div class="row justify-content-start">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="dining-caption text-right">
+                            <span>@item.Title</span>
+                            <h3>@item.SubTitle</h3>
+                            <p>@item.Description</p>
+                            <a href="#" class="btn border-btn">Learn More  <i class="ti-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
