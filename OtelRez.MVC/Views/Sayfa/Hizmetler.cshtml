@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿
+@model Hizmetler
+
+<!doctype html>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -60,37 +63,10 @@
         <!-- slider Area End-->
         <!-- Dining Start -->
         <div class="dining-area dining-padding-top">
-            <!-- Single Left img -->
-            <div class="single-dining-area left-img">
-                <div class="container">
-                    <div class="row justify-content-end">
-                        <div class="col-lg-8 col-md-8">
-                            <div class="dining-caption">
-                                <span>Our resturent</span>
-                                <h3>Dining & Drinks</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br>veniam, quis nostrud.</p>
-                                <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single Right img -->
-            <div class="single-dining-area right-img">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-lg-8 col-md-8">
-                            <div class="dining-caption text-right">
-                                <span>Our Pool</span>
-                                <h3>Swimming Pool</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br>veniam, quis nostrud.</p>
-                                <a href="#" class="btn border-btn">Learn More  <i class="ti-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            @await Component.InvokeAsync("Hizmetler")
+        </div>  
+            
+          
         <!-- Dining End -->
         <!-- Testimonial Start -->
         <div class="testimonial-area t-padding">

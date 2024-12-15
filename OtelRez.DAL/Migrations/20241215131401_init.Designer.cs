@@ -12,8 +12,8 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241215005229_mig")]
-    partial class mig
+    [Migration("20241215131401_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -318,6 +318,7 @@ namespace OtelRez.DAL.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<string>("PhotoPath")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TurAdi")
@@ -346,6 +347,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 1,
                             Fiyat = 1500,
                             Kapasite = (short)1,
+                            PhotoPath = "/OtelTemp/assets/img/rooms/room1.jpg",
                             TurAdi = "Tek Kişilik",
                             TurDetay = "Tek yataklı oda"
                         },
@@ -354,6 +356,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 2,
                             Fiyat = 1600,
                             Kapasite = (short)2,
+                            PhotoPath = "/OtelTemp/assets/img/rooms/room2.jpg",
                             TurAdi = "İki Kişilik",
                             TurDetay = "İki yataklı oda"
                         },
@@ -362,6 +365,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 3,
                             Fiyat = 1700,
                             Kapasite = (short)2,
+                            PhotoPath = "/OtelTemp/assets/img/rooms/room3.jpg",
                             TurAdi = "İki Kişilik Double",
                             TurDetay = "İki kişilik tek yatak"
                         },
@@ -370,6 +374,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 4,
                             Fiyat = 1800,
                             Kapasite = (short)3,
+                            PhotoPath = "/OtelTemp/assets/img/rooms/room4.jpg",
                             TurAdi = "Üç Kişilik",
                             TurDetay = "Üç tek kişilik yatak"
                         },
@@ -378,6 +383,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 5,
                             Fiyat = 1750,
                             Kapasite = (short)3,
+                            PhotoPath = "/OtelTemp/assets/img/rooms/room5.jpg",
                             TurAdi = "Üç Kişilik Double",
                             TurDetay = "1 double yatak 1 tek kişilik yatak"
                         },
@@ -386,6 +392,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 6,
                             Fiyat = 3000,
                             Kapasite = (short)2,
+                            PhotoPath = "/OtelTemp/assets/img/rooms/room6.jpg",
                             TurAdi = "King",
                             TurDetay = "Double yatak"
                         });

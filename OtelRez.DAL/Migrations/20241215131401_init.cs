@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,7 +39,7 @@ namespace OtelRez.DAL.Migrations
                     TurDetay = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Kapasite = table.Column<short>(type: "smallint", nullable: false),
                     Fiyat = table.Column<int>(type: "int", nullable: false),
-                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -211,12 +211,12 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Fiyat", "Kapasite", "PhotoPath", "TurAdi", "TurDetay" },
                 values: new object[,]
                 {
-                    { 1, 1500, (short)1, null, "Tek Kişilik", "Tek yataklı oda" },
-                    { 2, 1600, (short)2, null, "İki Kişilik", "İki yataklı oda" },
-                    { 3, 1700, (short)2, null, "İki Kişilik Double", "İki kişilik tek yatak" },
-                    { 4, 1800, (short)3, null, "Üç Kişilik", "Üç tek kişilik yatak" },
-                    { 5, 1750, (short)3, null, "Üç Kişilik Double", "1 double yatak 1 tek kişilik yatak" },
-                    { 6, 3000, (short)2, null, "King", "Double yatak" }
+                    { 1, 1500, (short)1, "/OtelTemp/assets/img/rooms/room1.jpg", "Tek Kişilik", "Tek yataklı oda" },
+                    { 2, 1600, (short)2, "/OtelTemp/assets/img/rooms/room2.jpg", "İki Kişilik", "İki yataklı oda" },
+                    { 3, 1700, (short)2, "/OtelTemp/assets/img/rooms/room3.jpg", "İki Kişilik Double", "İki kişilik tek yatak" },
+                    { 4, 1800, (short)3, "/OtelTemp/assets/img/rooms/room4.jpg", "Üç Kişilik", "Üç tek kişilik yatak" },
+                    { 5, 1750, (short)3, "/OtelTemp/assets/img/rooms/room5.jpg", "Üç Kişilik Double", "1 double yatak 1 tek kişilik yatak" },
+                    { 6, 3000, (short)2, "/OtelTemp/assets/img/rooms/room6.jpg", "King", "Double yatak" }
                 });
 
             migrationBuilder.InsertData(
