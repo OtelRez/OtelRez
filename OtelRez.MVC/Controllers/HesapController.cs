@@ -36,6 +36,7 @@ namespace OtelRez.MVC.Controllers
         {
             var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
             var personel = personelManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+            
             if (user == null)
             {
                 if (personel == null)
@@ -43,6 +44,7 @@ namespace OtelRez.MVC.Controllers
                     notyfService.Error("Mail ya da şifre hatalı.");
                     return View(girisVM);
                 }
+
                 if (personel.Id == 1)
                 {
                     return RedirectToAction("Hizmetler", "Sayfa");
@@ -52,12 +54,11 @@ namespace OtelRez.MVC.Controllers
                     return RedirectToAction("Iletisim", "Sayfa");
                 }
             }
+
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier,girisVM.Mail),
-                
+                new Claim(ClaimTypes.NameIdentifier,girisVM.Mail)                
             };
-
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authenticationProperty = new AuthenticationProperties()
@@ -90,6 +91,7 @@ namespace OtelRez.MVC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Kayit(KayitVM kayitVM)
         {
             if (!ModelState.IsValid)
@@ -107,7 +109,8 @@ namespace OtelRez.MVC.Controllers
             kullanici.Sifre = kayitVM.Sifre;
 
             kullaniciManager.Create(kullanici);
-            notyfService.Success("Islem Basarili");
+
+            notyfService.Success("İşlem Başarılı");
 
             return RedirectToAction("Giris", "Hesap");
         }

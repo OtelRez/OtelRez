@@ -35,7 +35,8 @@ namespace OtelRez.Entity.Config.Concrete
                 .WithMany(p => p.Kullanicilar)
                 .HasForeignKey(p => p.RoleId);
 
-            builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre="qweasd",RoleId=3 });
+            //builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd", RoleId = 3 });
+            builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd" });
         }
     }
 }

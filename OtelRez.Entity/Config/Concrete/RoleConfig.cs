@@ -17,7 +17,7 @@ namespace OtelRez.Entity.Config.Concrete
 
             builder.Property(p => p.RoleAdi).HasMaxLength(20);
             builder.HasIndex(p => p.RoleAdi).IsUnique();
-            builder.Property(p=>p.RoleAdi).IsRequired();
+            builder.Property(p => p.RoleAdi).IsRequired();
 
             builder.HasData(new Role() { Id = 1, RoleAdi = "Yonetici" });
             builder.HasData(new Role() { Id = 2, RoleAdi = "Resepsiyonist" });

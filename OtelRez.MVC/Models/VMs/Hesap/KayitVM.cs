@@ -14,7 +14,7 @@ namespace OtelRez.MVC.Models.VMs.Hesap
         public string Adi { get; set; }
 
         [Required(ErrorMessage = "Soyad alanı zorunludur")]
-        [MinLength(3, ErrorMessage = "En az 2 karakter olmalıdır")]
+        [MinLength(2, ErrorMessage = "En az 2 karakter olmalıdır")]
         [MaxLength(15, ErrorMessage = "En fazla 15 karakter olmalıdır")]
         public string Soyadi { get; set; }
 

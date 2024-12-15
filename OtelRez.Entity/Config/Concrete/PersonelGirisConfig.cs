@@ -18,7 +18,7 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p => p.Mail).HasMaxLength(50);
             builder.HasIndex(p => p.Mail).IsUnique();
             builder.Property(p => p.Mail).IsRequired();
-            builder.Property(p=>p.Sifre).HasMaxLength(16);
+            builder.Property(p => p.Sifre).HasMaxLength(16);
             builder.Property(p => p.Sifre).IsRequired();
 
             builder.HasData(new PersonelGiris() { Id = 1, Mail = "ahmet@gmail.com", PersonelId = 1, Sifre = "qweasd" });

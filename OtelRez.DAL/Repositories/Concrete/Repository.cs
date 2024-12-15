@@ -23,10 +23,6 @@ namespace OtelRez.DAL.Repositories.Concrete
         #region CRUD Islemleri
         public int Create(T entity)
         {
-            /*
-             * Buradaki Set<T> metodu DbContext icerisindeki 
-             * DbSet<T> property'sinine konumlanir
-             */
             _dbContext.Set<T>().Add(entity);
             return _dbContext.SaveChanges();
         }
