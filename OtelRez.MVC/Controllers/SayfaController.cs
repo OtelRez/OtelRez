@@ -33,17 +33,20 @@ namespace OtelRez.MVC.Controllers
                 return View(iletisimeGecVM);
             }
 
-            IletisimeGec iletisimeGec = new IletisimeGec();
-            iletisimeGec.Adi = iletisimeGecVM.Adi;
-            iletisimeGec.Mail= iletisimeGecVM.Mail;
-            iletisimeGec.Konu = iletisimeGecVM.Konu;
-            iletisimeGec.Mesaj = iletisimeGecVM.Mesaj;
+            else
+            {
+                IletisimeGec iletisimeGec = new IletisimeGec();
+                iletisimeGec.Adi = iletisimeGecVM.Adi;
+                iletisimeGec.Mail = iletisimeGecVM.Mail;
+                iletisimeGec.Konu = iletisimeGecVM.Konu;
+                iletisimeGec.Mesaj = iletisimeGecVM.Mesaj;
 
-            iletisimeGecManager.Create(iletisimeGec);
+                iletisimeGecManager.Create(iletisimeGec);
 
-            notyfService.Success("İşlem Başarılı");
+                notyfService.Success("İşlem Başarılı");
 
-            return RedirectToAction("Iletisim", "Sayfa");
+                return RedirectToAction("Iletisim", "Sayfa");
+            }
         }
 
         public IActionResult Odalar()
