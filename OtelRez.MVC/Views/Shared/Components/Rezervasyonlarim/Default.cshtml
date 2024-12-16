@@ -1,0 +1,12 @@
+﻿@model List<Rezervasyon>
+
+@foreach (var item in Model)
+{
+    <tr>
+        @* <td>@item.Id</td> *@
+        <td>@item.OdaId</td>
+        <td>@item.Giris</td>
+        <td>@item.Cikis</td>
+        <td>@item.CreateTime</td>
+    </tr>
+}

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class bilgi : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -278,7 +278,11 @@ namespace OtelRez.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Kullanicilar",
                 columns: new[] { "Id", "Adi", "DogumTarihi", "Mail", "RoleId", "Sifre", "Soyadi", "Tel" },
-                values: new object[] { 1, "Emre", new DateOnly(1998, 9, 9), "emre@gmail.com", 3, "qweasd", "Andaç", "05456853541" });
+                values: new object[,]
+                {
+                    { 1, "Emre", new DateOnly(1998, 9, 9), "emre@gmail.com", 3, "qweasd", "Andaç", "05456853541" },
+                    { 2, "Betül", new DateOnly(1998, 9, 9), "betul@gmail.com", 3, "qweasd", "Rana", "05648623598" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Odalar",
@@ -326,7 +330,12 @@ namespace OtelRez.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Rezervasyonlar",
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId" },
-                values: new object[] { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 15), new DateOnly(2024, 12, 18), 1, 12 });
+                values: new object[,]
+                {
+                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 16), new DateOnly(2024, 12, 18), 1, 12 },
+                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 16), new DateOnly(2024, 12, 20), 1, 4 },
+                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 16), new DateOnly(2024, 11, 18), 2, 10 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hizmetler_Id",
