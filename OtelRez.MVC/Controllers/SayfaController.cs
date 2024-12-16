@@ -15,6 +15,11 @@ namespace OtelRez.MVC.Controllers
             return View();
         }
 
+        public IActionResult Rezervasyonlarim()
+        {
+            return View();
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Iletisim()

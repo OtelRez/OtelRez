@@ -12,8 +12,8 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241215174000_mig")]
-    partial class mig
+    [Migration("20241216091211_bilgi")]
+    partial class bilgi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,6 +221,17 @@ namespace OtelRez.DAL.Migrations
                             Sifre = "qweasd",
                             Soyadi = "Andaç",
                             Tel = "05456853541"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Adi = "Betül",
+                            DogumTarihi = new DateOnly(1998, 9, 9),
+                            Mail = "betul@gmail.com",
+                            RoleId = 3,
+                            Sifre = "qweasd",
+                            Soyadi = "Rana",
+                            Tel = "05648623598"
                         });
                 });
 
@@ -683,10 +694,28 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 15),
+                            CreateTime = new DateOnly(2024, 12, 16),
                             Giris = new DateOnly(2024, 12, 18),
                             KullaniciId = 1,
                             OdaId = 12
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Cikis = new DateOnly(2024, 12, 22),
+                            CreateTime = new DateOnly(2024, 12, 16),
+                            Giris = new DateOnly(2024, 12, 20),
+                            KullaniciId = 1,
+                            OdaId = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Cikis = new DateOnly(2024, 12, 5),
+                            CreateTime = new DateOnly(2024, 12, 16),
+                            Giris = new DateOnly(2024, 11, 18),
+                            KullaniciId = 2,
+                            OdaId = 10
                         });
                 });
 

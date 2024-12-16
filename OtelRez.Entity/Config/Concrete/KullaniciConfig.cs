@@ -37,6 +37,8 @@ namespace OtelRez.Entity.Config.Concrete
 
             //builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd", RoleId = 3 });
             builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd" });
+            builder.HasData(new Kullanici() { Id = 2, Adi = "Betül", Soyadi = "Rana", Tel = "05648623598", Mail = "betul@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd" });
+
         }
     }
 }

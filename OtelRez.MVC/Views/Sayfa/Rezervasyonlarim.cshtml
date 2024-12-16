@@ -1,0 +1,21 @@
+﻿@model Rezervasyon
+<!doctype html>
+<html class="no-js" lang="zxx">
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                @* <th>Id</th> *@
+                <th>Oda Türü</th>
+                <th>Giriş Tarihi</th>
+                <th>Çıkış Tarihi</th>
+                <th>Rezervasyon Tarihi</th>
+            </tr>
+        
+        <tbody>
+            @await Component.InvokeAsync("Rezervasyonlarim")
+        </tbody>
+        </thead>
+    </table>
+</body>
+</<html >
