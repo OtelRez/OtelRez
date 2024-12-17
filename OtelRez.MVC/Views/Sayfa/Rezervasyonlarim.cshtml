@@ -1,4 +1,4 @@
-﻿@model Rezervasyon
+﻿
 <!doctype html>
 <html class="no-js" lang="zxx">
 <body>
@@ -13,9 +13,10 @@
             </tr>
         
         <tbody>
-            @await Component.InvokeAsync("Rezervasyonlarim")
+                @await Component.InvokeAsync("Rezervasyonlarim", new { kullaniciId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value)})
+
         </tbody>
         </thead>
     </table>
 </body>
-</<html >
+</html >

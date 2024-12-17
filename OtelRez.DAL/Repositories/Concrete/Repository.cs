@@ -2,6 +2,7 @@
 using OtelRez.DAL.DbContexts;
 using OtelRez.DAL.Repositories.Abstract;
 using OtelRez.Entity.Entities.Abstract;
+using OtelRez.Entity.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,12 @@ namespace OtelRez.DAL.Repositories.Concrete
             }
             return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
+        #endregion
+       
+
+        
+        #region Bizim Metodlar
+        
         #endregion
     }
 }
