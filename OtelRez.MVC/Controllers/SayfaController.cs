@@ -62,7 +62,7 @@ namespace OtelRez.MVC.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult Ayarlar()
         {
             AyarlarVM ayarlarVM = new AyarlarVM();
@@ -81,19 +81,23 @@ namespace OtelRez.MVC.Controllers
 
             int temp = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
             var kullanici = kullaniciManager.GetAll(p => p.Id == temp).FirstOrDefault();
+            
+            if(kullanici != null)
+            {
+                kullanici.Adi = ayarlarVM.Adi;
+                kullanici.Soyadi = ayarlarVM.Soyadi;
+                kullanici.Mail = ayarlarVM.Mail;
+                kullanici.Tel = ayarlarVM.Tel;
 
-            kullanici.Adi = ayarlarVM.Adi;
-            kullanici.Soyadi = ayarlarVM.Soyadi;
-            kullanici.Mail = ayarlarVM.Mail;
-            kullanici.Tel = ayarlarVM.Tel;
-            kullanici.DogumTarihi = ayarlarVM.DogumTarihi;
-            //kullanici.Sifre = ayarlarVM.Sifre;
+                kullaniciManager.Update(kullanici);
 
-            kullaniciManager.Update(kullanici);
+                notyfService.Success("İşlem Başarılı");
 
-            notyfService.Success("İşlem Başarılı");
-
-            return RedirectToAction("Ayarlar", "Sayfa");
+                return RedirectToAction("Ayarlar", "Sayfa");
+            }
+            notyfService.Error("Kullanıcı bulunamadı");
+            return View(ayarlarVM);
         }
+
     }
 }
