@@ -1,7 +1,4 @@
-﻿@* @using OtelRez.Entity.Entities.Concrete
-@model Kullanici *@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -52,11 +49,12 @@
                                             <li><a>Hesabım</a>
                                                 <ul class="submenu">
                                                     <li><a asp-controller="Sayfa" asp-action="Rezervasyonlarim">Rezervasyonlarım</a></li>
-                                                    <li><a asp-controller="Hesap" asp-action="Ayarlar">Ayarlar</a></li>
+                                                    <li><a asp-controller="Sayfa" asp-action="Ayarlar">Ayarlar</a></li>
                                                     <li><a asp-controller="Hesap" asp-action="Cikis">Çıkış</a></li>
                                                 </ul>
                                             </li>
                                         }
+
                                         else
                                         {
                                             <li><a asp-area="" asp-controller="Hesap" asp-action="Giris">Giriş</a></li>
@@ -105,19 +103,15 @@
                         <div class="single-footer-caption mb-30">
                             <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="~/OtelTemp/assets/img/logo/logo2_footer.png" alt=""></a>
+                                <a asp-controller="Home" asp-action="Index"><img src="~/OtelTemp/assets/img/logo/logo2_footer.png" alt=""></a>
                             </div>
                             <div class="footer-social footer-social2">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
                             </div>
                             <div class="footer-pera">
                                 <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    This site is made with <i class="ti-heart" aria-hidden="true"></i> by <a target="_blank">Emre Andaç & Betül Rana Özer</a>
                                 </p>
                             </div>
                         </div>
@@ -125,12 +119,12 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5">
                         <div class="single-footer-caption mb-30">
                             <div class="footer-tittle">
-                                <h4>Quick Links</h4>
+                                <h4>Hızlı Erişim</h4>
                                 <ul>
-                                    <li><a href="#">About Mariana</a></li>
-                                    <li><a href="#">Our Best Rooms</a></li>
-                                    <li><a href="#">Our Photo Gellary</a></li>
-                                    <li><a href="#">Pool Service</a></li>
+                                    <li><a href="#">Hakkımızda</a></li>
+                                    <li><a href="#">En İyi Odamız</a></li>
+                                    <li><a href="#">Fotoğraf Galerisi</a></li>
+                                    <li><a href="#">Havuz Hizmetimiz</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -138,11 +132,10 @@
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                         <div class="single-footer-caption mb-30">
                             <div class="footer-tittle">
-                                <h4>Reservations</h4>
+                                <h4>Rezarvasyon İçin</h4>
                                 <ul>
-                                    <li><a href="#">Tel: 345 5667 889</a></li>
-                                    <li><a href="#">Skype: Marianabooking</a></li>
-                                    <li><a href="#">reservations@hotelriver.com</a></li>
+                                    <li><a>Tel: 0212 568 93 96 </a></li>
+                                    <li><a>Mail: istkafullkata@gmail.com</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -150,10 +143,9 @@
                     <div class="col-xl-3 col-lg-3 col-md-4  col-sm-5">
                         <div class="single-footer-caption mb-30">
                             <div class="footer-tittle">
-                                <h4>Our Location</h4>
+                                <h4>Adresimiz</h4>
                                 <ul>
-                                    <li><a href="#">198 West 21th Street,</a></li>
-                                    <li><a href="#">Suite 721 New York NY 10016</a></li>
+                                    <li><a asp-controller="Sayfa" asp-action="Iletisim">İstanbul, Beşiktaş</a></li>
                                 </ul>
                             </div>
                         </div>

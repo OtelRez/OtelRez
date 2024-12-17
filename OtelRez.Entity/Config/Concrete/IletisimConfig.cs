@@ -18,7 +18,7 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p => p.Mail).HasMaxLength(50);
             builder.Property(p => p.Adres).HasMaxLength(500);
 
-            builder.HasData(new Iletisim() { Id = 1, Tel="0505 121 41 22", Mail= "istkafullkata@gmail.com", Adres="İstanbul,Beşiktaş"});
+            builder.HasData(new Iletisim() { Id = 1, Tel="0212 568 93 96", Mail= "istkafullkata@gmail.com", Adres="İstanbul,Beşiktaş"});
         }
     }
 }

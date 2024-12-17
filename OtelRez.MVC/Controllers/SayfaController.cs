@@ -8,7 +8,7 @@ using OtelRez.MVC.Models.VMs.Sayfa;
 
 namespace OtelRez.MVC.Controllers
 {
-    public class SayfaController(IManager<IletisimeGec> iletisimeGecManager, INotyfService notyfService) : Controller
+    public class SayfaController(IManager<IletisimeGec> iletisimeGecManager, IManager<Kullanici> kullaniciManager, INotyfService notyfService) : Controller
     {
         public IActionResult Hizmetler()
         {
@@ -57,6 +57,39 @@ namespace OtelRez.MVC.Controllers
         public IActionResult Odalar()
         {
             return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Ayarlar()
+        {
+            AyarlarVM ayarlarVM = new AyarlarVM();
+            return View(ayarlarVM);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Ayarlar(AyarlarVM ayarlarVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                notyfService.Error("Düzeltilmesi gereken yerler var");
+                return View(ayarlarVM);
+            }
+
+            Kullanici kullanici = new Kullanici();
+            kullanici.Adi = ayarlarVM.Adi;
+            kullanici.Soyadi = ayarlarVM.Soyadi;
+            kullanici.Mail = ayarlarVM.Mail;
+            kullanici.Tel = ayarlarVM.Tel;
+            kullanici.DogumTarihi = ayarlarVM.DogumTarihi;
+            //kullanici.Sifre = ayarlarVM.Sifre;
+
+            kullaniciManager.Update(kullanici);
+
+            notyfService.Success("İşlem Başarılı");
+
+            return RedirectToAction("Ayarlar", "Sayfa");
         }
     }
 }

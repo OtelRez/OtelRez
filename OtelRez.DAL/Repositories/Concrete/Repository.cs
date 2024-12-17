@@ -46,10 +46,12 @@ namespace OtelRez.DAL.Repositories.Concrete
             return _dbContext.Set<T>().Find(id);
 
         }
+
         public T? Get(Expression<Func<T, bool>> predicate)
         {
             return _dbContext.Set<T>().FirstOrDefault(predicate);
         }
+
         public List<T>? GetAll(Expression<Func<T, bool>> predicate = null)
         {
             if (predicate != null)

@@ -1,0 +1,55 @@
+﻿@using OtelRez.MVC.Models.VMs.Sayfa
+@model AyarlarVM
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="~/RegisterTemp/style.css">
+</head>
+<body>
+    <div class="content">
+        <!-- Registration form -->
+        <form asp-action="Kayit" method="post">
+            <div class="user-details">
+                <!-- Input for Name -->
+                <div class="input-box">
+                    <span asp-validation-for="Adi" class="details">Adınız</span>
+                    <input asp-for="Adi" value="@Model.Adi" required>
+                </div>
+                <!-- Input for Surname -->
+                <div class="input-box">
+                    <span asp-validation-for="Soyadi" class="details">Soyadınız</span>
+                    <input asp-for="Soyadi" value="@Model.Soyadi" required>
+                </div>
+                <!-- Input for Email -->
+                <div class="input-box">
+                    <span asp-validation-for="Mail" class="details">Mailiniz</span>
+                    <input asp-for="Mail" type="email" value="@Model.Mail" required>
+                </div>
+                <!-- Input for Phone Number -->
+                <div class="input-box">
+                    <span asp-validation-for="Tel" class="details">Telefon Numaranız</span>
+                    <input asp-for="Tel" value="@Model.Tel" required>
+                </div>
+                <!-- Input for Birth date -->
+                <div class="input-box">
+                    <span asp-validation-for="DogumTarihi" class="details">Doğum Tarihiniz</span>
+                    <input asp-for="DogumTarihi" type="date" value="@Model.DogumTarihi" required>
+                </div>
+                @* <!-- Input for Password -->
+                <div class="input-box">
+                    <span asp-validation-for="Sifre" class="details">Şifreniz</span>
+                    <input asp-for="Sifre" type="password" placeholder="Şifrenizi Giriniz" required>
+                </div> *@
+            </div>
+            <!-- Submit button -->
+            <div class="button">
+                <input type="submit" value="Üye Ol">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

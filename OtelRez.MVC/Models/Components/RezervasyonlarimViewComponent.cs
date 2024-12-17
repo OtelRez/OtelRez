@@ -14,9 +14,8 @@ namespace OtelRez.MVC.Models.Components
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            Kullanici kullanici=new Kullanici();
             // Bu bolum Daha sonra degistirilecek. Gelen Kullanicinin Role'une gore veriler cekilecek
-            var rez = rezervasyon.GetAll(kullanici.Id);
+            var rez = rezervasyon.GetAll();
             return View(rez);
         }
     }
