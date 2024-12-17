@@ -1,1 +1,0 @@
-UserIndex sayfasýnda verileri çekip tablo yapma kodlarý var.
