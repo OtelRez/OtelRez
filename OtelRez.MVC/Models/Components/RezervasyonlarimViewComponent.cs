@@ -12,10 +12,11 @@ namespace OtelRez.MVC.Models.Components
         {
             this.rezervasyon = rezervasyon;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int kullaniciId)
         {
+            Kullanici kullanici=new Kullanici();
             // Bu bolum Daha sonra degistirilecek. Gelen Kullanicinin Role'une gore veriler cekilecek
-            var rez = rezervasyon.GetAll();
+            var rez = rezervasyon.GetAll(kullanici.Id);
             return View(rez);
         }
     }
