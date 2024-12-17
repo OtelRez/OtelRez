@@ -1,16 +1,16 @@
-﻿@model List<Kullanici>
+﻿@* @model List<Kullanici>
 
 @foreach (var item in Model)
 {
 	<!-- Input for Name -->
 	<div class="input-box">
-		<span asp-validation-for="@item.Adi" class="details">Adınız</span>
+		<span class="details">Adınız</span>
 		<input asp-for="@item.Adi" value="@item.Adi" required>
 	</div>
 
 	<!-- Input for Surname -->
 	<div class="input-box">
-		<span asp-validation-for="@item.Soyadi" class="details">Soyadınız</span>
+		<span class="details">Soyadınız</span>
 		<input asp-for="@item.Soyadi" value="@item.Soyadi" required>
 	</div>
 
@@ -25,16 +25,34 @@
 		<span asp-validation-for="@item.Tel" class="details">Telefon Numaranız</span>
 		<input asp-for="@item.Tel" value="@item.Tel" required>
 	</div>
+} *@
 
-@* 	<!-- Input for Birth date -->
-	<div class="input-box">
-		<span asp-validation-for="@item.DogumTarihi" class="details">Doğum Tarihiniz</span>
-		<input asp-for="@item.DogumTarihi" type="date" value="@item.DogumTarihi" required>
-	</div>
- *@
-@* 	<!-- Input for Password -->
-	<div class="input-box">
-		<span asp-validation-for="@item.Sifre" class="details">Şifreniz</span>
-		<input asp-for="@item.Sifre" type="password" placeholder="Şifrenizi Giriniz" required>
-	</div> *@
+@model List<Kullanici>
+
+@foreach (var item in Model)
+{
+    <!-- Input for Name -->
+    <div class="input-box">
+        <span class="details">Adınız</span>
+        <input asp-for="@item.Adi" required>
+    </div>
+
+    <!-- Input for Surname -->
+    <div class="input-box">
+        <span class="details">Soyadınız</span>
+        <input asp-for="@item.Soyadi" required>
+    </div>
+
+    <!-- Input for Email -->
+    <div class="input-box">
+        <span asp-validation-for="@item.Mail" class="details">Mailiniz</span>
+        <input asp-for="@item.Mail" type="email" required>
+    </div>
+
+    <!-- Input for Phone Number -->
+    <div class="input-box">
+        <span asp-validation-for="@item.Tel" class="details">Telefon Numaranız</span>
+        <input asp-for="@item.Tel" required>
+    </div>
+
 }
