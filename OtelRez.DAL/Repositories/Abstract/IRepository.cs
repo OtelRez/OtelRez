@@ -20,6 +20,7 @@ namespace OtelRez.DAL.Repositories.Abstract
 
         public IQueryable<T>? GetAllInclude(Expression<Func<T, bool>> predicate = null
             , params Expression<Func<T, object>>[] include);
+        
 
     }
 }
