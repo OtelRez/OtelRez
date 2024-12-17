@@ -14,7 +14,28 @@
         <!-- Registration form -->
         <form asp-action="Ayarlar" method="post">
             <div class="user-details">
-                @await Component.InvokeAsync("Ayarlar", new { kullaniciId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value) })
+                <div class="input-box">
+                    <span class="details">Adınız</span>
+                    <input asp-for="Adi" id="Adi" required>
+                </div>
+
+                <!-- Input for Surname -->
+                <div class="input-box">
+                    <span class="details">Soyadınız</span>
+                    <input asp-for="Soyadi" id="Soyadi" required>
+                </div>
+
+                <!-- Input for Email -->
+                <div class="input-box">
+                    <span asp-validation-for="Mail" class="details">Mailiniz</span>
+                    <input asp-for="Mail" type="email" required>
+                </div>
+
+                <!-- Input for Phone Number -->
+                <div class="input-box">
+                    <span asp-validation-for="Tel" class="details">Telefon Numaranız</span>
+                    <input asp-for="Tel" required>
+                </div>
             </div>
             <!-- Submit button -->
             <div class="button">

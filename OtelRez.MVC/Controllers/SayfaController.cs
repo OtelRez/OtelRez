@@ -65,8 +65,18 @@ namespace OtelRez.MVC.Controllers
         [Authorize]
         public IActionResult Ayarlar()
         {
-            AyarlarVM ayarlarVM = new AyarlarVM();
-            return View(ayarlarVM);
+            int temp = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
+            var kullanici = kullaniciManager.GetAll(p => p.Id == temp).FirstOrDefault();
+
+            var model = new AyarlarVM
+            {
+                Adi = kullanici.Adi,
+                Soyadi = kullanici.Soyadi,
+                Mail = kullanici.Mail,
+                Tel = kullanici.Tel
+            };
+
+            return View(model);
         }
 
         [HttpPost]
