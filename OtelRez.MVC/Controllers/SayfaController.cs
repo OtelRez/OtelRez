@@ -1,7 +1,9 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OtelRez.BL.Managers.Abstract;
+using OtelRez.DAL.DbContexts;
 using OtelRez.Entity.Entities.Concrete;
 using OtelRez.MVC.Models.VMs.Hesap;
 using OtelRez.MVC.Models.VMs.Sayfa;
@@ -77,7 +79,9 @@ namespace OtelRez.MVC.Controllers
                 return View(ayarlarVM);
             }
 
-            Kullanici kullanici = new Kullanici();
+            int temp = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
+            var kullanici = kullaniciManager.GetAll(p => p.Id == temp).FirstOrDefault();
+
             kullanici.Adi = ayarlarVM.Adi;
             kullanici.Soyadi = ayarlarVM.Soyadi;
             kullanici.Mail = ayarlarVM.Mail;
