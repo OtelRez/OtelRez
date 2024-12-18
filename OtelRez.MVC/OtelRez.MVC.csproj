@@ -32,4 +32,8 @@
     <ProjectReference Include="..\OtelRez.BL\OtelRez.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\RezTemp\fonts\ionicons\.DS_Store" />
+  </ItemGroup>
+
 </Project>

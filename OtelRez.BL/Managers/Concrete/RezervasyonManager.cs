@@ -31,7 +31,7 @@ namespace OtelRez.BL.Managers.Concrete
             return musaitOda;
         }
 
-        public async Task<bool> RezervasyonOlustur(int TurId, Rezervasyon rez)
+        public async Task<bool> RezervasyonOlustur(int TurId, Rezervasyon rez, int Id)
         {
             // Uygun bir oda bul
             var uygunOda = await OdaMusaitMi(TurId, rez.Giris, rez.Cikis);
@@ -44,6 +44,7 @@ namespace OtelRez.BL.Managers.Concrete
             rez.OdaId = uygunOda.Id;
 
             rez.ToplamTutar = ToplamTutar(TurId, rez.Giris, rez.Cikis);
+            rez.KullaniciId = Id;
 
             _context.Rezervasyonlar.Add(rez);
 
