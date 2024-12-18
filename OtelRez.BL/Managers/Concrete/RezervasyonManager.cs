@@ -5,6 +5,7 @@ using OtelRez.Entity.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace OtelRez.BL.Managers.Concrete
                     (CikisTarihi > res.Giris && CikisTarihi <= res.Cikis) ||
                     (GirisTarihi <= res.Giris && CikisTarihi >= res.Cikis)
                 )
-                ));
+               ));
 
             return musaitOda;
         }
@@ -41,6 +42,9 @@ namespace OtelRez.BL.Managers.Concrete
 
             // Rezervasyon işlemini tamamla
             rez.OdaId = uygunOda.Id;
+
+            rez.ToplamTutar = ToplamTutar(TurId, rez.Giris, rez.Cikis);
+
             _context.Rezervasyonlar.Add(rez);
 
             // Odanın müsaitlik durumunu güncelle
@@ -49,10 +53,25 @@ namespace OtelRez.BL.Managers.Concrete
             return true;
         }
 
-
-        public int ToplamTutar(int Tutar, DateOnly GirisTarihi, DateOnly CikisTarihi)
+        public int ToplamTutar(int OdaId, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
-            throw new NotImplementedException();
+            // Giriş ve çıkış tarihi arasındaki farkı gün cinsinden hesapla
+            int gunSayisi = (CikisTarihi.DayNumber - GirisTarihi.DayNumber);
+
+            // Odanın fiyatını OdaTürleri tablosundan al
+            var oda = _context.Odalar
+                .Include(o => o.OdaTur)
+                .FirstOrDefault(o => o.Id == OdaId);
+
+            if (oda == null || gunSayisi <= 0)
+                throw new ArgumentException("Geçersiz Oda veya Tarih bilgisi!");
+
+            int fiyat = oda.OdaTur.Fiyat;
+
+            // Toplam tutarı hesapla
+            int toplamTutar = fiyat * gunSayisi;
+
+            return toplamTutar;
         }
     }
 }
