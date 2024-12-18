@@ -10,37 +10,45 @@ using System.Threading.Tasks;
 
 namespace OtelRez.BL.Managers.Concrete
 {
-    public class RezervasyonManager(IManager<Rezervasyon> rezervasyonManager, IManager<Oda> odaManager, IManager<OdaTur> odaTurManager) : Manager<Rezervasyon>, IRezervasyonManager
+    public class RezervasyonManager
     {
-        private readonly IManager<Rezervasyon> _rezervasyonManager = rezervasyonManager;
-        private readonly IManager<Oda> _odaManager = odaManager;
-        private readonly IManager<OdaTur> _odaTurManager = odaTurManager;
+        private readonly AppDbContext _context= new AppDbContext(new DbContextOptionsBuilder<AppDbContext>()
+        .UseSqlServer("Server=.;Database=OtelRezDb;Trusted_Connection=True;")
+        .Options);
 
-        public bool OdaMusaitMi(int OdaTur, DateOnly GirisTarihi, DateOnly CikisTarihi)
+        public async Task<Oda> OdaMusaitMi(int OdaTurId, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
-            //int temp = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
-            //var kullanici = kullaniciManager.GetAll(p => p.Id == temp).FirstOrDefault();
-            //// Odanın daha önce rezerve edilmiş olduğu tarihleri kontrol et
-            //var oda = _odaTurManager.GetAll(p => p.Id == OdaTur).ToList();
-            //var odalar = _odaManager.GetAll(p => p.OdaTurId == OdaTur).ToList();
-            //var rez = _rezervasyonManager.GetAll(p=>p.KullaniciId ==)
+           var musaitOda = await _context.Odalar.Where(p=>p.OdaTurId==OdaTurId).FirstOrDefaultAsync
+                (p=> !_context.Rezervasyonlar.Any(res=>res.OdaId==p.Id && 
+                (
+                    (GirisTarihi >= res.Giris && GirisTarihi < res.Cikis) ||
+                    (CikisTarihi > res.Giris && CikisTarihi <= res.Cikis) ||
+                    (GirisTarihi <= res.Giris && CikisTarihi >= res.Cikis)
+                )
+                ));
 
-            //foreach (var rezervasyon in odalar)
-            //{
-            //    foreach (var item in oda)
-            //    {
-            //        // Eğer rezervasyon tarihleri ile kullanıcının girdiği tarih aralığı çakışıyorsa
-            //        if (item. < bitisTarihi && rezervasyon.BitisTarihi > baslangicTarihi)
-            //        {
-            //            return false; // Oda bu tarihlerde rezerve edilmiş, müsait değil
-            //        }
-
-            //    }
-
-            //}
-
-            return true; // Oda bu tarihlerde müsait
+            return musaitOda;
         }
+
+        public async Task<bool> RezervasyonOlustur(int TurId, Rezervasyon rez)
+        {
+            // Uygun bir oda bul
+            var uygunOda = await OdaMusaitMi(TurId, rez.Giris, rez.Cikis);
+            if (uygunOda == null)
+            {
+                return false; // Uygun oda bulunamadı
+            }
+
+            // Rezervasyon işlemini tamamla
+            rez.OdaId = uygunOda.Id;
+            _context.Rezervasyonlar.Add(rez);
+
+            // Odanın müsaitlik durumunu güncelle
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
 
         public int ToplamTutar(int Tutar, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
