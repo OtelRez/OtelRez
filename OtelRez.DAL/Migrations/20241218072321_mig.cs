@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class bilgi : Migration
+    public partial class mig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -111,8 +111,7 @@ namespace OtelRez.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OdaNumarasi = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
-                    OdaTurId = table.Column<int>(type: "int", nullable: false),
-                    Musait = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
+                    OdaTurId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,7 +187,8 @@ namespace OtelRez.DAL.Migrations
                     Cikis = table.Column<DateOnly>(type: "date", nullable: false),
                     CreateTime = table.Column<DateOnly>(type: "date", nullable: false, defaultValueSql: "GETDATE()"),
                     KullaniciId = table.Column<int>(type: "int", nullable: false),
-                    OdaId = table.Column<int>(type: "int", nullable: false)
+                    OdaId = table.Column<int>(type: "int", nullable: false),
+                    ToplamTutar = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,7 +240,7 @@ namespace OtelRez.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Iletisim",
                 columns: new[] { "Id", "Adres", "Mail", "Tel" },
-                values: new object[] { 1, "İstanbul,Beşiktaş", "istkafullkata@gmail.com", "0505 121 41 22" });
+                values: new object[] { 1, "İstanbul,Beşiktaş", "istkafullkata@gmail.com", "0212 568 93 96" });
 
             migrationBuilder.InsertData(
                 table: "OdaTurleri",
@@ -286,26 +286,26 @@ namespace OtelRez.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Odalar",
-                columns: new[] { "Id", "Musait", "OdaNumarasi", "OdaTurId" },
+                columns: new[] { "Id", "OdaNumarasi", "OdaTurId" },
                 values: new object[,]
                 {
-                    { 1, true, "101", 1 },
-                    { 2, true, "102", 1 },
-                    { 3, true, "103", 4 },
-                    { 4, true, "104", 4 },
-                    { 5, true, "105", 4 },
-                    { 6, true, "201", 2 },
-                    { 7, true, "202", 2 },
-                    { 8, true, "203", 3 },
-                    { 9, true, "204", 3 },
-                    { 10, true, "205", 3 },
-                    { 11, true, "301", 1 },
-                    { 12, true, "302", 2 },
-                    { 13, true, "303", 3 },
-                    { 14, true, "304", 5 },
-                    { 15, true, "305", 5 },
-                    { 16, true, "401", 6 },
-                    { 17, true, "405", 6 }
+                    { 1, "101", 1 },
+                    { 2, "102", 1 },
+                    { 3, "103", 4 },
+                    { 4, "104", 4 },
+                    { 5, "105", 4 },
+                    { 6, "201", 2 },
+                    { 7, "202", 2 },
+                    { 8, "203", 3 },
+                    { 9, "204", 3 },
+                    { 10, "205", 3 },
+                    { 11, "301", 1 },
+                    { 12, "302", 2 },
+                    { 13, "303", 3 },
+                    { 14, "304", 5 },
+                    { 15, "305", 5 },
+                    { 16, "401", 6 },
+                    { 17, "405", 6 }
                 });
 
             migrationBuilder.InsertData(
@@ -329,12 +329,12 @@ namespace OtelRez.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Rezervasyonlar",
-                columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId" },
+                columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 16), new DateOnly(2024, 12, 18), 1, 12 },
-                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 16), new DateOnly(2024, 12, 20), 1, 4 },
-                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 16), new DateOnly(2024, 11, 18), 2, 10 }
+                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 18), new DateOnly(2024, 12, 18), 1, 12, 4000 },
+                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 18), new DateOnly(2024, 12, 20), 1, 4, 2000 },
+                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 18), new DateOnly(2024, 11, 18), 2, 10, 20000 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,8 +12,8 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241216091211_bilgi")]
-    partial class bilgi
+    [Migration("20241218072321_mig")]
+    partial class mig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,7 +116,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 1,
                             Adres = "İstanbul,Beşiktaş",
                             Mail = "istkafullkata@gmail.com",
-                            Tel = "0505 121 41 22"
+                            Tel = "0212 568 93 96"
                         });
                 });
 
@@ -243,11 +243,6 @@ namespace OtelRez.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Musait")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
                     b.Property<string>("OdaNumarasi")
                         .IsRequired()
                         .HasMaxLength(3)
@@ -272,119 +267,102 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Musait = true,
                             OdaNumarasi = "101",
                             OdaTurId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Musait = true,
                             OdaNumarasi = "102",
                             OdaTurId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Musait = true,
                             OdaNumarasi = "103",
                             OdaTurId = 4
                         },
                         new
                         {
                             Id = 4,
-                            Musait = true,
                             OdaNumarasi = "104",
                             OdaTurId = 4
                         },
                         new
                         {
                             Id = 5,
-                            Musait = true,
                             OdaNumarasi = "105",
                             OdaTurId = 4
                         },
                         new
                         {
                             Id = 6,
-                            Musait = true,
                             OdaNumarasi = "201",
                             OdaTurId = 2
                         },
                         new
                         {
                             Id = 7,
-                            Musait = true,
                             OdaNumarasi = "202",
                             OdaTurId = 2
                         },
                         new
                         {
                             Id = 8,
-                            Musait = true,
                             OdaNumarasi = "203",
                             OdaTurId = 3
                         },
                         new
                         {
                             Id = 9,
-                            Musait = true,
                             OdaNumarasi = "204",
                             OdaTurId = 3
                         },
                         new
                         {
                             Id = 10,
-                            Musait = true,
                             OdaNumarasi = "205",
                             OdaTurId = 3
                         },
                         new
                         {
                             Id = 11,
-                            Musait = true,
                             OdaNumarasi = "301",
                             OdaTurId = 1
                         },
                         new
                         {
                             Id = 12,
-                            Musait = true,
                             OdaNumarasi = "302",
                             OdaTurId = 2
                         },
                         new
                         {
                             Id = 13,
-                            Musait = true,
                             OdaNumarasi = "303",
                             OdaTurId = 3
                         },
                         new
                         {
                             Id = 14,
-                            Musait = true,
                             OdaNumarasi = "304",
                             OdaTurId = 5
                         },
                         new
                         {
                             Id = 15,
-                            Musait = true,
                             OdaNumarasi = "305",
                             OdaTurId = 5
                         },
                         new
                         {
                             Id = 16,
-                            Musait = true,
                             OdaNumarasi = "401",
                             OdaTurId = 6
                         },
                         new
                         {
                             Id = 17,
-                            Musait = true,
                             OdaNumarasi = "405",
                             OdaTurId = 6
                         });
@@ -677,6 +655,9 @@ namespace OtelRez.DAL.Migrations
                     b.Property<int>("OdaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ToplamTutar")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
@@ -694,28 +675,31 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 16),
+                            CreateTime = new DateOnly(2024, 12, 18),
                             Giris = new DateOnly(2024, 12, 18),
                             KullaniciId = 1,
-                            OdaId = 12
+                            OdaId = 12,
+                            ToplamTutar = 4000
                         },
                         new
                         {
                             Id = 2,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 16),
+                            CreateTime = new DateOnly(2024, 12, 18),
                             Giris = new DateOnly(2024, 12, 20),
                             KullaniciId = 1,
-                            OdaId = 4
+                            OdaId = 4,
+                            ToplamTutar = 2000
                         },
                         new
                         {
                             Id = 3,
                             Cikis = new DateOnly(2024, 12, 5),
-                            CreateTime = new DateOnly(2024, 12, 16),
+                            CreateTime = new DateOnly(2024, 12, 18),
                             Giris = new DateOnly(2024, 11, 18),
                             KullaniciId = 2,
-                            OdaId = 10
+                            OdaId = 10,
+                            ToplamTutar = 20000
                         });
                 });
 

@@ -18,5 +18,7 @@ namespace OtelRez.Entity.Entities.Concrete
 
         public int OdaId { get; set; }
         public Oda Oda { get; set; }
+
+        public int ToplamTutar { get; set; }
     }
 }
