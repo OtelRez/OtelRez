@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -332,9 +332,9 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 18), new DateOnly(2024, 12, 18), 1, 12, 4000 },
-                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 18), new DateOnly(2024, 12, 20), 1, 4, 2000 },
-                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 18), new DateOnly(2024, 11, 18), 2, 10, 20000 }
+                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 19), new DateOnly(2024, 12, 18), 1, 12, 4000 },
+                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 19), new DateOnly(2024, 12, 20), 1, 4, 2000 },
+                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 19), new DateOnly(2024, 11, 18), 2, 10, 20000 }
                 });
 
             migrationBuilder.CreateIndex(

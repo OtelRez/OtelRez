@@ -16,7 +16,7 @@ namespace OtelRez.BL.Managers.Concrete
         private readonly AppDbContext _context= new AppDbContext(new DbContextOptionsBuilder<AppDbContext>()
         .UseSqlServer("Server=.;Database=OtelRezDb;Trusted_Connection=True;")
         .Options);
-
+        private readonly IManager<OdaTur> odaTurManager;
         public async Task<Oda> OdaMusaitMi(int OdaTurId, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
            var musaitOda = await _context.Odalar.Where(p=>p.OdaTurId==OdaTurId).FirstOrDefaultAsync
@@ -31,7 +31,7 @@ namespace OtelRez.BL.Managers.Concrete
             return musaitOda;
         }
 
-        public async Task<bool> RezervasyonOlustur(int TurId, Rezervasyon rez, int Id)
+        public async Task<bool> RezervasyonOlustur(int TurId, Rezervasyon rez, int KullaniciId)
         {
             // Uygun bir oda bul
             var uygunOda = await OdaMusaitMi(TurId, rez.Giris, rez.Cikis);
@@ -44,7 +44,7 @@ namespace OtelRez.BL.Managers.Concrete
             rez.OdaId = uygunOda.Id;
 
             rez.ToplamTutar = ToplamTutar(TurId, rez.Giris, rez.Cikis);
-            rez.KullaniciId = Id;
+            rez.KullaniciId = KullaniciId;
 
             _context.Rezervasyonlar.Add(rez);
 
@@ -74,5 +74,6 @@ namespace OtelRez.BL.Managers.Concrete
 
             return toplamTutar;
         }
+
     }
 }

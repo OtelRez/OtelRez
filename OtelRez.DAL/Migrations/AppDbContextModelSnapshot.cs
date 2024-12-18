@@ -670,7 +670,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 18),
+                            CreateTime = new DateOnly(2024, 12, 19),
                             Giris = new DateOnly(2024, 12, 18),
                             KullaniciId = 1,
                             OdaId = 12,
@@ -680,7 +680,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 2,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 18),
+                            CreateTime = new DateOnly(2024, 12, 19),
                             Giris = new DateOnly(2024, 12, 20),
                             KullaniciId = 1,
                             OdaId = 4,
@@ -690,7 +690,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 3,
                             Cikis = new DateOnly(2024, 12, 5),
-                            CreateTime = new DateOnly(2024, 12, 18),
+                            CreateTime = new DateOnly(2024, 12, 19),
                             Giris = new DateOnly(2024, 11, 18),
                             KullaniciId = 2,
                             OdaId = 10,
