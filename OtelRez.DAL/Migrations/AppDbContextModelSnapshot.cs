@@ -639,9 +639,7 @@ namespace OtelRez.DAL.Migrations
                         .HasColumnType("date");
 
                     b.Property<DateOnly>("CreateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("date");
 
                     b.Property<DateOnly>("Giris")
                         .HasColumnType("date");

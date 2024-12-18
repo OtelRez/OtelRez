@@ -12,7 +12,7 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241218072321_mig")]
+    [Migration("20241218205318_mig")]
     partial class mig
     {
         /// <inheritdoc />
@@ -642,9 +642,7 @@ namespace OtelRez.DAL.Migrations
                         .HasColumnType("date");
 
                     b.Property<DateOnly>("CreateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasDefaultValueSql("GETDATE()");
+                        .HasColumnType("date");
 
                     b.Property<DateOnly>("Giris")
                         .HasColumnType("date");

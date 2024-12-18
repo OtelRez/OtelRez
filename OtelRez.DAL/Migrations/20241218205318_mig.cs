@@ -185,7 +185,7 @@ namespace OtelRez.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Giris = table.Column<DateOnly>(type: "date", nullable: false),
                     Cikis = table.Column<DateOnly>(type: "date", nullable: false),
-                    CreateTime = table.Column<DateOnly>(type: "date", nullable: false, defaultValueSql: "GETDATE()"),
+                    CreateTime = table.Column<DateOnly>(type: "date", nullable: false),
                     KullaniciId = table.Column<int>(type: "int", nullable: false),
                     OdaId = table.Column<int>(type: "int", nullable: false),
                     ToplamTutar = table.Column<int>(type: "int", nullable: false)

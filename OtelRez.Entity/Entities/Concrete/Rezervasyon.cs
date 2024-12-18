@@ -11,7 +11,7 @@ namespace OtelRez.Entity.Entities.Concrete
     {
         public DateOnly Giris { get; set; }
         public DateOnly Cikis { get; set; }
-        public DateOnly CreateTime { get; set; }
+        public DateOnly CreateTime { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
         public int KullaniciId { get; set; }
         public Kullanici Kullanici { get; set; }
