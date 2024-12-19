@@ -11,6 +11,6 @@ namespace OtelRez.MVC.Models.VMs.Rezervasyon
         public DateOnly CikisTarihi { get; set; }
 
         [Required(ErrorMessage = "Oda türü seçmediniz")]
-        public string OdaTurAdi { get; set; }
+        public int OdaTurId { get; set; }
     }
 }

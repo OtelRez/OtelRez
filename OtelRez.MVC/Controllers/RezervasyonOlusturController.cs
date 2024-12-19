@@ -1,6 +1,8 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing.Internal;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.BL.Managers.Concrete;
 using OtelRez.Entity.Entities.Concrete;
@@ -25,8 +27,15 @@ namespace OtelRez.MVC.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var odaTurleri = await _rezervasyonManager.GetOdaTurleriAsync();
+            ViewBag.OdaTurleri = odaTurleri.Select(t => new SelectListItem
+            {
+                Text = t.TurAdi,
+                Value = t.Id.ToString()
+            }).ToList();
+
             return View();
         }
 
@@ -35,26 +44,28 @@ namespace OtelRez.MVC.Controllers
         public async Task<IActionResult> Index(RezOlusturVM rezOlusturVM)
         {
             int kullaniciId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
+            
             if (!ModelState.IsValid)
             {
+                var odaTurleri = await _rezervasyonManager.GetOdaTurleriAsync();
+                ViewBag.OdaTurleri = odaTurleri.Select(t => new SelectListItem
+                {
+                    Text = t.TurAdi,
+                    Value = t.Id.ToString()
+                }).ToList();
+
                 return View(rezOlusturVM);
             }
 
             try
             {
-                // Giriş yapan kullanıcının ID'sini al
-                //var kullaniciId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-                // Rezervasyon nesnesini oluştur
                 var rezervasyon = new Rezervasyon
                 {
                     Giris = rezOlusturVM.GirisTarihi,
                     Cikis = rezOlusturVM.CikisTarihi
                 };
-                var tur = odaTurManager.GetAll(p => p.TurAdi == rezOlusturVM.OdaTurAdi).FirstOrDefault();
-                int Id = tur.Id;
-                // RezervasyonManager üzerinden işlem yap
-                bool sonuc = await _rezervasyonManager.RezervasyonOlustur(Id, rezervasyon, kullaniciId);
+
+                bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
 
                 if (sonuc)
                 {
@@ -63,13 +74,28 @@ namespace OtelRez.MVC.Controllers
                 }
                 else
                 {
+                    var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
+                    ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
+                    {
+                        Text = t.TurAdi,
+                        Value = t.Id.ToString()
+                    }).ToList();
+
                     _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
                     return View(rezOlusturVM);
                 }
             }
+
             catch (Exception ex)
             {
                 _notyfService.Error("Bir hata oluştu");
+                var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
+                ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
+                {
+                    Text = t.TurAdi,
+                    Value = t.Id.ToString()
+                }).ToList();
+
                 return View(rezOlusturVM);
             }
 

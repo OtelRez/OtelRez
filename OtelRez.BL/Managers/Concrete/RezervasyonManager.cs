@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.DAL.DbContexts;
+using OtelRez.DAL.Repositories.Concrete;
 using OtelRez.Entity.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,27 @@ namespace OtelRez.BL.Managers.Concrete
         private readonly AppDbContext _context= new AppDbContext(new DbContextOptionsBuilder<AppDbContext>()
         .UseSqlServer("Server=.;Database=OtelRezDb;Trusted_Connection=True;")
         .Options);
+
+        private readonly string _connectionString;
+
         private readonly IManager<OdaTur> odaTurManager;
+
+        private readonly Repository<OdaTur> _odaTurRepository;
+        private readonly Repository<Oda> _odaRepository;
+        private readonly Repository<Rezervasyon> _rezervasyonRepository;
+
+        public RezervasyonManager()
+        {
+            _odaTurRepository = new Repository<OdaTur>();
+            _odaRepository = new Repository<Oda>();
+            _rezervasyonRepository = new Repository<Rezervasyon>();
+        }
+
+        // Oda Türlerini getir
+        public async Task<List<OdaTur>> GetOdaTurleriAsync()
+        {
+            return await Task.Run(() => _odaTurRepository.GetAll());
+        }
         public async Task<Oda> OdaMusaitMi(int OdaTurId, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
            var musaitOda = await _context.Odalar.Where(p=>p.OdaTurId==OdaTurId).FirstOrDefaultAsync
@@ -73,6 +95,38 @@ namespace OtelRez.BL.Managers.Concrete
             int toplamTutar = fiyat * gunSayisi;
 
             return toplamTutar;
+        }
+
+        public int GetOdaTurIdByAd(string odaTurAdi)
+        {
+            int odaTurId = -1; // Eğer oda türü bulunamazsa -1 döner
+
+            string query = "SELECT Id FROM OdaTurleri WHERE TurAdi = @TurAdi";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TurAdi", odaTurAdi);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            odaTurId = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Hata: " + ex.Message);
+                    }
+                }
+            }
+
+            return odaTurId;
         }
 
     }

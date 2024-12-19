@@ -76,11 +76,5 @@ namespace OtelRez.DAL.Repositories.Concrete
             return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
         #endregion
-       
-
-        
-        #region Bizim Metodlar
-        
-        #endregion
     }
 }
