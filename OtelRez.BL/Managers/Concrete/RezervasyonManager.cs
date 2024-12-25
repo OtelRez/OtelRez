@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.DAL.DbContexts;
@@ -18,6 +19,7 @@ namespace OtelRez.BL.Managers.Concrete
         private readonly AppDbContext _context= new AppDbContext(new DbContextOptionsBuilder<AppDbContext>()
         .UseSqlServer("Server=.;Database=OtelRezDb;Trusted_Connection=True;")
         .Options);
+        private readonly INotyfService _notyfService;
 
         private readonly string _connectionString;
 
@@ -55,6 +57,11 @@ namespace OtelRez.BL.Managers.Concrete
 
         public async Task<bool> RezervasyonOlustur(int TurId, Rezervasyon rez, int KullaniciId)
         {
+            if(rez.Giris >= rez.Cikis)
+            {
+                _notyfService.Warning("Giriş tarihi çıkış tarihinden büyük olamaz!");
+                return false;
+            }
             // Uygun bir oda bul
             var uygunOda = await OdaMusaitMi(TurId, rez.Giris, rez.Cikis);
             if (uygunOda == null)
@@ -65,7 +72,7 @@ namespace OtelRez.BL.Managers.Concrete
             // Rezervasyon işlemini tamamla
             rez.OdaId = uygunOda.Id;
 
-            rez.ToplamTutar = ToplamTutar(TurId, rez.Giris, rez.Cikis);
+            rez.ToplamTutar = ToplamTutar(uygunOda.OdaTurId, rez.Giris, rez.Cikis);
             rez.KullaniciId = KullaniciId;
 
             _context.Rezervasyonlar.Add(rez);
@@ -76,20 +83,20 @@ namespace OtelRez.BL.Managers.Concrete
             return true;
         }
 
-        public int ToplamTutar(int OdaId, DateOnly GirisTarihi, DateOnly CikisTarihi)
+        public int ToplamTutar(int OdaTurId, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
             // Giriş ve çıkış tarihi arasındaki farkı gün cinsinden hesapla
             int gunSayisi = (CikisTarihi.DayNumber - GirisTarihi.DayNumber);
 
             // Odanın fiyatını OdaTürleri tablosundan al
-            var oda = _context.Odalar
-                .Include(o => o.OdaTur)
-                .FirstOrDefault(o => o.Id == OdaId);
+            var oda = _context.OdaTurleri
+                .Include(o => o.Odalar)
+                .FirstOrDefault(o => o.Id == OdaTurId);
 
             if (oda == null || gunSayisi <= 0)
                 throw new ArgumentException("Geçersiz Oda veya Tarih bilgisi!");
 
-            int fiyat = oda.OdaTur.Fiyat;
+            int fiyat = oda.Fiyat;
 
             // Toplam tutarı hesapla
             int toplamTutar = fiyat * gunSayisi;
@@ -97,37 +104,37 @@ namespace OtelRez.BL.Managers.Concrete
             return toplamTutar;
         }
 
-        public int GetOdaTurIdByAd(string odaTurAdi)
-        {
-            int odaTurId = -1; // Eğer oda türü bulunamazsa -1 döner
+        //public int GetOdaTurIdByAd(string odaTurAdi)
+        //{
+        //    int odaTurId = -1; // Eğer oda türü bulunamazsa -1 döner
 
-            string query = "SELECT Id FROM OdaTurleri WHERE TurAdi = @TurAdi";
+        //    string query = "SELECT Id FROM OdaTurleri WHERE TurAdi = @TurAdi";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TurAdi", odaTurAdi);
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@TurAdi", odaTurAdi);
 
-                    try
-                    {
-                        connection.Open();
-                        object result = command.ExecuteScalar();
+        //            try
+        //            {
+        //                connection.Open();
+        //                object result = command.ExecuteScalar();
 
-                        if (result != null)
-                        {
-                            odaTurId = Convert.ToInt32(result);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Hata: " + ex.Message);
-                    }
-                }
-            }
+        //                if (result != null)
+        //                {
+        //                    odaTurId = Convert.ToInt32(result);
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine("Hata: " + ex.Message);
+        //            }
+        //        }
+        //    }
 
-            return odaTurId;
-        }
+        //    return odaTurId;
+        //}
 
     }
 }

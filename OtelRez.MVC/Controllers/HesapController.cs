@@ -46,13 +46,24 @@ namespace OtelRez.MVC.Controllers
                     return View(girisVM);
                 }
 
-                if (personel.Id == 1)
+                else
                 {
-                    return RedirectToAction("Hizmetler", "Sayfa");
-                }
-                else if (personel.Id == 2)
-                {
-                    return RedirectToAction("Iletisim", "Sayfa");
+                    //Personel RoleId'ye göre yönlendirme yapılacak
+                    if (personel.Id == 1)
+                    {
+                        return RedirectToAction("Hizmetler", "Sayfa");
+                    }
+
+                    else if (personel.Id == 2)
+                    {
+                        return RedirectToAction("Iletisim", "Sayfa");
+                    }
+
+                    else
+                    {
+                        notyfService.Error("Geçersiz Giriş Bilgisi.");
+                        return View(girisVM);
+                    }
                 }
             }
 

@@ -1,6 +1,6 @@
 body {
   background: #fff;
-  font-family: "Rubik", arial, sans-serif;
+  /*font-family: "Rubik", arial, sans-serif;*/
   font-weight: 300;
   font-size: 15px;
   line-height: 1.8;
@@ -20,12 +20,12 @@ a:hover {
 
 h1, h2, h3, h4, h5 {
   color: #000;
-  font-family: "Playfair Display", times, serif;
+  /*font-family: "Playfair Display", times, serif;*/
 }
 
-header {
-  position: absolute;
-  top: 0;
+/*header {*/
+/*  position: absolute;*/
+  /*top: 0;
   left: 0;
   width: 100%;
   z-index: 5;
@@ -146,7 +146,7 @@ header .navbar.navbar-light .nav-link {
 
 header .navbar.navbar-light .nav-link.active {
   color: #fff;
-}
+}*/
 
 .site-hero {
   background-size: cover;
@@ -549,7 +549,7 @@ textarea.form-control {
   height: inherit;
 }
 
-.btn {
+/*.btn {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
@@ -602,7 +602,7 @@ textarea.form-control {
   -webkit-box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.2) !important;
   box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.2) !important;
 }
-
+*/
 .custom-icon {
   font-size: 70px;
   color: #b99365;
@@ -872,7 +872,7 @@ textarea.form-control {
 
 .box h2 {
   font-size: 18px;
-  font-family: "Rubik", arial, sans-serif;
+  /*font-family: "Rubik", arial, sans-serif;*/
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
@@ -1099,7 +1099,7 @@ textarea.form-control {
   text-transform: uppercase;
   letter-spacing: .1em;
   color: #ccc;
-  font-family: "Rubik", arial, sans-serif;
+  /*font-family: "Rubik", arial, sans-serif;*/
 }
 
 .stretch-section .video {
@@ -1281,7 +1281,7 @@ textarea.form-control {
 .list-unstyled.check li:before {
   color: #17a2b8;
   left: 0;
-  font-family: "Ionicons";
+  /*font-family: "Ionicons";*/
   content: "\f122";
   position: absolute;
 }
@@ -1295,7 +1295,7 @@ textarea.form-control {
   padding: 40px;
 }
 
-.site-footer {
+/*.site-footer {
   padding: 5em 0;
   background: #f2f2f2;
   font-size: 16px;
@@ -1343,7 +1343,7 @@ textarea.form-control {
 
 .site-footer hr {
   width: 100%;
-}
+}*/
 
 .subscribe .form-group {
   position: relative;

@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="~/OtelTemp/assets/css/responsive.css">
 </head>
 <body>
-    <header>
+    <header style="position:sticky; z-index:5; background-color:white;">
+
         <!-- Header Start -->
         <div class="header-area header-sticky">
             <div class="main-header ">
@@ -66,10 +67,10 @@
 
                         <div class="col-xl-2 col-lg-2">
                             <!-- header-btn -->
-                            <div class="header-btn">
+                            <div class="header-btn-rez">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a asp-area="" asp-controller="RezervasyonOlustur" asp-action="Index" class="btn btn1 d-none d-lg-block ">Rezervasyon</a>
+                                    <a asp-area="" asp-controller="RezervasyonOlustur" asp-action="Index" class="btn btn1 d-none d-lg-block" >Rezervasyon</a>
                                 }
                                 else
                                 {
