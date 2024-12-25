@@ -57,6 +57,7 @@ namespace OtelRez.MVC.Controllers
                 return View(rezOlusturVM);
             }
 
+            #region Try içinden çıkarılan kod
             var rezervasyon = new Rezervasyon
             {
                 Giris = rezOlusturVM.GirisTarihi,
@@ -81,7 +82,8 @@ namespace OtelRez.MVC.Controllers
 
                 _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
                 return View(rezOlusturVM);
-            }
+            } 
+            #endregion
 
             //try
             //{
