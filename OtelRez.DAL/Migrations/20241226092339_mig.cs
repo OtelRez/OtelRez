@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class mig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -130,8 +130,8 @@ namespace OtelRez.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Adi = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Soyadi = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Adi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Soyadi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Tel = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     Mail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sifre = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
@@ -247,12 +247,12 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Fiyat", "Kapasite", "PhotoPath", "TurAdi", "TurDetay" },
                 values: new object[,]
                 {
-                    { 1, 1500, (short)1, "/OtelTemp/assets/img/rooms/room1.jpg", "Tek Kişilik", "Tek yataklı oda" },
-                    { 2, 1600, (short)2, "/OtelTemp/assets/img/rooms/room2.jpg", "İki Kişilik", "İki yataklı oda" },
-                    { 3, 1700, (short)2, "/OtelTemp/assets/img/rooms/room3.jpg", "İki Kişilik Double", "İki kişilik tek yatak" },
-                    { 4, 1800, (short)3, "/OtelTemp/assets/img/rooms/room4.jpg", "Üç Kişilik", "Üç tek kişilik yatak" },
-                    { 5, 1750, (short)3, "/OtelTemp/assets/img/rooms/room5.jpg", "Üç Kişilik Double", "1 double yatak 1 tek kişilik yatak" },
-                    { 6, 3000, (short)2, "/OtelTemp/assets/img/rooms/room6.jpg", "King", "Double yatak" }
+                    { 1, 1500, (short)1, "/OtelTemp/assets/img/rooms/room1.jpg", "Suit Room", "Tek yataklı oda" },
+                    { 2, 1600, (short)2, "/OtelTemp/assets/img/rooms/room2.jpg", "Twin Room", "İki yataklı oda" },
+                    { 3, 1700, (short)2, "/OtelTemp/assets/img/rooms/room3.jpg", "Double Room", "İki kişilik tek yatak" },
+                    { 4, 1800, (short)3, "/OtelTemp/assets/img/rooms/room4.jpg", "Triple Room", "Üç tek kişilik yatak" },
+                    { 5, 1750, (short)3, "/OtelTemp/assets/img/rooms/room5.jpg", "Family Room", "1 double yatak 1 tek kişilik yatak" },
+                    { 6, 3000, (short)2, "/OtelTemp/assets/img/rooms/room6.jpg", "King Room", "Double yatak" }
                 });
 
             migrationBuilder.InsertData(
@@ -281,7 +281,7 @@ namespace OtelRez.DAL.Migrations
                 values: new object[,]
                 {
                     { 1, "Emre", new DateOnly(1998, 9, 9), "emre@gmail.com", 3, "qweasd", "Andaç", "05456853541" },
-                    { 2, "Betül", new DateOnly(1998, 9, 9), "betul@gmail.com", 3, "qweasd", "Rana", "05648623598" }
+                    { 2, "Betül Rana", new DateOnly(1998, 9, 9), "betul@gmail.com", 3, "qweasd", "Özer", "05648623598" }
                 });
 
             migrationBuilder.InsertData(
@@ -332,9 +332,9 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 19), new DateOnly(2024, 12, 18), 1, 12, 4000 },
-                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 19), new DateOnly(2024, 12, 20), 1, 4, 2000 },
-                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 19), new DateOnly(2024, 11, 18), 2, 10, 20000 }
+                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 26), new DateOnly(2024, 12, 18), 1, 12, 4000 },
+                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 26), new DateOnly(2024, 12, 20), 1, 4, 2000 },
+                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 26), new DateOnly(2024, 11, 18), 2, 10, 20000 }
                 });
 
             migrationBuilder.CreateIndex(

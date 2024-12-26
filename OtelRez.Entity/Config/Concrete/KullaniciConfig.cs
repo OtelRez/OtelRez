@@ -14,10 +14,10 @@ namespace OtelRez.Entity.Config.Concrete
         public override void Configure(EntityTypeBuilder<Kullanici> builder)
         {
             base.Configure(builder);
-            builder.Property(p => p.Adi).HasMaxLength(15);
+            builder.Property(p => p.Adi).HasMaxLength(50);
             builder.Property(p => p.Adi).IsRequired();
             
-            builder.Property(p => p.Soyadi).HasMaxLength(15);
+            builder.Property(p => p.Soyadi).HasMaxLength(50);
             builder.Property(p => p.Soyadi).IsRequired();
             
             builder.Property(p => p.Tel).HasMaxLength(11);
@@ -35,9 +35,8 @@ namespace OtelRez.Entity.Config.Concrete
                 .WithMany(p => p.Kullanicilar)
                 .HasForeignKey(p => p.RoleId);
 
-            //builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd", RoleId = 3 });
             builder.HasData(new Kullanici() { Id = 1, Adi = "Emre", Soyadi = "Andaç", Tel = "05456853541", Mail = "emre@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd" });
-            builder.HasData(new Kullanici() { Id = 2, Adi = "Betül", Soyadi = "Rana", Tel = "05648623598", Mail = "betul@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd" });
+            builder.HasData(new Kullanici() { Id = 2, Adi = "Betül Rana", Soyadi = "Özer", Tel = "05648623598", Mail = "betul@gmail.com", DogumTarihi = DateOnly.Parse("1998-09-09"), Sifre = "qweasd" });
 
         }
     }
