@@ -3,10 +3,15 @@
 @foreach (var item in Model)
 {
     <tr>
-        @* <td>@item.Id</td> *@
-        <td>@item.OdaId</td>
+        <td>@item.Oda.OdaNumarasi</td>
         <td>@item.Giris</td>
         <td>@item.Cikis</td>
-        <td>@item.CreateTime</td>
+        <td>@item.ToplamTutar</td>
+        <td>
+            <form asp-controller="Rez" asp-action="RezIptal" method="post">
+                <input type="hidden" name="id" value="@item.Id" />
+                <button type="submit" class="btn btn-danger btn-sm">İptal Et</button>
+            </form>
+        </td>
     </tr>
 }

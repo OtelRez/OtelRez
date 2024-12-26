@@ -36,11 +36,13 @@ namespace OtelRez.BL.Managers.Concrete
             _rezervasyonRepository = new Repository<Rezervasyon>();
         }
 
+
         // Oda Türlerini getir
         public async Task<List<OdaTur>> GetOdaTurleriAsync()
         {
             return await Task.Run(() => _odaTurRepository.GetAll());
         }
+
         public async Task<Oda> OdaMusaitMi(int OdaTurId, DateOnly GirisTarihi, DateOnly CikisTarihi)
         {
            var musaitOda = await _context.Odalar.Where(p=>p.OdaTurId==OdaTurId).FirstOrDefaultAsync

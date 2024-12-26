@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.DAL.DbContexts;
 using OtelRez.Entity.Entities.Concrete;
@@ -91,8 +92,8 @@ namespace OtelRez.MVC.Controllers
 
             int temp = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
             var kullanici = kullaniciManager.GetAll(p => p.Id == temp).FirstOrDefault();
-            
-            if(kullanici != null)
+
+            if (kullanici != null)
             {
                 kullanici.Adi = ayarlarVM.Adi;
                 kullanici.Soyadi = ayarlarVM.Soyadi;

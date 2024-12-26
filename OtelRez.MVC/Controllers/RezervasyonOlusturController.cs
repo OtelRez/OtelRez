@@ -54,69 +54,27 @@ namespace OtelRez.MVC.Controllers
                     Value = t.Id.ToString()
                 }).ToList();
 
-                return View(rezOlusturVM);
+                return RedirectToAction("Index", "RezervasyonOlustur");
+
             }
 
             #region Try içinden çıkarılan kod
-            var rezervasyon = new Rezervasyon
-            {
-                Giris = rezOlusturVM.GirisTarihi,
-                Cikis = rezOlusturVM.CikisTarihi
-            };
-
-            bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
-
-            if (sonuc)
-            {
-                _notyfService.Success("Rezervasyon başarıyla oluşturuldu.");
-                return View(rezOlusturVM);
-            }
-            else
-            {
-                var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
-                ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
-                {
-                    Text = t.TurAdi,
-                    Value = t.Id.ToString()
-                }).ToList();
-
-                _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
-                return View(rezOlusturVM);
-            } 
-            #endregion
-
-            //try
+            //var rezervasyon = new Rezervasyon
             //{
-            //    var rezervasyon = new Rezervasyon
-            //    {
-            //        Giris = rezOlusturVM.GirisTarihi,
-            //        Cikis = rezOlusturVM.CikisTarihi
-            //    };
+            //    Giris = rezOlusturVM.GirisTarihi,
+            //    Cikis = rezOlusturVM.CikisTarihi
+            //};
 
-            //    bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
+            //bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
 
-            //    if (sonuc)
-            //    {
-            //        _notyfService.Success("Rezervasyon başarıyla oluşturuldu.");
-            //        return View(rezOlusturVM);
-            //    }
-            //    else
-            //    {
-            //        var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
-            //        ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
-            //        {
-            //            Text = t.TurAdi,
-            //            Value = t.Id.ToString()
-            //        }).ToList();
+            //if (sonuc)
+            //{
+            //    _notyfService.Success("Rezervasyon başarıyla oluşturuldu.");
+            //    return RedirectToAction("Index", "RezervasyonOlustur");
 
-            //        _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
-            //        return View(rezOlusturVM);
-            //    }
             //}
-
-            //catch (Exception ex)
+            //else
             //{
-            //    _notyfService.Error("Bir hata oluştu");
             //    var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
             //    ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
             //    {
@@ -124,8 +82,54 @@ namespace OtelRez.MVC.Controllers
             //        Value = t.Id.ToString()
             //    }).ToList();
 
-            //    return View(rezOlusturVM);
+            //    _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
+            //    return RedirectToAction("Index", "RezervasyonOlustur");
             //}
+            #endregion
+
+            try
+            {
+                var rezervasyon = new Rezervasyon
+                {
+                    Giris = rezOlusturVM.GirisTarihi,
+                    Cikis = rezOlusturVM.CikisTarihi
+                };
+
+                bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
+
+                if (sonuc)
+                {
+                    _notyfService.Success("Rezervasyon başarıyla oluşturuldu.");
+                    return RedirectToAction("Index", "RezervasyonOlustur");
+
+                }
+                else
+                {
+                    var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
+                    ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
+                    {
+                        Text = t.TurAdi,
+                        Value = t.Id.ToString()
+                    }).ToList();
+
+                    _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
+                    return RedirectToAction("Index", "RezervasyonOlustur");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                _notyfService.Error("Bir hata oluştu");
+                var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
+                ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
+                {
+                    Text = t.TurAdi,
+                    Value = t.Id.ToString()
+                }).ToList();
+
+                return RedirectToAction("Index", "RezervasyonOlustur");
+
+            }
 
         }
     }

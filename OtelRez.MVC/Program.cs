@@ -2,7 +2,10 @@ using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using OtelRez.BL.Managers.Concrete;
 using OtelRez.DAL.DbContexts;
+using OtelRez.DAL.Repositories.Abstract;
+using OtelRez.Entity.Entities.Concrete;
 using OtelRez.MVC.Extensions;
 
 namespace OtelRez.MVC
@@ -48,7 +51,6 @@ namespace OtelRez.MVC
             });
 
             builder.Services.AddOtelService();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -20,6 +20,10 @@ namespace OtelRez.DAL.Repositories.Concrete
             _dbContext = new AppDbContext();
         }
 
+        //public Repository(AppDbContext dbContext)
+        //{
+        //    _dbContext = dbContext;
+        //}
 
         #region CRUD Islemleri
         public int Create(T entity)
