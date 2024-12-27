@@ -15,5 +15,11 @@ namespace OtelRez.Entity.Entities.Concrete
         public int Fiyat { get; set; }
         public ICollection<Oda> Odalar { get; set; }
         public string PhotoPath { get; set; }
+
+        public bool Balkon { get; set; }
+        public bool WiFi { get; set; } = true;
+        public bool Jakuzi { get; set; }
+        public bool OdaServisi { get; set; } = true;
+        public bool Minibar { get; set; }
     }
 }

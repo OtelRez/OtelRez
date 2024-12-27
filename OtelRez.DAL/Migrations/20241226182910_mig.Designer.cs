@@ -12,7 +12,7 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241226092339_mig")]
+    [Migration("20241226182910_mig")]
     partial class mig
     {
         /// <inheritdoc />
@@ -376,11 +376,23 @@ namespace OtelRez.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Balkon")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Fiyat")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Jakuzi")
+                        .HasColumnType("bit");
+
                     b.Property<short>("Kapasite")
                         .HasColumnType("smallint");
+
+                    b.Property<bool>("Minibar")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("OdaServisi")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PhotoPath")
                         .IsRequired()
@@ -396,6 +408,9 @@ namespace OtelRez.DAL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<bool>("WiFi")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
@@ -410,56 +425,86 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            Balkon = false,
                             Fiyat = 1500,
+                            Jakuzi = false,
                             Kapasite = (short)1,
+                            Minibar = false,
+                            OdaServisi = true,
                             PhotoPath = "/OtelTemp/assets/img/rooms/room1.jpg",
                             TurAdi = "Suit Room",
-                            TurDetay = "Tek yataklı oda"
+                            TurDetay = "Tek yataklı oda",
+                            WiFi = true
                         },
                         new
                         {
                             Id = 2,
+                            Balkon = false,
                             Fiyat = 1600,
+                            Jakuzi = false,
                             Kapasite = (short)2,
+                            Minibar = false,
+                            OdaServisi = true,
                             PhotoPath = "/OtelTemp/assets/img/rooms/room2.jpg",
                             TurAdi = "Twin Room",
-                            TurDetay = "İki yataklı oda"
+                            TurDetay = "İki yataklı oda",
+                            WiFi = true
                         },
                         new
                         {
                             Id = 3,
+                            Balkon = true,
                             Fiyat = 1700,
+                            Jakuzi = false,
                             Kapasite = (short)2,
+                            Minibar = false,
+                            OdaServisi = true,
                             PhotoPath = "/OtelTemp/assets/img/rooms/room3.jpg",
                             TurAdi = "Double Room",
-                            TurDetay = "İki kişilik tek yatak"
+                            TurDetay = "İki kişilik tek yatak",
+                            WiFi = true
                         },
                         new
                         {
                             Id = 4,
+                            Balkon = true,
                             Fiyat = 1800,
+                            Jakuzi = false,
                             Kapasite = (short)3,
+                            Minibar = true,
+                            OdaServisi = true,
                             PhotoPath = "/OtelTemp/assets/img/rooms/room4.jpg",
                             TurAdi = "Triple Room",
-                            TurDetay = "Üç tek kişilik yatak"
+                            TurDetay = "Üç tek kişilik yatak",
+                            WiFi = true
                         },
                         new
                         {
                             Id = 5,
+                            Balkon = true,
                             Fiyat = 1750,
+                            Jakuzi = false,
                             Kapasite = (short)3,
+                            Minibar = true,
+                            OdaServisi = true,
                             PhotoPath = "/OtelTemp/assets/img/rooms/room5.jpg",
                             TurAdi = "Family Room",
-                            TurDetay = "1 double yatak 1 tek kişilik yatak"
+                            TurDetay = "1 double yatak 1 tek kişilik yatak",
+                            WiFi = true
                         },
                         new
                         {
                             Id = 6,
+                            Balkon = true,
                             Fiyat = 3000,
+                            Jakuzi = true,
                             Kapasite = (short)2,
+                            Minibar = true,
+                            OdaServisi = true,
                             PhotoPath = "/OtelTemp/assets/img/rooms/room6.jpg",
                             TurAdi = "King Room",
-                            TurDetay = "Double yatak"
+                            TurDetay = "Double yatak",
+                            WiFi = true
                         });
                 });
 

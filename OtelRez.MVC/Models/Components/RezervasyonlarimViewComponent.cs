@@ -16,8 +16,6 @@ namespace OtelRez.MVC.Models.Components
         }
         public async Task<IViewComponentResult> InvokeAsync(int kullaniciId)
         {
-            //var rez = rezervasyon.GetAll(p => p.KullaniciId == kullaniciId);
-
             var rez = await rezervasyon
                 .GetAllInclude(
                     p => p.KullaniciId == kullaniciId, // Filtre

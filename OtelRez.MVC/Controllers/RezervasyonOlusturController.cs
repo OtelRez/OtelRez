@@ -29,6 +29,7 @@ namespace OtelRez.MVC.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            RezOlusturVM rezOlusturVM = new RezOlusturVM();
             var odaTurleri = await _rezervasyonManager.GetOdaTurleriAsync();
             ViewBag.OdaTurleri = odaTurleri.Select(t => new SelectListItem
             {
@@ -36,7 +37,7 @@ namespace OtelRez.MVC.Controllers
                 Value = t.Id.ToString()
             }).ToList();
 
-            return View();
+            return View(rezOlusturVM);
         }
 
         [HttpPost]
@@ -128,7 +129,6 @@ namespace OtelRez.MVC.Controllers
                 }).ToList();
 
                 return RedirectToAction("Index", "RezervasyonOlustur");
-
             }
 
         }

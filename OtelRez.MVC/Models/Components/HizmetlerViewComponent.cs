@@ -14,7 +14,6 @@ namespace OtelRez.MVC.Models.Components
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            // Bu bolum Daha sonra degistirilecek. Gelen Kullanicinin Role'une gore veriler cekilecek
             var hizmetlers = hizmetler.GetAll();
             return View(hizmetlers);
         }

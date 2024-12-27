@@ -1,0 +1,39 @@
+﻿@model OdaTur
+
+<figure>
+    <img src="@Url.Content(Model.PhotoPath)" alt="Generic placeholder image" class="img-fluid">
+    <div class="overlap-text">
+        <span>
+            Featured Room
+            <span class="ion-ios-star"></span>
+            <span class="ion-ios-star"></span>
+            <span class="ion-ios-star"></span>
+        </span>
+    </div>
+</figure>
+
+<div class="media-body">
+    <h3 class="mt-0"><a>Presidential Room</a></h3>
+    <ul class="room-specs">
+        <li><span class="ion-ios-people-outline"></span>@Model.Kapasite</li>
+
+        @if (Model.Balkon)
+        {
+            <li><span class="ion-ios-crop"></span>Balkon</li>
+        }
+        @if (Model.WiFi)
+        {
+            <li><span class="ion-ios-crop"></span>Wifi</li>
+        }
+        @if (Model.Jakuzi)
+        {
+            <li><span class="ion-ios-crop"></span>Jakuzi</li>
+        }
+        @if (Model.Minibar)
+        {
+            <li><span class="ion-ios-crop"></span>Minibar</li>
+        }
+    </ul>
+    <p>Nulla vel metus scelerisque ante sollicitudin. Fusce condimentum nunc ac nisi vulputate fringilla. </p>
+    <p><a href="#" class="btn btn-primary btn-sm">Book Now From $20</a></p>
+</div>

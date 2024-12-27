@@ -109,6 +109,5 @@ namespace OtelRez.MVC.Controllers
             notyfService.Error("Kullanıcı bulunamadı");
             return View(ayarlarVM);
         }
-
     }
 }
