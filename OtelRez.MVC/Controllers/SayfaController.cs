@@ -135,6 +135,12 @@ namespace OtelRez.MVC.Controllers
             return View(oda); 
         }
 
+        public IActionResult Hakkimizda()
+        {
+
+            return View(); 
+        }
+
        
     }
 }
