@@ -33,6 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\MenuTemp\images\.DS_Store" />
+    <None Include="wwwroot\MenuTemp\js\.DS_Store" />
     <None Include="wwwroot\RezTemp\fonts\ionicons\.DS_Store" />
   </ItemGroup>
 
