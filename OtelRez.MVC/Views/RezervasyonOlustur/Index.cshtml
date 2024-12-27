@@ -1,6 +1,10 @@
 ﻿@using OtelRez.MVC.Models.VMs.Rezervasyon
 @model RezOlusturVM
-
+@* @{
+    ViewBag.Title = "Rezervasyon Oluştur";
+    var odaTurleri = ViewBag.OdaTurleri as List<SelectListItem>;
+    var secilenOdaDetaylari = ViewBag.SecilenOdaDetaylari as OdaTur;
+} *@
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,13 +15,9 @@
     <link rel="stylesheet" href="~/RezTemp/css/bootstrap.css">
     <link rel="stylesheet" href="~/RezTemp/css/animate.css">
     <link rel="stylesheet" href="~/RezTemp/css/owl.carousel.min.css">
-
     <link rel="stylesheet" href="~/RezTemp/fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="~/RezTemp/fonts/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/RezTemp/css/magnific-popup.css"> 
-    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css"> *@
-
-    <!-- Theme Style -->
+    <link rel="stylesheet" href="~/RezTemp/css/magnific-popup.css">
     <link rel="stylesheet" href="~/RezTemp/css/style.css">
 </head>
 <body>
@@ -25,38 +25,36 @@
         <div class="container">
             <div class="row align-items-center site-hero-inner justify-content-center">
                 <div class="col-md-12 text-center">
-
                     <div class="mb-5 element-animate">
                         <h1>Rezervasyon</h1>
                         <p>Dünyanın En Iyi Odalarına Sahip Otelimizi Keşfedin.</p>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
-    <!-- END section -->
 
     <section class="site-section">
         <div class="container-rez">
             <div class="row">
+                <!-- Sol taraf: Rezervasyon Formu -->
                 <div class="col-md-6">
-                    <h2 class="mb-5">Reservation Form</h2>
+                    <h2 class="mb-5">Rezervasyon Formu</h2>
                     <form asp-action="Index" method="post">
                         <div class="row">
                             <div class="col-sm-6 form-group">
-                                <label for="">Giriş Tarihi</label>
+                                <label for="GirisTarihi">Giriş Tarihi</label>
                                 <div style="position: relative;">
                                     <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
-                                    <input asp-for="GirisTarihi" type="date" class="form-control" />
+                                    <input asp-for="GirisTarihi" type="date" class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="col-sm-6 form-group">
-                                <label for="">Çıkış Tarihi</label>
+                                <label for="CikisTarihi">Çıkış Tarihi</label>
                                 <div style="position: relative;">
                                     <span class="fa fa-calendar icon" style="position: absolute; right: 10px; top: 10px;"></span>
-                                    <input asp-for="CikisTarihi" type="date" class="form-control" />
+                                    <input asp-for="CikisTarihi" type="date" class="form-control" required />
                                 </div>
                             </div>
                         </div>
@@ -64,32 +62,59 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label asp-for="OdaTurId">Oda Türü</label>
-                                <select asp-for="OdaTurId" class="form-control" asp-items="@(ViewBag.OdaTurleri)">
+                                <select asp-for="OdaTurId" class="form-control" asp-items="ViewBag.OdaTurleri" required>
                                     <option value="">-- Oda Türü Seçiniz --</option>
                                 </select>
                                 <span asp-validation-for="OdaTurId" class="text-danger"></span>
                             </div>
-                        </div> 
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <input type="submit" value="Satın Al" class="btn btn-primary">
+                                <input type="submit" value="Rezervasyon Yap" class="btn btn-primary">
                             </div>
                         </div>
                     </form>
                 </div>
+
                 <div class="col-md-1"></div>
 
-                @* Sağda gelen oda bilgileri *@
-                <div class="col-md-5">
-                    <h3 class="mb-5">Featured Room</h3>
-                    <div class="media d-block room mb-0">
-                        <partial name="_RezOdaTur" model="new OdaTur {Id = Model.OdaTurId}" />
-                    </div>
-                </div>
+                <!-- Sağ taraf: Seçilen Oda Türü Detayları -->
+                @* <div class="col-md-5">
+                    <h3 class="mb-5">Seçilen Oda Detayları</h3>
+                    @if (secilenOdaDetaylari != null)
+                    {
+                        <div class="media d-block room mb-0">
+                            <h4>@secilenOdaDetaylari.TurAdi</h4>
+                            <ul class="room-specs">
+                                <li><span class="ion-ios-people-outline"></span> Kapasite: @secilenOdaDetaylari.Kapasite</li>
+                                @if (secilenOdaDetaylari.Balkon)
+                                {
+                                    <li>Balkon: Var</li>
+                                }
+                                @if (secilenOdaDetaylari.WiFi)
+                                {
+                                    <li>WiFi: Var</li>
+                                }
+                                @if (secilenOdaDetaylari.Jakuzi)
+                                {
+                                    <li>Jakuzzi: Var</li>
+                                }
+                                @if (secilenOdaDetaylari.Minibar)
+                                {
+                                    <li>Minibar: Var</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Seçili oda türüne ait bilgiler burada görünecek.</p>
+                    }
+                </div> *@
             </div>
         </div>
     </section>
-    <!-- END section -->
 
     <section class="section-cover" data-stellar-background-ratio="0.5" style="background-image: url(RezTemp/images/img_5.jpg);">
         <div class="container">
@@ -97,14 +122,12 @@
                 <div class="col-md-9 text-center element-animate">
                     <h2>Relax and Enjoy your Holiday</h2>
                     <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto quidem tempore expedita facere facilis, dolores!</p>
-                    <div class="btn-play-wrap"><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn-play popup-vimeo "><span class="ion-ios-play"></span></a></div>
+                    <div class="btn-play-wrap"><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn-play popup-vimeo"><span class="ion-ios-play"></span></a></div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- END section -->
 
-    <!-- loader -->
     <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214" /></svg></div>
 
     <script src="~/RezTemp/js/jquery-3.2.1.min.js"></script>
@@ -114,17 +137,8 @@
     <script src="~/RezTemp/js/owl.carousel.min.js"></script>
     <script src="~/RezTemp/js/jquery.waypoints.min.js"></script>
     <script src="~/RezTemp/js/jquery.stellar.min.js"></script>
-                 
     <script src="~/RezTemp/js/jquery.magnific-popup.min.js"></script>
     <script src="~/RezTemp/js/magnific-popup-options.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-
-    <script>
-
-        $('#arrival_date, #departure_date').datepicker({});
-
-    </script>
-
     <script src="~/RezTemp/js/main.js"></script>
 </body>
 </html>
