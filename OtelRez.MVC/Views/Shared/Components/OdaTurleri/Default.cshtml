@@ -5,14 +5,10 @@
 	<div class="col-xl-4 col-lg-6 col-md-6">
 		<div class="single-room mb-50">
 			<div class="room-img">
-				<a> <img src="@Url.Content(item.PhotoPath)" alt=""></a>
+				<a asp-controller="Sayfa" asp-action="OdaTurDetay" asp-route-Id="@item.Id"> <img src="@Url.Content(item.PhotoPath)" alt=""></a>
 			</div>
 			<div class="room-caption">
 				<h3><a>@item.TurAdi</a></h3>
-				<div>
-					<a>@item.TurDetay</a><br />
-					<a>@item.Kapasite Kişiliktir</a>
-				</div>
 				<div class="per-night">
 					<span><u>₺</u>@item.Fiyat <span>/ Gecelik</span></span>
 				</div>

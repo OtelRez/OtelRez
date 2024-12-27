@@ -11,7 +11,7 @@ using OtelRez.MVC.Models.VMs.Sayfa;
 
 namespace OtelRez.MVC.Controllers
 {
-    public class SayfaController(IManager<IletisimeGec> iletisimeGecManager, IManager<Kullanici> kullaniciManager, INotyfService notyfService) : Controller
+    public class SayfaController(IManager<IletisimeGec> iletisimeGecManager, IManager<Kullanici> kullaniciManager,IManager<OdaTur> odaTurManager ,INotyfService notyfService) : Controller
     {
         public IActionResult Hizmetler()
         {
@@ -108,6 +108,19 @@ namespace OtelRez.MVC.Controllers
             }
             notyfService.Error("Kullanıcı bulunamadı");
             return View(ayarlarVM);
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult OdaTurDetay(int Id)
+        {
+            int OdaTurId = Id;
+            var oda = odaTurManager.GetById(OdaTurId);
+            if (oda == null)
+            {
+                notyfService.Error("Oda bulunamadı.");
+            }
+            
+            return View(oda); 
         }
     }
 }
