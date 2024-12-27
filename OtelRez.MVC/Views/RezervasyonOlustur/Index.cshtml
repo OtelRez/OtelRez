@@ -45,14 +45,14 @@
                             <div class="col-sm-6 form-group">
                                 <label for="GirisTarihi">Giriş Tarihi</label>
                                 <div style="position: relative;">
-                                    <input asp-for="GirisTarihi" type="date" class="form-control" required />
+                                    <input asp-for="GirisTarihi" type="date" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"  class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="col-sm-6 form-group">
                                 <label for="CikisTarihi">Çıkış Tarihi</label>
                                 <div style="position: relative;">
-                                    <input asp-for="CikisTarihi" type="date" class="form-control" required />
+                                    <input asp-for="CikisTarihi" type="date" min="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")" class="form-control" required />
                                 </div>
                             </div>
                         </div>
@@ -75,10 +75,10 @@
                     </form>
                 </div>
 
-                <div class="col-md-1"></div>
+                @* <div class="col-md-1"></div>
 
                 <!-- Sağ taraf: Seçilen Oda Türü Detayları -->
-                @* <div class="col-md-5">
+                <div class="col-md-5">
                     <h3 class="mb-5">Seçilen Oda Detayları</h3>
                     @if (secilenOdaDetaylari != null)
                     {

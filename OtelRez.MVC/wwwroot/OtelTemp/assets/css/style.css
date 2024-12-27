@@ -2445,32 +2445,33 @@ label {
   .dining-area .single-dining-area.left-img {
     position: relative; }
     .dining-area .single-dining-area.left-img::before {
-      position: absolute;
-      left: 0;
-      content: "";
-      top: 0;
-      bottom: 0;
-/*      background-image: url(../img/dining/dining-img.png);*/
-      width: 50%;
-      border-radius: 0 5px 0 0;
-      background-size: cover;
-      background-repeat: no-repeat; }
+        position: absolute;
+        left: 0;
+        content: "";
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        border-radius: 0 5px 0 0;
+        background-size: cover;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
       @media (max-width: 767px) {
         .dining-area .single-dining-area.left-img::before {
           display: none; } }
   .dining-area .single-dining-area.right-img {
     position: relative; }
     .dining-area .single-dining-area.right-img::before {
-      position: absolute;
-      right: 0;
-      content: "";
-      top: 0;
-      bottom: 0;
-/*      background-image: url(../img/dining/dining-img2.png);*/
-      width: 50%;
-      border-radius: 0 0 0 5px;
-      background-repeat: no-repeat;
-      background-size: cover; }
+        position: absolute;
+        right: 0;
+        content: "";
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        border-radius: 0 0 0 5px;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
       @media (max-width: 767px) {
         .dining-area .single-dining-area.right-img::before {
           display: none; } }
