@@ -23,6 +23,7 @@ namespace OtelRez.DAL.DbContexts
         public DbSet<Role> Roller {  get; set; } 
         public DbSet<Iletisim> Iletisim { get; set; }
         public DbSet<IletisimeGec> IletisimeGec { get; set; }
+        public DbSet<Galery> Galeriler { get; set; }
 
         public AppDbContext()
         {

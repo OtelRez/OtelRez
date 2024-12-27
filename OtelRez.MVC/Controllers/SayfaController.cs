@@ -11,8 +11,20 @@ using OtelRez.MVC.Models.VMs.Sayfa;
 
 namespace OtelRez.MVC.Controllers
 {
-    public class SayfaController(IManager<IletisimeGec> iletisimeGecManager, IManager<Kullanici> kullaniciManager,IManager<OdaTur> odaTurManager ,INotyfService notyfService) : Controller
+    public class SayfaController(IManager<IletisimeGec> iletisimeGecManager, IManager<Kullanici> kullaniciManager,
+                                    IManager<OdaTur> odaTurManager,IManager<Galery> galeryManager ,INotyfService notyfService) : Controller
     {
+        public IActionResult Galery()
+        {
+            var photos = galeryManager.GetAll().
+                Select(g => new GaleryVM
+            {
+                Id = g.Id,
+                PhotoPath = g.PhotoPath
+            })
+        .ToList(); 
+            return View(photos);
+        }
         public IActionResult Hizmetler()
         {
             return View();
@@ -122,5 +134,7 @@ namespace OtelRez.MVC.Controllers
             
             return View(oda); 
         }
+
+       
     }
 }
