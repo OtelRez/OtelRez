@@ -1,0 +1,51 @@
+﻿@using OtelRez.MVC.Models.VMs.Sayfa
+@model List<GaleryVM>
+
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+<div class="gallery">
+    <h1>사진 갤러리</h1>
+    <div class="photo-container">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var photo in Model)
+            {
+                <div class="photo">
+                    <img src="@Url.Content(photo.PhotoPath)" alt="Photo" class="photo-img" />
+                </div>
+            }
+        }
+        else
+        {
+            <p>No photos available.</p>
+        }
+    </div>
+</div>
+
+<style>
+    .gallery {
+        text-align: center;
+    }
+
+    .photo-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .photo {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .photo-img {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+</style>

@@ -24,8 +24,8 @@ namespace OtelRez.Entity.Config.Concrete
 
             builder.Property(p => p.Description).IsRequired();
 
-            builder.HasData(new Hizmetler() { Id = 1, Title = "Restoranımız", SubTitle = "Akşam yemeği ve kahvaltı", Description = "asjhvhdsvhfsvdhsbh" });
-            builder.HasData(new Hizmetler() { Id = 2, Title = "Havuzumuz", SubTitle = "Büyük yüzme havuzu", Description = "asjhvhdsvhfsvdhsbh" });
+            builder.HasData(new Hizmetler() { Id = 1, Title = "Restoranımız", SubTitle = "Akşam yemeği ve kahvaltı", Description = "asjhvhdsvhfsvdhsbh", PhotoPath= "/OtelTemp/assets/img/dining/dining-img.jpg" });
+            builder.HasData(new Hizmetler() { Id = 2, Title = "Havuzumuz", SubTitle = "Büyük yüzme havuzu", Description = "asjhvhdsvhfsvdhsbh", PhotoPath= "/OtelTemp/assets/img/dining/dining-img2.jpg" });
         }
     }
 }
