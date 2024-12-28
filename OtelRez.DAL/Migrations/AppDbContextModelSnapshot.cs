@@ -345,6 +345,364 @@ namespace OtelRez.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Fiyat")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MenuKategoriId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UrunAciklama")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("UrunAdi")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("MenuKategoriId");
+
+                    b.HasIndex("UrunAdi")
+                        .IsUnique();
+
+                    b.ToTable("Menuler");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Fiyat = 250,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Peynir çeşitleri, domates, salatalık, mevsim yeşilliği, zeytin çeşitleri, yumurta, reçel, bal, tereyeğ ve çay ile servis edilir",
+                            UrunAdi = "Kahvaltı Tabağı"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Fiyat = 80,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Çırpılmış yumurta, domates ve mevsim yeşilliği",
+                            UrunAdi = "Sade Omlet"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Fiyat = 100,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Peynirli çırpılmış yumurta, domates ve mevsim yeşilliği",
+                            UrunAdi = "Peynirli Omlet"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Fiyat = 150,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Sade, sucuklu, kaşarlı seçenekleri",
+                            UrunAdi = "Menemen"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Fiyat = 120,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Kaşar, peynir, karışık seçenekleri",
+                            UrunAdi = "Tost"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Fiyat = 140,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Kaşar, peynir, kıyma, patates seçenekleri",
+                            UrunAdi = "Gözleme"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Fiyat = 140,
+                            MenuKategoriId = 1,
+                            UrunAciklama = "Kaşar, peynir, kıyma, patates seçenekleri",
+                            UrunAdi = "Börek"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Fiyat = 110,
+                            MenuKategoriId = 2,
+                            UrunAciklama = "Günün çorbası",
+                            UrunAdi = "Çorba"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Fiyat = 200,
+                            MenuKategoriId = 2,
+                            UrunAciklama = "Patates kızartması, sosis, sigara böreği, soğan halkası",
+                            UrunAdi = "Kızarmış Lezzet Sepeti"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Fiyat = 80,
+                            MenuKategoriId = 2,
+                            UrunAciklama = "Patates kızartması",
+                            UrunAdi = "Parmak Patates"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Fiyat = 90,
+                            MenuKategoriId = 2,
+                            UrunAciklama = "Tahinli yoğurt ve mevsim yeşilliği ile servis edilir",
+                            UrunAdi = "Falafel"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Fiyat = 300,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Pilav / makarna ve salata ile servis edilir",
+                            UrunAdi = "Izgara Tavuk"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Fiyat = 350,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Pilav / makarna ve salata ile servis edilir",
+                            UrunAdi = "Izgara Köfte"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Fiyat = 300,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Mantar, kapya biber ile pişirilmiş tavu bonfile, makarna ve patates ile servis edilir",
+                            UrunAdi = "Soya Soslu Tavuk"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Fiyat = 200,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Acılı arrabbiata sosu, zeytin dilimleri, sarımsak, pesto sos ve parmesan",
+                            UrunAdi = "Penne Arrabbiata"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Fiyat = 250,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Tavuk, mantar, sarımsak, pesto sos, parmesan ve krema",
+                            UrunAdi = "Fettuccine Alfredo"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Fiyat = 300,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Mozzarella, domates sos, sucuk, sosis, salam, mantar, yeşil biber, mısır, domates, siyah zeytin, yeşil zeytin",
+                            UrunAdi = "Karışık Pizza"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Fiyat = 250,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Mozzarella, domates sos",
+                            UrunAdi = "Margarita Pizza"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Fiyat = 285,
+                            MenuKategoriId = 3,
+                            UrunAciklama = "Mozzarella, domates sos, salam, mantar, yeşil biber, domates, soğan",
+                            UrunAdi = "Akdeniz Pizza"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Fiyat = 200,
+                            MenuKategoriId = 4,
+                            UrunAciklama = "Brownie küpleri, taze çilek, özel krema",
+                            UrunAdi = "Everest"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Fiyat = 250,
+                            MenuKategoriId = 4,
+                            UrunAciklama = "Dondurma ile servis edilir",
+                            UrunAdi = "Brownie"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Fiyat = 250,
+                            MenuKategoriId = 4,
+                            UrunAciklama = "Çilekli, çikolatalatı, lotuslu seçenekleri",
+                            UrunAdi = "Pasta"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Fiyat = 280,
+                            MenuKategoriId = 4,
+                            UrunAciklama = "3 dilim olarak servis edilir",
+                            UrunAdi = "Baklava"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Fiyat = 255,
+                            MenuKategoriId = 4,
+                            UrunAciklama = "Dondurma ile servis edilir",
+                            UrunAdi = "Künefe"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Fiyat = 20,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Su"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Fiyat = 25,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Çay"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Fiyat = 55,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Türk Kahvesi"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Fiyat = 170,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Caffe Latte"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Fiyat = 170,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Cappuccino"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Fiyat = 150,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Filtre Kahve"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Fiyat = 140,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Ice Americano"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Fiyat = 155,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Ice Latte"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Fiyat = 135,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Limonata"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Fiyat = 150,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Portakal Suyu"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Fiyat = 40,
+                            MenuKategoriId = 5,
+                            UrunAdi = "Maden Suyu"
+                        });
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.MenuKategori", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("KategoriAdi")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("KategoriAdi")
+                        .IsUnique();
+
+                    b.ToTable("MenuKategoriler");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            KategoriAdi = "Kahvaltı"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            KategoriAdi = "Atıştırmalık"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            KategoriAdi = "Ana Yemek"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            KategoriAdi = "Tatlı"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            KategoriAdi = "İçecek"
+                        });
+                });
+
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Oda", b =>
                 {
                     b.Property<int>("Id")
@@ -828,7 +1186,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 27),
+                            CreateTime = new DateOnly(2024, 12, 28),
                             Giris = new DateOnly(2024, 12, 18),
                             KullaniciId = 1,
                             OdaId = 12,
@@ -838,7 +1196,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 2,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 27),
+                            CreateTime = new DateOnly(2024, 12, 28),
                             Giris = new DateOnly(2024, 12, 20),
                             KullaniciId = 1,
                             OdaId = 4,
@@ -848,7 +1206,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 3,
                             Cikis = new DateOnly(2024, 12, 5),
-                            CreateTime = new DateOnly(2024, 12, 27),
+                            CreateTime = new DateOnly(2024, 12, 28),
                             Giris = new DateOnly(2024, 11, 18),
                             KullaniciId = 2,
                             OdaId = 10,
@@ -906,6 +1264,17 @@ namespace OtelRez.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Menu", b =>
+                {
+                    b.HasOne("OtelRez.Entity.Entities.Concrete.MenuKategori", "MenuKategori")
+                        .WithMany("Menu")
+                        .HasForeignKey("MenuKategoriId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuKategori");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Oda", b =>
@@ -969,6 +1338,11 @@ namespace OtelRez.DAL.Migrations
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Kullanici", b =>
                 {
                     b.Navigation("Rezervasyonlar");
+                });
+
+            modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.MenuKategori", b =>
+                {
+                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Oda", b =>

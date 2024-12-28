@@ -1,5 +1,4 @@
-﻿
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js" lang="zxx">
 <body>
     <table class="table table-hover">
@@ -14,7 +13,6 @@
         
         <tbody>
                 @await Component.InvokeAsync("Rezervasyonlarim", new { kullaniciId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value)})
-
         </tbody>
         </thead>
     </table>

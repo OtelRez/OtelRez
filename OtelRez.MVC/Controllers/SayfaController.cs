@@ -25,6 +25,7 @@ namespace OtelRez.MVC.Controllers
         .ToList(); 
             return View(photos);
         }
+
         public IActionResult Hizmetler()
         {
             return View();
@@ -137,10 +138,7 @@ namespace OtelRez.MVC.Controllers
 
         public IActionResult Hakkimizda()
         {
-
             return View(); 
-        }
-
-       
+        }       
     }
 }

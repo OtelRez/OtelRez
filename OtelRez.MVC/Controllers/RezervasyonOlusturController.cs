@@ -45,7 +45,7 @@ namespace OtelRez.MVC.Controllers
         public async Task<IActionResult> Index(RezOlusturVM rezOlusturVM)
         {
             int kullaniciId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
-            
+
             if (!ModelState.IsValid)
             {
                 var odaTurleri = await _rezervasyonManager.GetOdaTurleriAsync();
@@ -67,13 +67,15 @@ namespace OtelRez.MVC.Controllers
                     Cikis = rezOlusturVM.CikisTarihi
                 };
 
+                //int toplamTutar = _rezervasyonManager.ToplamTutar(rezOlusturVM.OdaTurId, rezOlusturVM.GirisTarihi, rezOlusturVM.CikisTarihi);
+                //ViewBag.ToplamTutar = toplamTutar;
+
                 bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
 
                 if (sonuc)
                 {
                     _notyfService.Success("Rezervasyon başarıyla oluşturuldu.");
                     return RedirectToAction("Index", "RezervasyonOlustur");
-
                 }
                 else
                 {

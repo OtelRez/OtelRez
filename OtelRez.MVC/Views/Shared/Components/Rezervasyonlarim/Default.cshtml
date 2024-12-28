@@ -10,8 +10,13 @@
         <td>
             <form asp-controller="Rez" asp-action="RezIptal" method="post">
                 <input type="hidden" name="id" value="@item.Id" />
-                <button type="submit" class="btn btn-danger btn-sm">İptal Et</button>
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmReservation();">İptal Et</button>
             </form>
         </td>
     </tr>
 }
+<script>
+    function confirmReservation() {
+        return confirm("Rezervasyonu iptal etmek istiyor musunuz?");
+    }
+</script>

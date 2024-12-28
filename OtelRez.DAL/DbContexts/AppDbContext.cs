@@ -24,6 +24,8 @@ namespace OtelRez.DAL.DbContexts
         public DbSet<Iletisim> Iletisim { get; set; }
         public DbSet<IletisimeGec> IletisimeGec { get; set; }
         public DbSet<Galery> Galeriler { get; set; }
+        public DbSet<Menu> Menuler { get; set; }
+        public DbSet<MenuKategori> MenuKategoriler { get; set; }
 
         public AppDbContext()
         {

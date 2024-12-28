@@ -12,5 +12,7 @@ namespace OtelRez.MVC.Models.VMs.Rezervasyon
 
         [Required(ErrorMessage = "Oda türü seçmediniz")]
         public int OdaTurId { get; set; }
+
+        public int ToplamTutar { get; set; }
     }
 }
