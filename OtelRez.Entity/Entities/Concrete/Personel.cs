@@ -16,6 +16,7 @@ namespace OtelRez.Entity.Entities.Concrete
         public Role Role { get; set; }
         public int PersonelMeslekId { get; set; }
         public PersonelMeslek PersonelMeslek { get; set; }
+        public int Maas { get; set; }
         public PersonelGiris PersonelGiris { get; set; }
     }
 }

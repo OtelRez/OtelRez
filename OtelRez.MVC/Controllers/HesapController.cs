@@ -1,5 +1,4 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +14,7 @@ using System.Security.Claims;
 namespace OtelRez.MVC.Controllers
 {
     [Authorize]
-    public class HesapController(IManager<Kullanici> kullaniciManager, IManager<PersonelGiris> personelManager, INotyfService notyfService) : Controller
+    public class HesapController(IManager<Kullanici> kullaniciManager, IManager<PersonelGiris> personelGirisManager, IManager<Personel> personelManager, INotyfService notyfService) : Controller
     {
         
         public IActionResult Index()
@@ -36,8 +35,9 @@ namespace OtelRez.MVC.Controllers
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
             var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
-            var personel = personelManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
-            
+            var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+            var personelRoleId = personelManager.GetById(personel.PersonelId);
+
             if (user == null)
             {
                 if (personel == null)
@@ -48,13 +48,12 @@ namespace OtelRez.MVC.Controllers
 
                 else
                 {
-                    //Personel RoleId'ye göre yönlendirme yapılacak
-                    if (personel.Id == 1)
+                    if (personelRoleId.RoleId == 1)
                     {
-                        return RedirectToAction("Hizmetler", "Sayfa");
+                        return RedirectToAction("Index", "Admin");
                     }
 
-                    else if (personel.Id == 2)
+                    else if (personelRoleId.RoleId == 2)
                     {
                         return RedirectToAction("Iletisim", "Sayfa");
                     }

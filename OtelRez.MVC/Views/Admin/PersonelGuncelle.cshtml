@@ -1,0 +1,10 @@
+﻿<div class="form-group">
+    <label for="RoleId">Rol</label>
+    <select id="RoleId" name="RoleId" class="form-control">
+        <option selected disabled>@ViewBag.MevcutRol</option>
+        @foreach (var rol in ViewBag.Roller)
+        {
+                <option value="@rol.Value">@rol.Text</option>
+        }
+    </select>
+</div>

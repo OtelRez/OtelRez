@@ -44,7 +44,6 @@ namespace OtelRez.DAL.Repositories.Concrete
         }
         #endregion
 
-
         #region Select Metodlari
         public T? GetById(int id)
         {

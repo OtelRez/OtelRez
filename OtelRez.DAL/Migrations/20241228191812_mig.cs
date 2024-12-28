@@ -117,8 +117,7 @@ namespace OtelRez.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Meslek = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Maas = table.Column<int>(type: "int", nullable: false)
+                    Meslek = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,7 +214,8 @@ namespace OtelRez.DAL.Migrations
                     Soyadi = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     IzinHakki = table.Column<int>(type: "int", nullable: false, defaultValue: 30),
                     RoleId = table.Column<int>(type: "int", nullable: true),
-                    PersonelMeslekId = table.Column<int>(type: "int", nullable: false)
+                    PersonelMeslekId = table.Column<int>(type: "int", nullable: false),
+                    Maas = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -342,12 +342,12 @@ namespace OtelRez.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "PersonelMeslekler",
-                columns: new[] { "Id", "Maas", "Meslek" },
+                columns: new[] { "Id", "Meslek" },
                 values: new object[,]
                 {
-                    { 1, 50000, "Yönetici" },
-                    { 2, 18002, "Resepsiyonist" },
-                    { 3, 25000, "Aşçı" }
+                    { 1, "Yönetici" },
+                    { 2, "Resepsiyonist" },
+                    { 3, "Aşçı" }
                 });
 
             migrationBuilder.InsertData(
@@ -437,12 +437,12 @@ namespace OtelRez.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Personeller",
-                columns: new[] { "Id", "Adi", "IzinHakki", "PersonelMeslekId", "RoleId", "Soyadi" },
+                columns: new[] { "Id", "Adi", "IzinHakki", "Maas", "PersonelMeslekId", "RoleId", "Soyadi" },
                 values: new object[,]
                 {
-                    { 1, "Ahmet", 30, 1, 1, "Ak" },
-                    { 2, "Büşra", 20, 2, 2, "Aksoy" },
-                    { 3, "Betüş", 14, 3, null, "Lol" }
+                    { 1, "Ahmet", 30, 50000, 1, 1, "Ak" },
+                    { 2, "Büşra", 20, 28000, 2, 2, "Aksoy" },
+                    { 3, "Betüş", 20, 35000, 3, null, "Yılmaz" }
                 });
 
             migrationBuilder.InsertData(

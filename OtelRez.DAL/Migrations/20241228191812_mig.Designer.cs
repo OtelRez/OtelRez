@@ -12,7 +12,7 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241228115409_mig")]
+    [Migration("20241228191812_mig")]
     partial class mig
     {
         /// <inheritdoc />
@@ -997,6 +997,9 @@ namespace OtelRez.DAL.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(30);
 
+                    b.Property<int>("Maas")
+                        .HasColumnType("int");
+
                     b.Property<int>("PersonelMeslekId")
                         .HasColumnType("int");
 
@@ -1025,6 +1028,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 1,
                             Adi = "Ahmet",
                             IzinHakki = 30,
+                            Maas = 50000,
                             PersonelMeslekId = 1,
                             RoleId = 1,
                             Soyadi = "Ak"
@@ -1034,6 +1038,7 @@ namespace OtelRez.DAL.Migrations
                             Id = 2,
                             Adi = "Büşra",
                             IzinHakki = 20,
+                            Maas = 28000,
                             PersonelMeslekId = 2,
                             RoleId = 2,
                             Soyadi = "Aksoy"
@@ -1042,9 +1047,10 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 3,
                             Adi = "Betüş",
-                            IzinHakki = 14,
+                            IzinHakki = 20,
+                            Maas = 35000,
                             PersonelMeslekId = 3,
-                            Soyadi = "Lol"
+                            Soyadi = "Yılmaz"
                         });
                 });
 
@@ -1107,9 +1113,6 @@ namespace OtelRez.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Maas")
-                        .HasColumnType("int");
-
                     b.Property<string>("Meslek")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -1129,19 +1132,16 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Maas = 50000,
                             Meslek = "Yönetici"
                         },
                         new
                         {
                             Id = 2,
-                            Maas = 18002,
                             Meslek = "Resepsiyonist"
                         },
                         new
                         {
                             Id = 3,
-                            Maas = 25000,
                             Meslek = "Aşçı"
                         });
                 });

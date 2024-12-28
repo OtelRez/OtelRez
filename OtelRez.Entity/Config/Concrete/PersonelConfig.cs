@@ -25,6 +25,7 @@ namespace OtelRez.Entity.Config.Concrete
             builder.Property(p => p.IzinHakki).HasDefaultValue(30);
 
             builder.Property(p => p.PersonelMeslekId).IsRequired();
+            builder.Property(p => p.Maas).IsRequired();
 
             builder.HasOne(p => p.PersonelMeslek)
                .WithMany(p => p.Personeller)
@@ -38,9 +39,9 @@ namespace OtelRez.Entity.Config.Concrete
                 .WithMany(p => p.Personeller)
                 .HasForeignKey(p => p.RoleId);
 
-            builder.HasData(new Personel { Id = 1, Adi = "Ahmet", Soyadi = "Ak", IzinHakki = 30, PersonelMeslekId = 1, RoleId = 1 });
-            builder.HasData(new Personel { Id = 2, Adi = "Büşra", Soyadi = "Aksoy", IzinHakki = 20, PersonelMeslekId = 2, RoleId = 2 });
-            builder.HasData(new Personel { Id = 3, Adi = "Betüş", Soyadi = "Lol", IzinHakki = 14 ,PersonelMeslekId = 3});
+            builder.HasData(new Personel { Id = 1, Adi = "Ahmet", Soyadi = "Ak", IzinHakki = 30, PersonelMeslekId = 1, RoleId = 1, Maas = 50000 });
+            builder.HasData(new Personel { Id = 2, Adi = "Büşra", Soyadi = "Aksoy", IzinHakki = 20, PersonelMeslekId = 2, RoleId = 2, Maas = 28000 });
+            builder.HasData(new Personel { Id = 3, Adi = "Betüş", Soyadi = "Yılmaz", IzinHakki = 20 ,PersonelMeslekId = 3, Maas = 35000 });
         }
     }
 }
