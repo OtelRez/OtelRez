@@ -1,6 +1,8 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using AspNetCoreHero.ToastNotification.Notyf;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -124,7 +126,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                 })
                 .ToList();
             #endregion
-           
+
             var personelVM = new PersonelVM
             {
                 Adi = user.Adi,
@@ -142,10 +144,49 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             return View(personelVM);
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public IActionResult PersonelGuncelle(PersonelVM personelVM)
-        //{
-        //}
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult PersonelGuncelle(PersonelVM personelVM)
+        {
+            int personelId = personelVM.Id;
+            var personel = personelManager.GetAllInclude(p => p.Id == personelId).FirstOrDefault();
+
+            if (personel == null)
+            {
+                notyfService.Error("Kullanıcı bulunamadı.");
+                return RedirectToAction("Index", "Admin");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                notyfService.Error("Düzeltilmesi gereken yerler var");
+                return View(personelVM);
+                
+            }
+
+            ViewBag.Roller = roleManager.GetAll().Select(r => new SelectListItem
+            {
+                Text = r.RoleAdi,
+                Value = r.Id.ToString()
+            }).ToList();
+
+            ViewBag.Meslekler = meslekManager.GetAll().Select(r => new SelectListItem
+            {
+                Text = r.Meslek,
+                Value = r.Id.ToString()
+            }).ToList();
+
+            personel.Adi = personelVM.Adi;
+            personel.Soyadi = personelVM.Soyadi;
+            personel.IzinHakki = personelVM.IzinHakki;
+            personel.Maas = personelVM.Maas;
+            personel.RoleId = personelVM.RoleId;
+            personel.PersonelMeslekId = personelVM.PersonelMeslekId;
+
+            personelManager.Update(personel);
+
+            notyfService.Success("İşlem Başarılı");
+            return RedirectToAction("Personeller");
+        }
     }
 }
