@@ -15,10 +15,8 @@
 
 <body class="sb-nav-fixed">
 
-	<form asp-action="PersonelGuncelle" method="post">
+	<form asp-action="PersonelEkle" method="post">
 		<div class="user-details">
-			<input type="hidden" asp-for="Id" />
-
 			<div class="input-box">
 				<span class="details">Adı</span>
 				<input asp-for="Adi" id="Adi" required>
@@ -44,14 +42,10 @@
 					<span class="details">Meslek</span>
 				</label>
 
-				<select asp-for="PersonelMeslekId" class="form-control" required>
-					<option value="@ViewBag.MevcutMeslekId" selected>@ViewBag.MevcutMeslek</option>
-					
-					@foreach (var meslek in ViewBag.Meslekler)
-					{
-						<option value="@meslek.Value">@meslek.Text</option>
-					}
+				<select asp-for="PersonelMeslekId" class="form-control" asp-items="ViewBag.Meslekler" required>
+					<option value="">-- Meslek Seçiniz --</option>
 				</select>
+				<span asp-validation-for="PersonelMeslekId" class="text-danger"></span>
 			</div>
 
 			<div class="input-box">
@@ -59,20 +53,16 @@
 					<span class="details">Rol</span>
 				</label>
 
-				<select asp-for="RoleId" class="form-control">
-					<option value="0">- Rolü Kaldır -</option>
-					<option value="@ViewBag.MevcutRolId" selected>@ViewBag.MevcutRol</option>
-					
-					@foreach (var rol in ViewBag.Roller)
-					{
-						<option value="@rol.Value">@rol.Text</option>
-					}
+				<select asp-for="RoleId" class="form-control" asp-items="ViewBag.Roller" required>
+					<option value="0">-- Role Seçiniz --</option>
 				</select>
+				<span asp-validation-for="RoleId" class="text-danger"></span>
+
 			</div>
 
 			<div class="input-box">
 				<div class="button">
-					<input type="submit" value="Güncelle">
+					<input type="submit" value="Kaydet">
 				</div>
 			</div>
 		</div>
