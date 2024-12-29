@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Dashboard - SB Admin</title>
+</head>
+
+<body class="sb-nav-fixed">
+	
+	<br />
+	<br />
+
+	<div class="card mb-4">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<div>
+				<i class="fa-solid fa-envelope"></i>
+				Mesajlar Tablosu
+			</div>
+		</div>
+
+		<div class="card-body">
+			<table id="datatablesSimple">
+				<thead>
+					<tr>
+						<th>Adı</th>
+						<th>Maili</th>
+						<th>Konu</th>
+						<th>Mesaj</th>
+					</tr>
+				</thead>
+
+				<tfoot>
+					<tr>
+						<th>Adı</th>
+						<th>Maili</th>
+						<th>Konu</th>
+						<th>Mesaj</th>
+					</tr>
+				</tfoot>
+
+				<tbody>
+					@await Component.InvokeAsync("Mesajlar")
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

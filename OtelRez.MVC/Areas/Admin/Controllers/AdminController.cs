@@ -26,6 +26,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult OdaGuncelle(int Id)
         {
@@ -346,6 +347,12 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             personelManager.Create(personel);
             notyfService.Success("İşlem Başarılı");
             return RedirectToAction("Personeller");
+        }
+
+        public IActionResult Mesajlar()
+        {
+
+            return View();
         }
     }
 }
