@@ -18,9 +18,14 @@
 
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" asp-action="PersonelGuncelle" asp-controller="Admin" asp-route-Id="@item.Id"><i class="fa-solid fa-user-pen"></i> Güncelle</a></li>
-					<li><a class="dropdown-item" asp-action="DeleteUser" asp-controller="Admin" asp-route-Id="@item.Id"><i class="fa-solid fa-user-slash"></i> Sil</a></li>
+					<li><a class="dropdown-item" asp-action="PersonelSil" asp-controller="Admin" asp-route-Id="@item.Id" onclick="return confirmReservation();"><i class="fa-solid fa-user-slash"></i> Sil</a></li>
 				</ul>
 			</div>
 		</td>
 	</tr>
 }
+<script>
+	function confirmReservation() {
+		return confirm("Personel Silinsin Mi?");
+	}
+</script>

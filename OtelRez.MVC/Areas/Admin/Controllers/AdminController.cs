@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.DAL.DbContexts;
+using OtelRez.DAL.Repositories.Abstract;
 using OtelRez.Entity.Entities.Concrete;
 using OtelRez.MVC.Areas.Admin.Models.VMs.Admin;
 using System.Globalization;
@@ -15,23 +16,10 @@ using System.Globalization;
 namespace OtelRez.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdminController : Controller
+    [Authorize]
+    //[Authorize(Roles = "Admin")]
+    public class AdminController (IManager<Personel> personelManager, IManager<Role> roleManager, IManager<PersonelMeslek> meslekManager, INotyfService notyfService, AppDbContext _dbContext, IRepository<Personel> personelRepository) : Controller
     {
-        private readonly IManager<Personel> personelManager;
-        private readonly IManager<Role> roleManager;
-        private readonly IManager<PersonelMeslek> meslekManager;
-        private readonly INotyfService notyfService;
-        private readonly AppDbContext _dbContext;
-
-        public AdminController(IManager<Personel> personelManager, IManager<Role> roleManager, IManager<PersonelMeslek> meslekManager, INotyfService notyfService, AppDbContext dbContext)
-        {
-            this.personelManager = personelManager;
-            this.roleManager = roleManager;
-            this.meslekManager = meslekManager;
-            this.notyfService = notyfService;
-            this._dbContext = dbContext;
-        }
-
         [HttpGet]
         public IActionResult Rezervasyonlar(int ay = 0, int yil = 0)
         {
@@ -184,7 +172,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             personel.Soyadi = personelVM.Soyadi;
             personel.IzinHakki = personelVM.IzinHakki;
             personel.Maas = personelVM.Maas;
-            
+            personel.PersonelMeslekId = personelVM.PersonelMeslekId;
             if (personelVM.RoleId == 0)
             {
                 personel.RoleId = null;
@@ -194,10 +182,87 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                 personel.RoleId = personelVM.RoleId;
             }
 
-            personel.PersonelMeslekId = personelVM.PersonelMeslekId;
-
             personelManager.Update(personel);
 
+            notyfService.Success("İşlem Başarılı");
+            return RedirectToAction("Personeller");
+        }
+
+        public IActionResult PersonelSil(int Id)
+        {
+            var personel = personelRepository.GetById(Id);
+            
+            if (personel != null)
+            {
+                personelRepository.Delete(personel);
+                notyfService.Success("Personel silindi");
+            }
+            else
+            {
+                notyfService.Error("Personel bulunamadı");
+            }
+            return View("Personeller");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult PersonelEkle()
+        {
+            PersonelVM personelVM = new PersonelVM();
+
+            ViewBag.Roller = roleManager.GetAll().Select(r => new SelectListItem
+            {
+                Text = r.RoleAdi,
+                Value = r.Id.ToString()
+            }).ToList();
+
+            ViewBag.Meslekler = meslekManager.GetAll().Select(r => new SelectListItem
+            {
+                Text = r.Meslek,
+                Value = r.Id.ToString()
+            }).ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult PersonelEkle(PersonelVM personelVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                notyfService.Error("Düzeltilmesi gereken yerler var");
+                ViewBag.Roller = roleManager.GetAll().Select(r => new SelectListItem
+                {
+                    Text = r.RoleAdi,
+                    Value = r.Id.ToString()
+                }).ToList();
+               
+                ViewBag.Meslekler = meslekManager.GetAll().Select(r => new SelectListItem
+                {
+                    Text = r.Meslek,
+                    Value = r.Id.ToString()
+                }).ToList();
+                return View(personelVM);
+            }
+
+            Personel personel = new Personel
+            {
+                Adi = personelVM.Adi,
+                Soyadi = personelVM.Soyadi,
+                IzinHakki = personelVM.IzinHakki,
+                Maas = personelVM.Maas,
+                PersonelMeslekId = personelVM.PersonelMeslekId
+            };
+            if (personel.RoleId == 0)
+            {
+                personelVM.RoleId = null;
+            }
+            else
+            {
+                personelVM.RoleId = personel.RoleId;
+            }
+
+            personelManager.Create(personel);
             notyfService.Success("İşlem Başarılı");
             return RedirectToAction("Personeller");
         }

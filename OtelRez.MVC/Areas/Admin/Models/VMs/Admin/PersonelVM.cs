@@ -17,7 +17,7 @@ namespace OtelRez.MVC.Areas.Admin.Models.VMs.Admin
         [MaxLength(15, ErrorMessage = "En fazla 15 karakter olmalıdır")]
         public string Soyadi { get; set; }
 
-        [Required(ErrorMessage = "Ad alanı zorunludur")]
+        [Required(ErrorMessage = "İzin alanı zorunludur")]
         public int IzinHakki { get; set; }
 
         public int? RoleId { get; set; }
