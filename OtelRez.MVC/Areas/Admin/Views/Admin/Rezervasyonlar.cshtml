@@ -1,0 +1,51 @@
+﻿@using OtelRez.MVC.Areas.Admin.Models.VMs.Admin
+@model List<RezTabloVM>
+
+<table>
+    <thead>
+        <tr>
+            <th>Oda Numarası</th>
+            @for (int i = 1; i <= DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); i++)
+            {
+                <th>@i</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var oda in Model)
+        {
+            <tr>
+                <td>@oda.OdaNumarasi</td>
+                @for (int i = 0; i < oda.Gunler.Length; i++)
+                {
+                    var dolu = oda.Gunler[i];
+                    <td style="background-color: @(dolu ? "red" : "green"); color: white;">
+                        @* @(dolu ? "Dolu" : "Boş") *@
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        min-width: 400px;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+
