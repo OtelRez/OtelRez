@@ -1,0 +1,45 @@
+﻿@using OtelRez.MVC.Areas.Admin.Models.VMs.Admin
+@model OdaGuncelleVM
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oda Güncelleme</title>
+    <link rel="stylesheet" href="~/RegisterTemp/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <!-- Oda Güncelleme formu -->
+            <form asp-area="Admin" asp-controller="Admin" asp-action="OdaGuncelle" method="post" enctype="multipart/form-data">
+                <div class="user-details">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="input-box">
+                        <span class="details">Adınız</span>
+                        <input asp-for="OdaAdi" id="OdaAdi" required>
+                    </div>
+
+                    <!-- Fiyat -->
+                    <div class="input-box">
+                        <span class="details">Fiyat</span>
+                        <input asp-for="Fiyat" id="Fiyat" required>
+                    </div>
+
+                    <!-- Fotoğraf Yükleme -->
+                    <div class="input-box">
+                        <span class="details">Fotoğraf Yükleyin</span>
+                        <input asp-for="PhotoPathFile" type="file" id="PhotoPathFile" accept="image/*" required>
+                    </div>
+                </div>
+
+                <!-- Submit butonu -->
+                <div class="button">
+                    <input type="submit" value="Güncelle">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
