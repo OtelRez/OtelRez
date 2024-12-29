@@ -4,44 +4,46 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Responsive Registration Form | CodingLab </title>
-    <link rel="stylesheet" href="~/RegisterTemp/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Responsive Registration Form | CodingLab </title>
+	<link rel="stylesheet" href="~/RegisterTemp/style.css">
 </head>
 <body>
-    <div class="content">
-        <!-- Registration form -->
-        <form asp-action="Ayarlar" method="post">
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Adınız</span>
-                    <input asp-for="Adi" id="Adi" required>
-                </div>
+	<div class="container">
+		<div class="content">
+			<!-- Registration form -->
+			<form asp-action="Ayarlar" method="post">
+				<div class="user-details">
+					<div class="input-box">
+						<span class="details">Adınız</span>
+						<input asp-for="Adi" id="Adi" required>
+					</div>
 
-                <!-- Input for Surname -->
-                <div class="input-box">
-                    <span class="details">Soyadınız</span>
-                    <input asp-for="Soyadi" id="Soyadi" required>
-                </div>
+					<!-- Input for Surname -->
+					<div class="input-box">
+						<span class="details">Soyadınız</span>
+						<input asp-for="Soyadi" id="Soyadi" required>
+					</div>
 
-                <!-- Input for Email -->
-                <div class="input-box">
-                    <span asp-validation-for="Mail" class="details">Mailiniz</span>
-                    <input asp-for="Mail" type="email" required>
-                </div>
+					<!-- Input for Email -->
+					<div class="input-box">
+						<span asp-validation-for="Mail" class="details">Mailiniz</span>
+						<input asp-for="Mail" type="email" required>
+					</div>
 
-                <!-- Input for Phone Number -->
-                <div class="input-box">
-                    <span asp-validation-for="Tel" class="details">Telefon Numaranız</span>
-                    <input asp-for="Tel" required>
-                </div>
-            </div>
-            <!-- Submit button -->
-            <div class="button">
-                <input type="submit" value="Güncelle">
-            </div>
-        </form>
-    </div>
+					<!-- Input for Phone Number -->
+					<div class="input-box">
+						<span asp-validation-for="Tel" class="details">Telefon Numaranız</span>
+						<input asp-for="Tel" required>
+					</div>
+				</div>
+				<!-- Submit button -->
+				<div class="button">
+					<input type="submit" value="Güncelle">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,10 +1,72 @@
-﻿<div class="form-group">
-    <label for="RoleId">Rol</label>
-    <select id="RoleId" name="RoleId" class="form-control">
-        <option selected disabled>@ViewBag.MevcutRol</option>
-        @foreach (var rol in ViewBag.Roller)
-        {
-                <option value="@rol.Value">@rol.Text</option>
-        }
-    </select>
-</div>
+﻿@using OtelRez.MVC.Areas.Admin.Models.VMs.Admin
+@model PersonelVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Dashboard - SB Admin</title>
+	<link rel="stylesheet" href="~/RegisterTemp/style.css">
+</head>
+
+<body class="sb-nav-fixed">
+
+	<form asp-action="PersonelGuncelle" method="post">
+		<div class="user-details">
+			<div class="input-box">
+				<span class="details">Adı</span>
+				<input asp-for="Adi" id="Adi" required>
+			</div>
+
+			<div class="input-box">
+				<span class="details">Soyadı</span>
+				<input asp-for="Soyadi" id="Soyadi" required>
+			</div>
+
+			<div class="input-box">
+				<span class="details">Maaşı</span>
+				<input asp-for="Maas" id="Maas" required>
+			</div>
+
+			<div class="input-box">
+				<span class="details">İzin Hakkı</span>
+				<input asp-for="IzinHakki" id="IzinHakki" required>
+			</div>
+
+			<div class="input-box">
+				<label for="RoleId">Rol</label>
+				<select id="RoleId" name="RoleId" class="form-control">
+					<option selected disabled>@ViewBag.MevcutRol</option>
+					@foreach (var rol in ViewBag.Roller)
+					{
+						<option value="@rol.Value">@rol.Text</option>
+					}
+				</select>
+			</div>
+
+			<div class="input-box">
+				<label for="PersonelMeslekId">Meslek</label>
+				<select id="PersonelMeslekId" name="PersonelMeslekId" class="form-control">
+					<option selected disabled>@ViewBag.MevcutMeslek</option>
+					@foreach (var meslek in ViewBag.Meslekler)
+					{
+						<option value="@meslek.Value">@meslek.Text</option>
+					}
+				</select>
+			</div>
+
+			<div class="input-box">
+				<div class="button">
+					<input type="submit" value="Güncelle">
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+
+

@@ -35,10 +35,10 @@ namespace OtelRez.MVC.Controllers
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
             var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
-            
+            var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+
             if (user == null)
             {
-                var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
                 var personelRoleId = personelManager.GetById(personel.PersonelId);
 
                 if (personel == null)
@@ -76,7 +76,12 @@ namespace OtelRez.MVC.Controllers
             {
                 claims.Add(new Claim("userId", user.Id.ToString()));  // userId'yi claim olarak ekliyoruz
             }
-            
+
+            if (personel != null)
+            {
+                claims.Add(new Claim("personelId", personel.Id.ToString()));  // personelId'yi claim olarak ekliyoruz
+            }
+
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authenticationProperty = new AuthenticationProperties()
             {

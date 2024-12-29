@@ -2,71 +2,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Dashboard - SB Admin</title>
 </head>
 
 <body class="sb-nav-fixed">
 
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <br />
-                <br />
+	<br />
+	<br />
 
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <i class="fas fa-table me-1"></i>
-                            Personeller Tablosu
-                        </div>
+	<div class="card mb-4">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<div>
+				<i class="fas fa-table me-1"></i>
+				Personeller Tablosu
+			</div>
 
-                        <div>
-                            <form action="/Admin/Index" method="get">
-                                <i class="fa-solid fa-plus"></i> <input type="submit" style="background-color: #069314; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;" value="Personel Ekle" />
-                            </form>
-                        </div>
+			<div>
+				<form action="/Admin/Index" method="get">
+					<i class="fa-solid fa-plus"></i> <input type="submit" style="background-color: #069314; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;" value="Personel Ekle" />
+				</form>
+			</div>
 
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <th>Adı</th>
-                                    <th>Soyadı</th>
-                                    <th>Mesleği</th>
-                                    <th>Rolü</th>
-                                    <th>İzin Hakkı</th>
-                                    <th>Maas</th>
-                                    <th>Ayarlar</th>
-                                </tr>
-                            </thead>
+		</div>
+		<div class="card-body">
+			<table id="datatablesSimple">
+				<thead>
+					<tr>
+						<th>Adı</th>
+						<th>Soyadı</th>
+						<th>Mesleği</th>
+						<th>Rolü</th>
+						<th>İzin Hakkı</th>
+						<th>Maas</th>
+						<th>Ayarlar</th>
+					</tr>
+				</thead>
 
-                            <tfoot>
-                                <tr>
-                                    <th>Adı</th>
-                                    <th>Soyadı</th>
-                                    <th>Mesleği</th>
-                                    <th>Rolü</th>
-                                    <th>İzin Hakkı</th>
-                                    <th>Maas</th>
-                                    <th>Ayarlar</th>
-                                </tr>
-                            </tfoot>
+				<tfoot>
+					<tr>
+						<th>Adı</th>
+						<th>Soyadı</th>
+						<th>Mesleği</th>
+						<th>Rolü</th>
+						<th>İzin Hakkı</th>
+						<th>Maas</th>
+						<th>Ayarlar</th>
+					</tr>
+				</tfoot>
 
-                            <tbody>
-                                @await Component.InvokeAsync("Personel")
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+				<tbody>
+					@await Component.InvokeAsync("Personel")
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 </body>
 </html>

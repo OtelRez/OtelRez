@@ -15,11 +15,11 @@
                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-gear-wide-connected"></i>
                 </button>
+
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" asp-action="PersonelGuncelle" asp-controller="Admin" asp-route-Id="@item.Id"><i class="bi bi-pencil-square">Değiştir</i></a></li>
                     <li><a class="dropdown-item" asp-action="DeleteUser" asp-controller="Admin" asp-route-Id="@item.Id"><i class="bi bi-archive">Sil</i></a></li>
                 </ul>
-
             </div>
         </td>
 	</tr>

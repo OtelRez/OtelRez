@@ -36,48 +36,49 @@
 		</div>
 	</section>
 
-	<section class="site-section">
-		<div class="container-rez">
-			<div class="row">
-				<!-- Sol taraf: Rezervasyon Formu -->
-				<div class="col-md-6">
-					<h2 class="mb-5">Rezervasyon Formu</h2>
-					<form asp-action="Index" method="post">
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label for="GirisTarihi">Giriş Tarihi</label>
-								<div style="position: relative;">
-									<input asp-for="GirisTarihi" type="date" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" class="form-control" required />
+	<div class="container">
+		<section class="site-section">
+			<div class="container-rez">
+				<div class="row">
+					<!-- Sol taraf: Rezervasyon Formu -->
+					<div class="col-md-6">
+						<h2 class="mb-5">Rezervasyon Formu</h2>
+						<form asp-action="Index" method="post">
+							<div class="row">
+								<div class="col-sm-6 form-group">
+									<label for="GirisTarihi">Giriş Tarihi</label>
+									<div style="position: relative;">
+										<input asp-for="GirisTarihi" type="date" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" class="form-control" required />
+									</div>
+								</div>
+
+								<div class="col-sm-6 form-group">
+									<label for="CikisTarihi">Çıkış Tarihi</label>
+									<div style="position: relative;">
+										<input asp-for="CikisTarihi" type="date" min="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")" class="form-control" required />
+									</div>
 								</div>
 							</div>
 
-							<div class="col-sm-6 form-group">
-								<label for="CikisTarihi">Çıkış Tarihi</label>
-								<div style="position: relative;">
-									<input asp-for="CikisTarihi" type="date" min="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")" class="form-control" required />
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<label asp-for="OdaTurId">Oda Türü</label>
+									<select asp-for="OdaTurId" class="form-control" asp-items="ViewBag.OdaTurleri" required>
+										<option value="">-- Oda Türü Seçiniz --</option>
+									</select>
+									<span asp-validation-for="OdaTurId" class="text-danger"></span>
 								</div>
 							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-md-6 form-group">
-								<label asp-for="OdaTurId">Oda Türü</label>
-								<select asp-for="OdaTurId" class="form-control" asp-items="ViewBag.OdaTurleri" required>
-									<option value="">-- Oda Türü Seçiniz --</option>
-								</select>
-								<span asp-validation-for="OdaTurId" class="text-danger"></span>
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<input type="submit" value="Rezervasyon Yap" class="btn btn-primary" onclick="return confirmReservation();">
+								</div>
 							</div>
-						</div>
+						</form>
+					</div>
 
-						<div class="row">
-							<div class="col-md-6 form-group">
-								<input type="submit" value="Rezervasyon Yap" class="btn btn-primary" onclick="return confirmReservation();">
-							</div>
-						</div>
-					</form>
-				</div>
-
-				@* <div class="col-md-1"></div>
+					@* <div class="col-md-1"></div>
 
                 <!-- Sağ taraf: Seçilen Oda Türü Detayları -->
                 <div class="col-md-5">
@@ -112,9 +113,10 @@
                         <p>Seçili oda türüne ait bilgiler burada görünecek.</p>
                     }
                 </div> *@
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	</div>
 
 	<section class="section-cover" data-stellar-background-ratio="0.5" style="background-image: url(RezTemp/images/img_5.jpg);">
 		<div class="container">

@@ -5,6 +5,8 @@ namespace OtelRez.MVC.Areas.Admin.Models.VMs.Admin
 {
     public class PersonelVM
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Ad alanı zorunludur")]
         [MinLength(3, ErrorMessage = "En az 3 karakter olmalıdır")]
         [MaxLength(15, ErrorMessage = "En fazla 15 karakter olmalıdır")]

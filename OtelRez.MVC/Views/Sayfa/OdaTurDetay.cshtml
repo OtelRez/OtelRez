@@ -3,52 +3,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@Model.TurAdi - Detay</title>
-    <link rel="stylesheet" href="~/css/room-details.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@Model.TurAdi - Detay</title>
+	<link rel="stylesheet" href="~/css/room-details.css">
 </head>
 <body>
-    <div class="room-details-container">
-        <!-- Sol Kısım: Oda Resmi -->
-        <div class="room-main">
-            <img src="@Url.Content(Model.PhotoPath)" alt="@Model.TurAdi" class="room-image">
-        </div>
+	<div class="container">
+		<div class="room-details-container">
+			<!-- Sol Kısım: Oda Resmi -->
+			<div class="room-main">
+				<img src="@Url.Content(Model.PhotoPath)" alt="@Model.TurAdi" class="room-image">
+			</div>
 
-        <!-- Sağ Kısım: Oda Bilgileri -->
-        <div class="room-info">
-            <h1>@Model.TurAdi</h1>
-            <p class="room-description">@Model.TurDetay</p>
-            <p><strong>Fiyat:</strong> @Model.Fiyat ₺ / Gece</p>
-            <p><strong>Kapasite:</strong> @Model.Kapasite kişi</p>
-            <ul>
-                @if (Model.Minibar)
-                {
-                    <li>Minibar</li>
-                }
+			<!-- Sağ Kısım: Oda Bilgileri -->
+			<div class="room-info">
+				<h1>@Model.TurAdi</h1>
+				<p class="room-description">@Model.TurDetay</p>
+				<p><strong>Fiyat:</strong> @Model.Fiyat ₺ / Gece</p>
+				<p><strong>Kapasite:</strong> @Model.Kapasite kişi</p>
+				<ul>
+					@if (Model.Minibar)
+					{
+						<li>Minibar</li>
+					}
 
-                @if (Model.Balkon)
-                {
-                    <li>Balkon</li>
-                }
-                
-                @if (Model.OdaServisi)
-                {
-                    <li>Oda Servisi</li>
-                }
-                
-                @if (Model.WiFi)
-                {
-                    <li>Wifi</li>
-                }
-                
-                @if (Model.Jakuzi)
-                {
-                    <li>Jakuzi</li>
-                }
-            </ul>
-        </div>
-    </div>
+					@if (Model.Balkon)
+					{
+						<li>Balkon</li>
+					}
 
+					@if (Model.OdaServisi)
+					{
+						<li>Oda Servisi</li>
+					}
+
+					@if (Model.WiFi)
+					{
+						<li>Wifi</li>
+					}
+
+					@if (Model.Jakuzi)
+					{
+						<li>Jakuzi</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

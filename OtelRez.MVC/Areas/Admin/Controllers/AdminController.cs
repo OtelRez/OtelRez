@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,6 +39,14 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Cikis()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        [HttpGet]
         [AllowAnonymous]
         public IActionResult PersonelGuncelle(int Id)
         {
@@ -54,24 +63,12 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            // RoleId kontrolü
-            if (user.RoleId == null)
-            {
-                notyfService.Error("Kullanıcının rol bilgisi eksik.");
-                return RedirectToAction("Index");
-            }
-
+            #region Personel Rol
             // Mevcut rolü al
             var mevcutRol = roleManager
                 .GetAll(r => r.Id == user.RoleId)
                 .Select(r => r.RoleAdi)
                 .FirstOrDefault();
-
-            if (mevcutRol == null)
-            {
-                notyfService.Error("Kullanıcının rolü bulunamadı.");
-                return RedirectToAction("Index");
-            }
 
             // Tüm roller
             var roller = roleManager
@@ -82,14 +79,26 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                     Text = r.RoleAdi
                 })
                 .ToList();
+            #endregion
 
-            if (roller == null || !roller.Any())
-            {
-                notyfService.Error("Roller bulunamadı.");
-                return RedirectToAction("Index");
-            }
+            #region Personel Meslek
+            // Mevcut rolü al
+            var mevcutMeslek = meslekManager
+                .GetAll(r => r.Id == user.PersonelMeslekId)
+                .Select(r => r.Meslek)
+                .FirstOrDefault();
 
-            // Kullanıcı bilgilerini VM'ye aktar
+            // Tüm roller
+            var meslekler = meslekManager
+                .GetAll()
+                .Select(r => new SelectListItem
+                {
+                    Value = r.Id.ToString(),
+                    Text = r.Meslek
+                })
+                .ToList();
+            #endregion
+           
             var personelVM = new PersonelVM
             {
                 Adi = user.Adi,
@@ -98,11 +107,19 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                 Maas = user.Maas
             };
 
-            // Role ve diğer veriler ViewBag'e aktarılıyor
             ViewBag.MevcutRol = mevcutRol;
             ViewBag.Roller = roller;
 
+            ViewBag.MevcutMeslek = mevcutMeslek;
+            ViewBag.Meslekler = meslekler;
+
             return View(personelVM);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult PersonelGuncelle(PersonelVM personelVM)
+        {
         }
     }
 }
