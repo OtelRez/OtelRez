@@ -1,5 +1,4 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using AspNetCoreHero.ToastNotification.Notyf;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,27 +9,96 @@ using OtelRez.BL.Managers.Abstract;
 using OtelRez.DAL.DbContexts;
 using OtelRez.Entity.Entities.Concrete;
 using OtelRez.MVC.Areas.Admin.Models.VMs.Admin;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp;
 using System.Globalization;
+using System.Drawing;
 
 namespace OtelRez.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdminController : Controller
+    public class AdminController(IManager<Personel> personelManager, IManager<Role> roleManager, IManager<PersonelMeslek> meslekManager,
+        INotyfService notyfService, AppDbContext _dbContext, IManager<OdaTur> odaTurManager) : Controller
     {
-        private readonly IManager<Personel> personelManager;
-        private readonly IManager<Role> roleManager;
-        private readonly IManager<PersonelMeslek> meslekManager;
-        private readonly INotyfService notyfService;
-        private readonly AppDbContext _dbContext;
-
-        public AdminController(IManager<Personel> personelManager, IManager<Role> roleManager, IManager<PersonelMeslek> meslekManager, INotyfService notyfService, AppDbContext dbContext)
+        [HttpGet]
+        public IActionResult Odalar()
         {
-            this.personelManager = personelManager;
-            this.roleManager = roleManager;
-            this.meslekManager = meslekManager;
-            this.notyfService = notyfService;
-            this._dbContext = dbContext;
+            return View();
         }
+        [HttpGet]
+        public IActionResult OdaGuncelle(int Id)
+        {
+            var oda = odaTurManager.GetById(Id);
+            var model = new OdaGuncelleVM
+            {
+                OdaAdi = oda.TurAdi,
+                Fiyat = oda.Fiyat,
+                PhotoPath = oda.PhotoPath
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OdaGuncelle(OdaGuncelleVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Mevcut oda bilgisini veritabanından al
+                var existingOda = odaTurManager.GetById(model.Id);
+                if (existingOda == null)
+                {
+                    return NotFound();
+                }
+
+                // Güncellenen bilgileri mevcut oda kaydına ata
+                existingOda.TurAdi = model.OdaAdi;
+                existingOda.Fiyat = model.Fiyat;
+
+                // Fotoğraf dosyasını yükle
+                if (model.PhotoPathFile != null)
+                {
+                    var uploadsFolderPath = Path.Combine("wwwroot/OtelTemp/assets/img/rooms");
+                    var fileName = Path.GetFileNameWithoutExtension(model.PhotoPathFile.FileName);
+                    var fileExtension = Path.GetExtension(model.PhotoPathFile.FileName);
+                    var filePath = Path.Combine(uploadsFolderPath, fileName + fileExtension);
+
+                    // Hedef klasörü oluştur
+                    if (!Directory.Exists(uploadsFolderPath))
+                    {
+                        Directory.CreateDirectory(uploadsFolderPath);
+                    }
+
+                    using (var stream = new MemoryStream())
+                    {
+                        await model.PhotoPathFile.CopyToAsync(stream); // Dosyayı belleğe yükle
+                        stream.Position = 0; // Belleğin başlangıcına dön
+
+                        // ImageSharp kullanarak resmi yükle
+                        using (var image = await SixLabors.ImageSharp.Image.LoadAsync(stream))
+                        {
+                            image.Mutate(x => x.Resize(360, 372)); // Resmi yeniden boyutlandır
+                            stream.Position = 0; // Belleğin başlangıcına dön
+                        }
+
+                        // Dosyayı fiziksel olarak kaydet
+                        await System.IO.File.WriteAllBytesAsync(filePath, stream.ToArray());
+                    }
+
+                    existingOda.PhotoPath = "/OtelTemp/assets/img/rooms/" + fileName + fileExtension;
+                }
+
+                // Veritabanında değişiklikleri kaydet
+                odaTurManager.Update(existingOda);
+                notyfService.Success("İşlem başarılı.");
+
+                // Başarılı güncelleme sonrası bir sayfaya yönlendirme
+                return RedirectToAction("Odalar", "Admin"); // Oda listesi sayfasına yönlendirme
+            }
+
+            // Model doğrulama hatası varsa aynı sayfayı tekrar göster
+            return View(model);
+        }
+
 
         [HttpGet]
         public IActionResult Rezervasyonlar(int ay = 0, int yil = 0)
@@ -184,7 +252,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             personel.Soyadi = personelVM.Soyadi;
             personel.IzinHakki = personelVM.IzinHakki;
             personel.Maas = personelVM.Maas;
-            
+
             if (personelVM.RoleId == 0)
             {
                 personel.RoleId = null;
@@ -195,11 +263,10 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             }
 
             personel.PersonelMeslekId = personelVM.PersonelMeslekId;
-
+            
             personelManager.Update(personel);
-
             notyfService.Success("İşlem Başarılı");
-            return RedirectToAction("Personeller");
+            return RedirectToAction("Personeller", "Admin");
         }
     }
 }
