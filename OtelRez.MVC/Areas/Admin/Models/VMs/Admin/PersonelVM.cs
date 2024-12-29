@@ -1,7 +1,7 @@
 ﻿using OtelRez.Entity.Entities.Concrete;
 using System.ComponentModel.DataAnnotations;
 
-namespace OtelRez.MVC.Models.VMs.Admin
+namespace OtelRez.MVC.Areas.Admin.Models.VMs.Admin
 {
     public class PersonelVM
     {

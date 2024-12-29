@@ -1,17 +1,15 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using AspNetCoreHero.ToastNotification.Notyf;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.DAL.DbContexts;
 using OtelRez.Entity.Entities.Concrete;
-using OtelRez.MVC.Models.VMs.Admin;
+using OtelRez.MVC.Areas.Admin.Models.VMs.Admin;
 
-namespace OtelRez.MVC.Controllers
+namespace OtelRez.MVC.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AdminController : Controller
     {
         private readonly IManager<Personel> personelManager;

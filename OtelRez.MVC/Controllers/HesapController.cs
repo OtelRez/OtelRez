@@ -35,11 +35,12 @@ namespace OtelRez.MVC.Controllers
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
             var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
-            var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
-            var personelRoleId = personelManager.GetById(personel.PersonelId);
-
+            
             if (user == null)
             {
+                var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+                var personelRoleId = personelManager.GetById(personel.PersonelId);
+
                 if (personel == null)
                 {
                     notyfService.Error("Mail ya da şifre hatalı.");
@@ -50,7 +51,7 @@ namespace OtelRez.MVC.Controllers
                 {
                     if (personelRoleId.RoleId == 1)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        return RedirectToAction("Index", "Admin", new {Area = "Admin"});
                     }
 
                     else if (personelRoleId.RoleId == 2)

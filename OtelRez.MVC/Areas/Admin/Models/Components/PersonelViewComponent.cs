@@ -2,7 +2,7 @@
 using OtelRez.BL.Managers.Abstract;
 using OtelRez.Entity.Entities.Concrete;
 
-namespace OtelRez.MVC.Models.Components
+namespace OtelRez.MVC.Areas.Admin.Models.Components
 {
     public class PersonelViewComponent : ViewComponent
     {
