@@ -37,36 +37,6 @@ namespace OtelRez.MVC.Controllers
             var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
             var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
 
-            if (user == null)
-            {
-                var personelRoleId = personelManager.GetById(personel.PersonelId);
-
-                if (personel == null)
-                {
-                    notyfService.Error("Mail ya da şifre hatalı.");
-                    return View(girisVM);
-                }
-
-                else
-                {
-                    if (personelRoleId.RoleId == 1)
-                    {
-                        return RedirectToAction("Index", "Admin", new {Area = "Admin"});
-                    }
-
-                    else if (personelRoleId.RoleId == 2)
-                    {
-                        return RedirectToAction("Iletisim", "Sayfa");
-                    }
-
-                    else
-                    {
-                        notyfService.Error("Geçersiz Giriş Bilgisi.");
-                        return View(girisVM);
-                    }
-                }
-            }
-
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,girisVM.Mail)
@@ -92,6 +62,36 @@ namespace OtelRez.MVC.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userPrincipal, authenticationProperty);
+
+            if (user == null)
+            {
+                if (personel == null)
+                {
+                    notyfService.Error("Mail ya da şifre hatalı.");
+                    return View(girisVM);
+                }
+
+                else
+                {
+                    var personelRoleId = personelManager.GetById(personel.PersonelId);
+
+                    if (personelRoleId.RoleId == 1)
+                    {
+                        return RedirectToAction("Index", "Admin", new { Area = "Admin" });
+                    }
+
+                    else if (personelRoleId.RoleId == 2)
+                    {
+                        return RedirectToAction("Iletisim", "Sayfa");
+                    }
+
+                    else
+                    {
+                        notyfService.Error("Geçersiz Giriş Bilgisi.");
+                        return View(girisVM);
+                    }
+                }
+            }
 
             return RedirectToAction("Index", "Home"); ;
         }

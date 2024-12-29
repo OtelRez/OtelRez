@@ -19,17 +19,9 @@ namespace OtelRez.Entity.Config.Concrete
             builder.HasIndex(p => p.RoleAdi).IsUnique();
             builder.Property(p => p.RoleAdi).IsRequired();
 
-            builder.HasData(new Role() { Id = 1, RoleAdi = "Yonetici" });
+            builder.HasData(new Role() { Id = 1, RoleAdi = "Yönetici" });
             builder.HasData(new Role() { Id = 2, RoleAdi = "Resepsiyonist" });
-            builder.HasData(new Role() { Id = 3, RoleAdi = "Kullanici" });
-
-            //builder.HasData(
-            //    new Role() { RoleAdi = "Yonetici" },
-            //    new Role() { RoleAdi = "Resepsiyonist" },
-            //    new Role() { RoleAdi = "Kullanici" }
-
-            //    );
-
+            builder.HasData(new Role() { Id = 3, RoleAdi = "Kullanıcı" });
         }
     }
 }

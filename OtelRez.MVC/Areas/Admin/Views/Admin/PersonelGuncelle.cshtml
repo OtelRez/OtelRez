@@ -17,6 +17,8 @@
 
 	<form asp-action="PersonelGuncelle" method="post">
 		<div class="user-details">
+			<input type="hidden" asp-for="Id" />
+
 			<div class="input-box">
 				<span class="details">Adı</span>
 				<input asp-for="Adi" id="Adi" required>
@@ -40,7 +42,8 @@
 			<div class="input-box">
 				<label for="RoleId">Rol</label>
 				<select id="RoleId" name="RoleId" class="form-control">
-					<option selected disabled>@ViewBag.MevcutRol</option>
+					<option value="0">- Rolü Kaldır -</option>
+					<option value="@ViewBag.MevcutRolId" selected>@ViewBag.MevcutRol</option>
 					@foreach (var rol in ViewBag.Roller)
 					{
 						<option value="@rol.Value">@rol.Text</option>
@@ -50,8 +53,8 @@
 
 			<div class="input-box">
 				<label for="PersonelMeslekId">Meslek</label>
-				<select id="PersonelMeslekId" name="PersonelMeslekId" class="form-control">
-					<option selected disabled>@ViewBag.MevcutMeslek</option>
+				<select id="PersonelMeslekId" name="PersonelMeslekId" class="form-control" required>
+					<option value="@ViewBag.MevcutMeslekId" selected>@ViewBag.MevcutMeslek</option>
 					@foreach (var meslek in ViewBag.Meslekler)
 					{
 						<option value="@meslek.Value">@meslek.Text</option>
@@ -68,5 +71,3 @@
 	</form>
 </body>
 </html>
-
-

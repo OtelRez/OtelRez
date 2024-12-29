@@ -13,7 +13,7 @@ namespace OtelRez.MVC.Areas.Admin.Models.VMs.Admin
         public string Adi { get; set; }
 
         [Required(ErrorMessage = "Soyadı alanı zorunludur")]
-        [MinLength(3, ErrorMessage = "En az 3 karakter olmalıdır")]
+        [MinLength(2, ErrorMessage = "En az 2 karakter olmalıdır")]
         [MaxLength(15, ErrorMessage = "En fazla 15 karakter olmalıdır")]
         public string Soyadi { get; set; }
 

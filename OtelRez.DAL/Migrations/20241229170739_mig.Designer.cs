@@ -12,8 +12,8 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241228220724_init")]
-    partial class init
+    [Migration("20241229170739_mig")]
+    partial class mig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1244,7 +1244,7 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            RoleAdi = "Yonetici"
+                            RoleAdi = "Yönetici"
                         },
                         new
                         {
@@ -1254,7 +1254,7 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            RoleAdi = "Kullanici"
+                            RoleAdi = "Kullanıcı"
                         });
                 });
 

@@ -31,6 +31,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             this.notyfService = notyfService;
             this._dbContext = dbContext;
         }
+
         [HttpGet]
         public IActionResult Rezervasyonlar(int ay = 0, int yil = 0)
         {
@@ -56,6 +57,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
 
             return View(tablo);
         }
+
         public IActionResult Index()
         {
             return View();
@@ -75,17 +77,17 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult PersonelGuncelle(int Id)
         {
             // Kullanıcıyı al
-            var user = personelManager.GetAllInclude(
+            var personel = personelManager.GetAllInclude(
                 p => p.Id == Id,
                 p => p.PersonelMeslek,
                 p => p.Role
             ).FirstOrDefault();
 
-            if (user == null)
+            if (personel == null)
             {
                 notyfService.Error("Kullanıcı bulunamadı.");
                 return RedirectToAction("Index");
@@ -94,7 +96,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             #region Personel Rol
             // Mevcut rolü al
             var mevcutRol = roleManager
-                .GetAll(r => r.Id == user.RoleId)
+                .GetAll(r => r.Id == personel.RoleId)
                 .Select(r => r.RoleAdi)
                 .FirstOrDefault();
 
@@ -112,7 +114,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             #region Personel Meslek
             // Mevcut rolü al
             var mevcutMeslek = meslekManager
-                .GetAll(r => r.Id == user.PersonelMeslekId)
+                .GetAll(r => r.Id == personel.PersonelMeslekId)
                 .Select(r => r.Meslek)
                 .FirstOrDefault();
 
@@ -129,15 +131,17 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
 
             var personelVM = new PersonelVM
             {
-                Adi = user.Adi,
-                Soyadi = user.Soyadi,
-                IzinHakki = user.IzinHakki,
-                Maas = user.Maas
+                Adi = personel.Adi,
+                Soyadi = personel.Soyadi,
+                IzinHakki = personel.IzinHakki,
+                Maas = personel.Maas
             };
 
+            ViewBag.MevcutRolId = personel.RoleId;
             ViewBag.MevcutRol = mevcutRol;
             ViewBag.Roller = roller;
 
+            ViewBag.MevcutMeslekId = personel.PersonelMeslekId;
             ViewBag.MevcutMeslek = mevcutMeslek;
             ViewBag.Meslekler = meslekler;
 
@@ -145,7 +149,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult PersonelGuncelle(PersonelVM personelVM)
         {
             int personelId = personelVM.Id;
@@ -154,33 +158,42 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             if (personel == null)
             {
                 notyfService.Error("Kullanıcı bulunamadı.");
-                return RedirectToAction("Index", "Admin");
+                return View(personelVM);
             }
 
             if (!ModelState.IsValid)
             {
                 notyfService.Error("Düzeltilmesi gereken yerler var");
+
+                ViewBag.Roller = roleManager.GetAll().Select(r => new SelectListItem
+                {
+                    Text = r.RoleAdi,
+                    Value = r.Id.ToString()
+                }).ToList();
+
+                ViewBag.Meslekler = meslekManager.GetAll().Select(r => new SelectListItem
+                {
+                    Text = r.Meslek,
+                    Value = r.Id.ToString()
+                }).ToList();
+
                 return View(personelVM);
-                
             }
-
-            ViewBag.Roller = roleManager.GetAll().Select(r => new SelectListItem
-            {
-                Text = r.RoleAdi,
-                Value = r.Id.ToString()
-            }).ToList();
-
-            ViewBag.Meslekler = meslekManager.GetAll().Select(r => new SelectListItem
-            {
-                Text = r.Meslek,
-                Value = r.Id.ToString()
-            }).ToList();
 
             personel.Adi = personelVM.Adi;
             personel.Soyadi = personelVM.Soyadi;
             personel.IzinHakki = personelVM.IzinHakki;
             personel.Maas = personelVM.Maas;
-            personel.RoleId = personelVM.RoleId;
+            
+            if (personelVM.RoleId == 0)
+            {
+                personel.RoleId = null;
+            }
+            else
+            {
+                personel.RoleId = personelVM.RoleId;
+            }
+
             personel.PersonelMeslekId = personelVM.PersonelMeslekId;
 
             personelManager.Update(personel);
