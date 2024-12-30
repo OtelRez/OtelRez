@@ -6,48 +6,55 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@Model.TurAdi - Detay</title>
-	<link rel="stylesheet" href="~/css/room-details.css">
 </head>
 <body>
 	<div class="container">
 		<div class="room-details-container">
-			<!-- Sol Kısım: Oda Resmi -->
-			<div class="room-main">
-				<img src="@Url.Content(Model.PhotoPath)" alt="@Model.TurAdi" class="room-image">
-			</div>
+			<h1 class="text-center">@Model.TurAdi</h1>
 
-			<!-- Sağ Kısım: Oda Bilgileri -->
-			<div class="room-info">
-				<h1>@Model.TurAdi</h1>
-				<p class="room-description">@Model.TurDetay</p>
-				<p><strong>Fiyat:</strong> @Model.Fiyat ₺ / Gece</p>
-				<p><strong>Kapasite:</strong> @Model.Kapasite kişi</p>
-				<ul>
-					@if (Model.Minibar)
-					{
-						<li>Minibar</li>
-					}
+			<div class="row">
+				<div class="room-main row col-md-6">
+					<img src="@Url.Content(Model.PhotoPath)" alt="@Model.TurAdi" class="room-image">
+				</div>
 
-					@if (Model.Balkon)
-					{
-						<li>Balkon</li>
-					}
+				<div class="room-info row col-md-6 d-flex justify-content-center align-items-center">
+					<div class="col-md-6">
+						<ul>
+							<li><strong class="room-description">@Model.TurDetay</strong></li>
+							<li><strong>Fiyat:</strong> @Model.Fiyat ₺ / Gece</li>
+							<li><strong>Kapasite:</strong> @Model.Kapasite kişi</li>
+						</ul>
+					</div>
 
-					@if (Model.OdaServisi)
-					{
-						<li>Oda Servisi</li>
-					}
+					<div class="col-md-6">
+						<ul>
+							@if (Model.Minibar)
+							{
+								<li><img src="~/OtelTemp/assets/icons/minibars.png"><strong> Minibar</strong></li>
+							}
 
-					@if (Model.WiFi)
-					{
-						<li>Wifi</li>
-					}
+							@if (Model.Balkon)
+							{
+								<li><img src="~/OtelTemp/assets/icons/building.png"><strong> Balkon</strong></li>
+							}
 
-					@if (Model.Jakuzi)
-					{
-						<li>Jakuzi</li>
-					}
-				</ul>
+							@if (Model.OdaServisi)
+							{
+								<li><img src="~/OtelTemp/assets/icons/food-service.png"><strong> Oda Servisi</strong></li>
+							}
+
+							@if (Model.WiFi)
+							{
+								<li><img src="~/OtelTemp/assets/icons/wifi.png"><strong> Wifi</strong></li>
+							}
+
+							@if (Model.Jakuzi)
+							{
+								<li><img src="~/OtelTemp/assets/icons/jacuzzi.png"><strong> Jakuzi</strong></li>
+							}
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
