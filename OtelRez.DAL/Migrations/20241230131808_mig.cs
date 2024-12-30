@@ -316,6 +316,16 @@ namespace OtelRez.DAL.Migrations
                 values: new object[] { 1, "İstanbul,Beşiktaş", "istkafullkata@gmail.com", "0212 568 93 96" });
 
             migrationBuilder.InsertData(
+                table: "IletisimeGec",
+                columns: new[] { "Id", "Adi", "Konu", "Mail", "Mesaj" },
+                values: new object[,]
+                {
+                    { 1, "Ayşe Can", "İndirim", "ayse@gmail.com", "Rezervasyonu erken tarihte oluşturunca uyguladığınız bir indirim var mı?" },
+                    { 2, "Mehmet Yılmaz", "Otelde davet düzenleme", "mehmet@gmail.com", "Otelinizde davet vermek istediğimiz durumda bize sunabileceğiniz imkanlar neler ve bu konu hakkında kiminle iletişime geçmemiz gerekir?" },
+                    { 3, "Sude Kaya", "Hizmetleriniz", "sude@gmail.com", "Otelinizde çocuklar için sağladığınız imkanlar neler? Yaz aylarında düzenlediğiniz etkinlikler var mı?" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "MenuKategoriler",
                 columns: new[] { "Id", "KategoriAdi" },
                 values: new object[,]
@@ -459,9 +469,9 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 29), new DateOnly(2024, 12, 18), 1, 12, 4000 },
-                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 29), new DateOnly(2024, 12, 20), 1, 4, 2000 },
-                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 29), new DateOnly(2024, 11, 18), 2, 10, 20000 }
+                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 30), new DateOnly(2024, 12, 18), 1, 12, 4000 },
+                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 30), new DateOnly(2024, 12, 20), 1, 4, 2000 },
+                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 30), new DateOnly(2024, 11, 18), 2, 10, 20000 }
                 });
 
             migrationBuilder.CreateIndex(

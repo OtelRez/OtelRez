@@ -12,7 +12,7 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241229170739_mig")]
+    [Migration("20241230131808_mig")]
     partial class mig
     {
         /// <inheritdoc />
@@ -267,6 +267,32 @@ namespace OtelRez.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("IletisimeGec");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Adi = "Ayşe Can",
+                            Konu = "İndirim",
+                            Mail = "ayse@gmail.com",
+                            Mesaj = "Rezervasyonu erken tarihte oluşturunca uyguladığınız bir indirim var mı?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Adi = "Mehmet Yılmaz",
+                            Konu = "Otelde davet düzenleme",
+                            Mail = "mehmet@gmail.com",
+                            Mesaj = "Otelinizde davet vermek istediğimiz durumda bize sunabileceğiniz imkanlar neler ve bu konu hakkında kiminle iletişime geçmemiz gerekir?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Adi = "Sude Kaya",
+                            Konu = "Hizmetleriniz",
+                            Mail = "sude@gmail.com",
+                            Mesaj = "Otelinizde çocuklar için sağladığınız imkanlar neler? Yaz aylarında düzenlediğiniz etkinlikler var mı?"
+                        });
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Kullanici", b =>
@@ -1189,7 +1215,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 29),
+                            CreateTime = new DateOnly(2024, 12, 30),
                             Giris = new DateOnly(2024, 12, 18),
                             KullaniciId = 1,
                             OdaId = 12,
@@ -1199,7 +1225,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 2,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 29),
+                            CreateTime = new DateOnly(2024, 12, 30),
                             Giris = new DateOnly(2024, 12, 20),
                             KullaniciId = 1,
                             OdaId = 4,
@@ -1209,7 +1235,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 3,
                             Cikis = new DateOnly(2024, 12, 5),
-                            CreateTime = new DateOnly(2024, 12, 29),
+                            CreateTime = new DateOnly(2024, 12, 30),
                             Giris = new DateOnly(2024, 11, 18),
                             KullaniciId = 2,
                             OdaId = 10,
