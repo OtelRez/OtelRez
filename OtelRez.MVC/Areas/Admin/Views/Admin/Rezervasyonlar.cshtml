@@ -1,51 +1,122 @@
 ﻿@using OtelRez.MVC.Areas.Admin.Models.VMs.Admin
+@using System.Globalization
 @model List<RezTabloVM>
 
-<table>
-    <thead>
-        <tr>
-            <th>Oda Numarası</th>
-            @for (int i = 1; i <= DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); i++)
+@{
+    var currentYear = DateTime.Now.Year;
+    var currentMonth = DateTime.Now.Month;
+}
+<br />
+<br />
+<div class="reservation-container">
+    <form method="get" asp-action="Rezervasyonlar" class="filter-form">
+        <label for="ay">Ay Seçin:</label>
+        <select id="ay" name="ay" class="filter-select">
+            @for (int i = 1; i <= 12; i++)
             {
-                <th>@i</th>
+                <option value="@i" selected="@(ViewBag.Ay == i ? "selected" : null)">
+                    @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)
+                </option>
             }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var oda in Model)
-        {
+        </select>
+        <label for="yil">Yıl Seçin:</label>
+        <select id="yil" name="yil" class="filter-select">
+            @for (int i = currentYear - 5; i <= currentYear + 5; i++)
+            {
+                <option value="@i" selected="@(ViewBag.Yil == i ? "selected" : null)">@i</option>
+            }
+        </select>
+        <button type="submit" class="filter-button">Göster</button>
+    </form>
+
+    <table class="reservation-table">
+        <thead>
             <tr>
-                <td>@oda.OdaNumarasi</td>
-                @for (int i = 0; i < oda.Gunler.Length; i++)
+                <th>Oda Numarası</th>
+                @for (int i = 1; i <= DateTime.DaysInMonth(ViewBag.Yil ?? currentYear, ViewBag.Ay ?? currentMonth); i++)
                 {
-                    var dolu = oda.Gunler[i];
-                    <td style="background-color: @(dolu ? "red" : "green"); color: white;">
-                        @* @(dolu ? "Dolu" : "Boş") *@
-                    </td>
+                    <th>@i</th>
                 }
             </tr>
-        }
-    </tbody>
-</table>
-
-
+        </thead>
+        <tbody>
+            @foreach (var oda in Model)
+            {
+                <tr>
+                    <td>@oda.OdaNumarasi</td>
+                    @for (int i = 0; i < oda.Gunler.Length; i++)
+                    {
+                        var dolu = oda.Gunler[i];
+                        <td style="background-color: @(dolu ? "red" : "green"); color: white;">
+                            @* @(dolu ? "Dolu" : "Boş") *@
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <style>
-    table {
+    /* Ana konteyner */
+    .reservation-container {
+        position: relative;
+        margin: 20px;
+    }
+
+    /* Formun sağ üst köşeye yerleşimi */
+    .filter-form {
+        position: absolute;
+        top: -50px; /* Daha yukarı taşımak için negatif top değeri */
+        right: 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .filter-select {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .filter-button {
+        padding: 5px 10px;
+        font-size: 14px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+        .filter-button:hover {
+            background-color: #0056b3;
+        }
+
+    /* Tablo düzeni */
+    .reservation-table {
         border-collapse: collapse;
-        margin: 20px 0;
-        font-size: 18px;
-        min-width: 400px;
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 50px;
+        font-size: 14px;
     }
 
-    th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-    }
+        .reservation-table th,
+        .reservation-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
 
-    th {
-        background-color: #f4f4f4;
-        color: black;
-        font-weight: bold;
-    }
+        .reservation-table th {
+            background-color: #f4f4f4;
+            color: black;
+            font-weight: bold;
+        }
+
+        .reservation-table td {
+            background-color: #f9f9f9;
+        }
 </style>
 
+</style>
