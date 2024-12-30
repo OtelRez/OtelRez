@@ -4,19 +4,21 @@
 {
     <tr>
         <td>@item.Oda.OdaNumarasi</td>
-        <td>@item.Giris</td>
-        <td>@item.Cikis</td>
+        <td>@item.Giris.ToString("yyyy-MM-dd")</td>
+        <td>@item.Cikis.ToString("yyyy-MM-dd")</td>
         <td>@item.ToplamTutar</td>
         <td>
-            <form asp-controller="Rez" asp-action="RezIptal" method="post">
-                <input type="hidden" name="id" value="@item.Id" />
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmReservation();">İptal Et</button>
-            </form>
+            @if (item.Giris.ToDateTime(new TimeOnly(0, 0)) <= DateOnly.FromDateTime(DateTime.Now).ToDateTime(TimeOnly.MinValue))
+            {
+                <button type="button" class="btn btn-secondary btn-sm" disabled>İptal Et</button>
+            }
+            else
+            {
+                <form asp-controller="Rez" asp-action="RezIptal" method="post">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmReservation();">İptal Et</button>
+                </form>
+            }
         </td>
     </tr>
 }
-<script>
-    function confirmReservation() {
-        return confirm("Rezervasyonu iptal etmek istiyor musunuz?");
-    }
-</script>
