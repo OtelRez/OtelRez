@@ -48,14 +48,17 @@
 								<div class="col-sm-6 form-group">
 									<label for="GirisTarihi">Giriş Tarihi</label>
 									<div style="position: relative;">
-										<input asp-for="GirisTarihi" type="date" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" class="form-control" required />
+										<input asp-for="GirisTarihi" type="date" 
+										min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" 
+										class="form-control" required />
 									</div>
 								</div>
 
 								<div class="col-sm-6 form-group">
 									<label for="CikisTarihi">Çıkış Tarihi</label>
 									<div style="position: relative;">
-										<input asp-for="CikisTarihi" type="date" min="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")" class="form-control" required />
+										<input id="CikisTarihi" asp-for="CikisTarihi" type="date"
+											   class="form-control" required disabled />
 									</div>
 								</div>
 							</div>
@@ -148,6 +151,29 @@
 			var toplamTutar = document.getElementById("ToplamTutar").value;
 			return confirm("Toplam Tutar: " + toplamTutar + " TL\nRezervasyonu onaylıyor musunuz?");
 		}
+	</script>
+
+	<script>
+		const girisTarihiInput = document.getElementById('GirisTarihi');
+		const cikisTarihiInput = document.getElementById('CikisTarihi');
+
+		girisTarihiInput.addEventListener('change', function () {
+			const girisTarihi = new Date(this.value);
+
+			if (!isNaN(girisTarihi)) {
+				// Giriş tarihine bağlı olarak çıkış tarihinin minimum değerini ayarla
+				girisTarihi.setDate(girisTarihi.getDate() + 1);
+				const minDate = girisTarihi.toISOString().split('T')[0];
+
+				cikisTarihiInput.min = minDate;
+				cikisTarihiInput.disabled = false; // Çıkış tarihini etkinleştir
+			} else {
+				// Giriş tarihi geçersiz ise çıkış tarihini devre dışı bırak
+				cikisTarihiInput.disabled = true;
+				cikisTarihiInput.value = ''; // Çıkış tarihini temizle
+				cikisTarihiInput.removeAttribute('min'); // Min değerini kaldır
+			}
+		});
 	</script>
 </body>
 </html>
