@@ -43,7 +43,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> OdaGuncelle(OdaGuncelleVM model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Mevcut oda bilgisini veritabanından al
                 var existingOda = odaTurManager.GetById(model.Id);
@@ -87,6 +87,10 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                     }
 
                     existingOda.PhotoPath = "/OtelTemp/assets/img/rooms/" + fileName + fileExtension;
+                }
+                else if (!string.IsNullOrEmpty(existingOda.PhotoPath))
+                {
+                    model.PhotoPath = existingOda.PhotoPath;
                 }
 
                 // Veritabanında değişiklikleri kaydet
