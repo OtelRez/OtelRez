@@ -104,12 +104,14 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
             // Model doğrulama hatası varsa aynı sayfayı tekrar göster
             return View(model);
         }
-        
         [HttpGet]
         public IActionResult Rezervasyonlar(int ay = 0, int yil = 0)
         {
             if (ay == 0) ay = DateTime.Now.Month;
             if (yil == 0) yil = DateTime.Now.Year;
+
+            ViewBag.Ay = ay;
+            ViewBag.Yil = yil;
 
             var odalar = _dbContext.Odalar.ToList();
             var rezervasyonlar = _dbContext.Rezervasyonlar
@@ -130,6 +132,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
 
             return View(tablo);
         }
+
 
         public IActionResult Index()
         {
