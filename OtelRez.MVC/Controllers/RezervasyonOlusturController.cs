@@ -66,8 +66,8 @@ namespace OtelRez.MVC.Controllers
                     Cikis = rezOlusturVM.CikisTarihi
                 };
 
-                //int toplamTutar = _rezervasyonManager.ToplamTutar(rezOlusturVM.OdaTurId, rezOlusturVM.GirisTarihi, rezOlusturVM.CikisTarihi);
-                //ViewBag.ToplamTutar = toplamTutar;
+                int toplamTutar = _rezervasyonManager.ToplamTutar(rezOlusturVM.OdaTurId, rezOlusturVM.GirisTarihi, rezOlusturVM.CikisTarihi);
+                ViewBag.ToplamTutar = toplamTutar;
 
                 bool sonuc = await _rezervasyonManager.RezervasyonOlustur(rezOlusturVM.OdaTurId, rezervasyon, kullaniciId);
 

@@ -37,7 +37,7 @@ namespace OtelRez.MVC.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Giris(GirisVM girisVM)
         {
-            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
+            var user = kullaniciManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre, p => p.Role).FirstOrDefault();
             var personel = personelGirisManager.GetAllInclude(p => p.Mail == girisVM.Mail && p.Sifre == girisVM.Sifre).FirstOrDefault();
 
             var claims = new List<Claim>
