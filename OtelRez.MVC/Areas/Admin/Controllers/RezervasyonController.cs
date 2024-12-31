@@ -27,7 +27,7 @@ namespace OtelRez.MVC.Areas.Admin.Controllers
                 OdaNumarasi = oda.OdaNumarasi,
                 Gunler = Enumerable.Range(1, gunSayisi).Select(gun =>
                 {
-                    var tarih = new DateOnly(yil, ay, gun);
+                    var tarih = new DateTime(yil, ay, gun);
                     return rezervasyonlar.Any(r => r.OdaId == oda.Id && r.Giris <= tarih && r.Cikis > tarih);
                 }).ToArray()
             }).ToList();
