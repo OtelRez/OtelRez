@@ -139,33 +139,5 @@ namespace OtelRez.MVC.Controllers
 
             return RedirectToAction("Giris", "Hesap");
         }
-
-        [HttpGet]
-        public ActionResult SifremiUnuttum()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult SifremiUnuttum(SifremiUnuttumVM model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = _db.Kullanicilar.FirstOrDefault(u => u.Mail == model.Email);
-                if (user != null)
-                {
-                    // Şifreyi e-posta ile gönder
-                    SifreManager.SendEmail(user.Mail, "Şifreniz", $"Merhaba, şifreniz: {user.Sifre}");
-
-                    ViewBag.Message = "Şifreniz e-posta adresinize gönderildi.";
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Bu e-posta adresine kayıtlı bir kullanıcı bulunamadı.");
-                }
-            }
-
-            return View(model);
-        }
     }
 }
