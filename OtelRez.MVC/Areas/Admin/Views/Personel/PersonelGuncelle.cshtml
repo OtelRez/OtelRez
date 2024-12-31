@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Dashboard - SB Admin</title>
+	<title>Personel Güncelle</title>
 	<link rel="stylesheet" href="~/RegisterTemp/style.css">
 </head>
 
@@ -46,7 +46,7 @@
 
 				<select asp-for="PersonelMeslekId" class="form-control" required>
 					<option value="@ViewBag.MevcutMeslekId" selected>@ViewBag.MevcutMeslek</option>
-					
+
 					@foreach (var meslek in ViewBag.Meslekler)
 					{
 						<option value="@meslek.Value">@meslek.Text</option>
@@ -62,7 +62,7 @@
 				<select asp-for="RoleId" class="form-control">
 					<option value="0">- Rolü Kaldır -</option>
 					<option value="@ViewBag.MevcutRolId" selected>@ViewBag.MevcutRol</option>
-					
+
 					@foreach (var rol in ViewBag.Roller)
 					{
 						<option value="@rol.Value">@rol.Text</option>
