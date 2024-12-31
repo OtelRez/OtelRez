@@ -58,6 +58,10 @@
 							<div class="sb-nav-link-icon"><i class="fa-solid fa-envelope"></i></div>
 							Mesajlar
 						</a>
+						<a class="nav-link" asp-controller="Admin" asp-action="Menu">
+							<div class="sb-nav-link-icon"><i class="fa-solid fa-utensils"></i></div>
+							Menüler
+						</a>
 					</div>
 				</div>
 			</nav>
@@ -80,7 +84,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 	<script src="~/AdminTemp/js/datatables-simple-demo.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/notyf/notyf.min.js"></script>
-	
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 	@await Component.InvokeAsync("Notyf")
 </body>
