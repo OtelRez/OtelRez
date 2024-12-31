@@ -11,6 +11,8 @@ namespace OtelRez.MVC.Extensions
         {
             services.AddScoped(typeof(IManager<>), typeof(Manager<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }

@@ -1,0 +1,37 @@
+﻿@{
+	ViewBag.Title = "Şifremi Unuttum";
+}
+<link rel="stylesheet" href="~/css/sifre.css">
+<body>
+	<div class="mail-row">
+		<div class="mail-container">
+			<div class="sifre-box">
+				<div class="card">
+					<div class="card-body login-card-body">
+						<p class="login-box-msg">Şifremi Unuttum</p>
+
+						<form asp-action="SifremiUnuttum" method="post">
+							<div class="input-group mb-3">
+								<div>
+									<label>Email:</label>
+									<input type="email" name="email" required />
+								</div>
+
+								<br />
+								<br/>
+
+								<button type="submit">Gönder</button>
+							</div>
+						</form>
+
+						@if (ViewBag.Message != null)
+						{
+							<p>@ViewBag.Message</p>
+						}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
