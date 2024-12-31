@@ -20,10 +20,6 @@ namespace OtelRez.Entity.Config.Concrete
             builder.HasIndex(p => p.OdaNumarasi).IsUnique();
             builder.Property(p => p.OdaNumarasi).IsRequired();
 
-            builder.HasOne(p => p.Rezervasyon)
-               .WithOne(p => p.Oda)
-               .HasForeignKey<Rezervasyon>(p => p.OdaId);
-
             builder.HasOne(p => p.OdaTur)
                 .WithMany(p => p.Odalar)
                 .HasForeignKey(p => p.OdaTurId);

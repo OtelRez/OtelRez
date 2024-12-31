@@ -81,7 +81,7 @@ namespace OtelRez.BL.Managers.Concrete
             _context.Rezervasyonlar.Add(rez);
 
             // Odanın müsaitlik durumunu güncelle
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return true;
         }

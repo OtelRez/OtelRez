@@ -651,8 +651,7 @@ namespace OtelRez.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Rezervasyonlar_OdaId",
                 table: "Rezervasyonlar",
-                column: "OdaId",
-                unique: true);
+                column: "OdaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Roller_Id",

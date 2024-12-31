@@ -12,7 +12,7 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241231080940_init")]
+    [Migration("20241231102154_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -1205,8 +1205,7 @@ namespace OtelRez.DAL.Migrations
 
                     b.HasIndex("KullaniciId");
 
-                    b.HasIndex("OdaId")
-                        .IsUnique();
+                    b.HasIndex("OdaId");
 
                     b.ToTable("Rezervasyonlar");
 
@@ -1354,8 +1353,8 @@ namespace OtelRez.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("OtelRez.Entity.Entities.Concrete.Oda", "Oda")
-                        .WithOne("Rezervasyon")
-                        .HasForeignKey("OtelRez.Entity.Entities.Concrete.Rezervasyon", "OdaId")
+                        .WithMany("Rezervasyon")
+                        .HasForeignKey("OdaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1376,8 +1375,7 @@ namespace OtelRez.DAL.Migrations
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.Oda", b =>
                 {
-                    b.Navigation("Rezervasyon")
-                        .IsRequired();
+                    b.Navigation("Rezervasyon");
                 });
 
             modelBuilder.Entity("OtelRez.Entity.Entities.Concrete.OdaTur", b =>

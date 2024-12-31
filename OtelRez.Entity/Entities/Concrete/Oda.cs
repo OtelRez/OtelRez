@@ -12,6 +12,6 @@ namespace OtelRez.Entity.Entities.Concrete
         public string OdaNumarasi { get; set; }
         public OdaTur OdaTur{ get; set; }
         public int OdaTurId { get; set; }
-        public Rezervasyon Rezervasyon { get; set; }
+        public ICollection<Rezervasyon> Rezervasyon { get; set; }
     }
 }
