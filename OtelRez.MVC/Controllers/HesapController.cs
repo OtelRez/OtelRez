@@ -5,8 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using OtelRez.BL.Managers.Abstract;
+using OtelRez.BL.Managers.Concrete;
+using OtelRez.DAL.DbContexts;
 using OtelRez.Entity.Entities.Concrete;
 using OtelRez.MVC.Models.VMs.Hesap;
 using System.Security.Claims;
@@ -16,7 +19,7 @@ namespace OtelRez.MVC.Controllers
     [Authorize]
     public class HesapController(IManager<Kullanici> kullaniciManager, IManager<PersonelGiris> personelGirisManager, IManager<Personel> personelManager, INotyfService notyfService) : Controller
     {
-        
+        private readonly AppDbContext _db = new AppDbContext();
         public IActionResult Index()
         {
             return View();
@@ -135,6 +138,34 @@ namespace OtelRez.MVC.Controllers
             notyfService.Success("İşlem Başarılı");
 
             return RedirectToAction("Giris", "Hesap");
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(SifremiUnuttumVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _db.Kullanicilar.FirstOrDefault(u => u.Mail == model.Email);
+                if (user != null)
+                {
+                    // Şifreyi e-posta ile gönder
+                    SifreManager.SendEmail(user.Mail, "Şifreniz", $"Merhaba, şifreniz: {user.Sifre}");
+
+                    ViewBag.Message = "Şifreniz e-posta adresinize gönderildi.";
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Bu e-posta adresine kayıtlı bir kullanıcı bulunamadı.");
+                }
+            }
+
+            return View(model);
         }
     }
 }
