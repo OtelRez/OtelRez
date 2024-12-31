@@ -1177,14 +1177,14 @@ namespace OtelRez.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("Cikis")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("Cikis")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateOnly>("CreateTime")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly>("Giris")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("Giris")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("KullaniciId")
                         .HasColumnType("int");
@@ -1211,9 +1211,9 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Cikis = new DateOnly(2024, 12, 22),
+                            Cikis = new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreateTime = new DateOnly(2024, 12, 31),
-                            Giris = new DateOnly(2024, 12, 18),
+                            Giris = new DateTime(2024, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             KullaniciId = 1,
                             OdaId = 12,
                             ToplamTutar = 4000
@@ -1221,9 +1221,9 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            Cikis = new DateOnly(2024, 12, 22),
+                            Cikis = new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreateTime = new DateOnly(2024, 12, 31),
-                            Giris = new DateOnly(2024, 12, 20),
+                            Giris = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             KullaniciId = 1,
                             OdaId = 4,
                             ToplamTutar = 2000
@@ -1231,9 +1231,9 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            Cikis = new DateOnly(2024, 12, 5),
+                            Cikis = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreateTime = new DateOnly(2024, 12, 31),
-                            Giris = new DateOnly(2024, 11, 18),
+                            Giris = new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             KullaniciId = 2,
                             OdaId = 10,
                             ToplamTutar = 20000

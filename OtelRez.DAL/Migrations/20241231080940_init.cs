@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -239,8 +239,8 @@ namespace OtelRez.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Giris = table.Column<DateOnly>(type: "date", nullable: false),
-                    Cikis = table.Column<DateOnly>(type: "date", nullable: false),
+                    Giris = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cikis = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreateTime = table.Column<DateOnly>(type: "date", nullable: false),
                     KullaniciId = table.Column<int>(type: "int", nullable: false),
                     OdaId = table.Column<int>(type: "int", nullable: false),
@@ -469,9 +469,9 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 31), new DateOnly(2024, 12, 18), 1, 12, 4000 },
-                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 31), new DateOnly(2024, 12, 20), 1, 4, 2000 },
-                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 31), new DateOnly(2024, 11, 18), 2, 10, 20000 }
+                    { 1, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2024, 12, 31), new DateTime(2024, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 12, 4000 },
+                    { 2, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2024, 12, 31), new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 4, 2000 },
+                    { 3, new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2024, 12, 31), new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 10, 20000 }
                 });
 
             migrationBuilder.CreateIndex(

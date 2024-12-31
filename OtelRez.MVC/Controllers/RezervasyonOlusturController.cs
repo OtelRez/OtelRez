@@ -59,8 +59,8 @@ namespace OtelRez.MVC.Controllers
 
             }
 
-            try
-            {
+            //try
+            //{
                 var rezervasyon = new Rezervasyon
                 {
                     Giris = rezOlusturVM.GirisTarihi,
@@ -89,20 +89,20 @@ namespace OtelRez.MVC.Controllers
                     _notyfService.Warning("Seçtiğiniz tarihler için uygun oda bulunamadı.");
                     return RedirectToAction("Index", "RezervasyonOlustur");
                 }
-            }
+           // }
 
-            catch (Exception ex)
-            {
-                _notyfService.Error("Bir hata oluştu");
-                var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
-                ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
-                {
-                    Text = t.TurAdi,
-                    Value = t.Id.ToString()
-                }).ToList();
+            //catch (Exception ex)
+            //{
+            //    _notyfService.Error("Bir hata oluştu");
+            //    var odaTurleriReload = await _rezervasyonManager.GetOdaTurleriAsync();
+            //    ViewBag.OdaTurleri = odaTurleriReload.Select(t => new SelectListItem
+            //    {
+            //        Text = t.TurAdi,
+            //        Value = t.Id.ToString()
+            //    }).ToList();
 
-                return RedirectToAction("Index", "RezervasyonOlustur");
-            }
+            //    return RedirectToAction("Index", "RezervasyonOlustur");
+            //}
 
         }
     }
