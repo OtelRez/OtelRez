@@ -24,8 +24,15 @@ namespace OtelRez.Entity.Config.Concrete
 
             builder.Property(p => p.Description).IsRequired();
 
-            builder.HasData(new Hizmetler() { Id = 1, Title = "Restoranımız", SubTitle = "Akşam yemeği ve kahvaltı", Description = "asjhvhdsvhfsvdhsbh", PhotoPath= "/OtelTemp/assets/img/dining/dining-img.jpg" });
-            builder.HasData(new Hizmetler() { Id = 2, Title = "Havuzumuz", SubTitle = "Büyük yüzme havuzu", Description = "asjhvhdsvhfsvdhsbh", PhotoPath= "/OtelTemp/assets/img/dining/dining-img2.jpg" });
+            builder.HasData(new Hizmetler() { Id = 1, Title = "Restoranımız", SubTitle = "Kahvaltı ve Akşam Yemeği", 
+                Description = "Başarılı şeflerimiz sizi gastronomik bir yolculuğa çıkaran eşsiz lezzetleriyle büyülemeye hazır! Her yemek, bir sanat eseri gibi hazırlanır ve eşsiz bir sunumla servis edilir.", 
+                PhotoPath= "/OtelTemp/assets/img/dining/dining-img.jpg" 
+            });
+
+            builder.HasData(new Hizmetler() { Id = 2, Title = "Havuzlarımız", SubTitle = "Yüzme Havuzları ve Su Parkı", 
+                Description = "Otelimizin yüzme havuzları ve su parkı, tatilinize serinlik ve huzur katmak için tasarlandı! Açık havuzumuz göz alıcı manzarasıyla sizi büyülerken ısıtmalı kapalı havuzumuz her mevsim keyifle yüzme imkanı sunar. Çocuklar için özel güvenli yüzme alanlarımız ise ailelere unutulmaz anılar yaşatır. Kusursuz bir havuz deneyimi yaşamak için sizi otelimizin havuzlarına davet ediyoruz!", 
+                PhotoPath= "/OtelTemp/assets/img/dining/dining-img2.jpg" 
+            });
         }
     }
 }

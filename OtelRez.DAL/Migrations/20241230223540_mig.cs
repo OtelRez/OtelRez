@@ -306,8 +306,8 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Description", "PhotoPath", "SubTitle", "Title" },
                 values: new object[,]
                 {
-                    { 1, "asjhvhdsvhfsvdhsbh", "/OtelTemp/assets/img/dining/dining-img.jpg", "Akşam yemeği ve kahvaltı", "Restoranımız" },
-                    { 2, "asjhvhdsvhfsvdhsbh", "/OtelTemp/assets/img/dining/dining-img2.jpg", "Büyük yüzme havuzu", "Havuzumuz" }
+                    { 1, "Başarılı şeflerimiz sizi gastronomik bir yolculuğa çıkaran eşsiz lezzetleriyle büyülemeye hazır! Her yemek, bir sanat eseri gibi hazırlanır ve eşsiz bir sunumla servis edilir.", "/OtelTemp/assets/img/dining/dining-img.jpg", "Kahvaltı ve Akşam Yemeği", "Restoranımız" },
+                    { 2, "Otelimizin yüzme havuzları ve su parkı, tatilinize serinlik ve huzur katmak için tasarlandı! Açık havuzumuz göz alıcı manzarasıyla sizi büyülerken ısıtmalı kapalı havuzumuz her mevsim keyifle yüzme imkanı sunar. Çocuklar için özel güvenli yüzme alanlarımız ise ailelere unutulmaz anılar yaşatır. Kusursuz bir havuz deneyimi yaşamak için sizi otelimizin havuzlarına davet ediyoruz!", "/OtelTemp/assets/img/dining/dining-img2.jpg", "Yüzme Havuzları ve Su Parkı", "Havuzlarımız" }
                 });
 
             migrationBuilder.InsertData(
@@ -469,9 +469,9 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 30), new DateOnly(2024, 12, 18), 1, 12, 4000 },
-                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 30), new DateOnly(2024, 12, 20), 1, 4, 2000 },
-                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 30), new DateOnly(2024, 11, 18), 2, 10, 20000 }
+                    { 1, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 31), new DateOnly(2024, 12, 18), 1, 12, 4000 },
+                    { 2, new DateOnly(2024, 12, 22), new DateOnly(2024, 12, 31), new DateOnly(2024, 12, 20), 1, 4, 2000 },
+                    { 3, new DateOnly(2024, 12, 5), new DateOnly(2024, 12, 31), new DateOnly(2024, 11, 18), 2, 10, 20000 }
                 });
 
             migrationBuilder.CreateIndex(

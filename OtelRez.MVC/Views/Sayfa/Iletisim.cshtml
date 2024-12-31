@@ -9,14 +9,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Barbers</title>
+	<title>İletişim</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- <link rel="manifest" href="site.webmanifest"> -->
 	<link rel="shortcut icon" type="image/x-icon" href="~/OtelTemp/assets/img/favicon.png">
-	<!-- Place favicon.ico in the root directory -->
-	<!-- CSS here -->
+
 	<link rel="stylesheet" href="~/OtelTemp/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="~/OtelTemp/assets/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="~/OtelTemp/assets/css/gijgo.css">
@@ -33,7 +31,6 @@
 </head>
 
 <body>
-
 	<!-- Preloader Start -->
 	<div id="preloader-active">
 		<div class="preloader d-flex align-items-center justify-content-center">
@@ -48,13 +45,13 @@
 	<!-- Preloader Start -->
 	<!-- slider Area Start-->
 	<div class="slider-area">
-		<div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background="~/OtelTemp/assets/img/hero/contact_hero.jpg">
+		<div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background="/OtelTemp/assets/img/hero/contact_hero.jpg">
 			<div class="container">
 				<div class="row ">
 					<div class="col-md-11 offset-xl-1 offset-lg-1 offset-md-1">
 						<div class="hero-caption">
-							<span>Contact</span>
-							<h2>Contact</h2>
+							<span>İLETİŞİM</span>
+							<h2>İletişim Bilgileri</h2>
 						</div>
 					</div>
 				</div>
@@ -69,7 +66,8 @@
 				<p>
 					<iframe allowfullscreen="" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
 							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188.0711890123908!2d29.006804810547028!3d41.04408876588866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7a24975fe5d%3A0xa05d7aa13cfcaf89!2sBah%C3%A7e%C5%9Fehir%20%C3%9Cniversitesi%20Wissen%20Akademie!5e0!3m2!1str!2str!4v1733834600667!5m2!1str!2str"
-							style="border:0;" width="100%"></iframe>
+							style="border:0;" width="100%">
+					</iframe>
 				</p>
 			</div>
 
@@ -104,7 +102,7 @@
 									<input asp-for="Mail" class="form-control" placeholder="Mailiniz" />
 								</div>
 							</div>
-							
+
 						</div>
 						<div class="button">
 							<button type="submit" class="button button-contactForm boxed-btn">Mesajı Gönder</button>
@@ -160,17 +158,14 @@
 	<script>
 		   $('#datepicker').datepicker({
 			   iconsLibrary: 'fontawesome',
-			   disableDaysOfWeek: [0, 0],
-		   //     icons: {
-		   //      rightIcon: '<span class="fa fa-caret-down"></span>'
-		   //  }
+			   disableDaysOfWeek: [0, 0]
 		   });
+
 		   $('#datepicker2').datepicker({
 			   iconsLibrary: 'fontawesome',
 			   icons: {
 				rightIcon: '<span class="fa fa-caret-down"></span>'
 			}
-
 		   });
 		   var timepicker = $('#timepicker').timepicker({
 			format: 'HH.MM'

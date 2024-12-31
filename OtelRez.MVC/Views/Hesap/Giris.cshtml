@@ -1,12 +1,11 @@
 ﻿@using OtelRez.MVC.Models.VMs.Hesap
 @model GirisVM
 
+<title>Giriş</title>
+
 <div class="row">
     <div class="container">
         <div class="login-box">
-            <div class="login-logo">
-            </div>
-            <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Giriş için formu doldurun</p>
@@ -22,7 +21,7 @@
                         </div>
 
                         <div class="input-group mb-3">
-                            <input asp-for=Sifre class="form-control" placeholder="Sifre">
+                            <input asp-for=Sifre class="form-control" placeholder="Şifre">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -35,15 +34,14 @@
                                 <div class="">
                                     <input asp-for="RememberMe">
                                     <label for="remember">
-                                        Remember Me
+                                        Beni Hatırla
                                     </label>
                                 </div>
                             </div>
-                            <!-- /.col -->
+
                             <div class="col-4">
                                 <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
                             </div>
-                            <!-- /.col -->
                         </div>
                     </form>
 
@@ -51,10 +49,9 @@
                         <a href="forgot-password.html">I forgot my password</a>
                     </p>
                     <p class="mb-0">
-                        <a asp-area="" asp-controller="Hesap" asp-action="Kayit">Üye Ol</a>
+                        <a asp-controller="Hesap" asp-action="Kayit">Üye Ol</a>
                     </p>
                 </div>
-                <!-- /.login-card-body -->
             </div>
         </div>
     </div>

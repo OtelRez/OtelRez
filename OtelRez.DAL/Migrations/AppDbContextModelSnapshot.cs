@@ -175,18 +175,18 @@ namespace OtelRez.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "asjhvhdsvhfsvdhsbh",
+                            Description = "Başarılı şeflerimiz sizi gastronomik bir yolculuğa çıkaran eşsiz lezzetleriyle büyülemeye hazır! Her yemek, bir sanat eseri gibi hazırlanır ve eşsiz bir sunumla servis edilir.",
                             PhotoPath = "/OtelTemp/assets/img/dining/dining-img.jpg",
-                            SubTitle = "Akşam yemeği ve kahvaltı",
+                            SubTitle = "Kahvaltı ve Akşam Yemeği",
                             Title = "Restoranımız"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "asjhvhdsvhfsvdhsbh",
+                            Description = "Otelimizin yüzme havuzları ve su parkı, tatilinize serinlik ve huzur katmak için tasarlandı! Açık havuzumuz göz alıcı manzarasıyla sizi büyülerken ısıtmalı kapalı havuzumuz her mevsim keyifle yüzme imkanı sunar. Çocuklar için özel güvenli yüzme alanlarımız ise ailelere unutulmaz anılar yaşatır. Kusursuz bir havuz deneyimi yaşamak için sizi otelimizin havuzlarına davet ediyoruz!",
                             PhotoPath = "/OtelTemp/assets/img/dining/dining-img2.jpg",
-                            SubTitle = "Büyük yüzme havuzu",
-                            Title = "Havuzumuz"
+                            SubTitle = "Yüzme Havuzları ve Su Parkı",
+                            Title = "Havuzlarımız"
                         });
                 });
 
@@ -1212,7 +1212,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 30),
+                            CreateTime = new DateOnly(2024, 12, 31),
                             Giris = new DateOnly(2024, 12, 18),
                             KullaniciId = 1,
                             OdaId = 12,
@@ -1222,7 +1222,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 2,
                             Cikis = new DateOnly(2024, 12, 22),
-                            CreateTime = new DateOnly(2024, 12, 30),
+                            CreateTime = new DateOnly(2024, 12, 31),
                             Giris = new DateOnly(2024, 12, 20),
                             KullaniciId = 1,
                             OdaId = 4,
@@ -1232,7 +1232,7 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 3,
                             Cikis = new DateOnly(2024, 12, 5),
-                            CreateTime = new DateOnly(2024, 12, 30),
+                            CreateTime = new DateOnly(2024, 12, 31),
                             Giris = new DateOnly(2024, 11, 18),
                             KullaniciId = 2,
                             OdaId = 10,
