@@ -1,0 +1,55 @@
+﻿@using OtelRez.MVC.Areas.Admin.Models.VMs.Admin
+@model MenuVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Menü Ekle</title>
+	<link rel="stylesheet" href="~/RegisterTemp/style.css">
+</head>
+
+<body class="sb-nav-fixed">
+
+	<form asp-action="MenuEkle" method="post">
+		<div class="user-details">
+
+			<div class="input-box">
+				<span class="details">Ürün Adı</span>
+				<input asp-for="UrunAdi" id="UrunAdi" required>
+			</div>
+
+			<div class="input-box">
+				<span class="details">Ürün Açıklaması</span>
+				<input asp-for="UrunAciklama" id="UrunAciklama" >
+			</div>
+
+			<div class="input-box">
+				<span class="details">Ürün Fiyatı</span>
+				<input asp-for="Fiyat" id="Fiyat" required>
+			</div>
+
+			<div class="input-box">
+				<label asp-for="MenuKategoriId">
+					<span class="details">Ürün Kategorisi</span>
+				</label>
+
+				<select asp-for="MenuKategoriId" class="form-control" asp-items="ViewBag.Kategoriler" required>
+					<option value="">-- Kategori Seçiniz --</option>
+				</select>
+				<span asp-validation-for="MenuKategoriId" class="text-danger"></span>
+			</div>
+
+			<div class="input-box">
+				<div class="button">
+					<input type="submit" value="Ekle">
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

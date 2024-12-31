@@ -141,13 +141,13 @@ namespace OtelRez.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult ForgotPassword()
+        public ActionResult SifremiUnuttum()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult ForgotPassword(SifremiUnuttumVM model)
+        public ActionResult SifremiUnuttum(SifremiUnuttumVM model)
         {
             if (ModelState.IsValid)
             {

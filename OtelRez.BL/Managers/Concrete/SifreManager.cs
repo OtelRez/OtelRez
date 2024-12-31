@@ -15,13 +15,13 @@ namespace OtelRez.BL.Managers.Concrete
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("sizin-email@gmail.com", "sizin-email-şifreniz"),
+                Credentials = new NetworkCredential("istkafullkata@gmail.com", "qweasd!!"),
                 EnableSsl = true,
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("sizin-email@gmail.com"),
+                From = new MailAddress("istkafullkata@gmail.com"),
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true,
