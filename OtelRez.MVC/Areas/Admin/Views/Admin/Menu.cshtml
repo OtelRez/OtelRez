@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Dashboard - SB Admin</title>
+</head>
+
+<body class="sb-nav-fixed">
+
+	<br />
+	<br />
+
+	<div class="card mb-4">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<div>
+				<i class="fas fa-table me-1"></i>
+				Personeller Tablosu
+			</div>
+
+			<div>
+				<form asp-area="Admin" asp-controller="Admin" asp-action="MenuEkle" method="get">
+					<i class="fa-solid fa-user-plus"></i>
+					<input type="submit" style="background-color: #069314; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;" value="Menu Ekle" />
+				</form>
+			</div>
+
+		</div>
+		<div class="card-body">
+			<table id="datatablesSimple">
+				<thead>
+					<tr>
+						<th>Yemek</th>
+						<th>İçeriği</th>
+						<th>Fiyatı</th>
+						<th>Kategorisi</th>
+						<th>Ayarlar</th>
+					</tr>
+				</thead>
+
+				<tfoot>
+					<tr>
+						<th>Yemek</th>
+						<th>İçeriği</th>
+						<th>Fiyatı</th>
+						<th>Kategorisi</th>
+						<th>Ayarlar</th>
+					</tr>
+				</tfoot>
+
+				<tbody>
+					@await Component.InvokeAsync("Menu")
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

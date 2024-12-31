@@ -1,0 +1,29 @@
+﻿@model List<Menu>
+
+@foreach (var item in Model)
+{
+	<tr>
+		<td>@item.UrunAdi</td>
+		<td>@item.UrunAciklama</td>
+		<td>@item.Fiyat</td>
+		<td>@item.MenuKategori.KategoriAdi</td>
+		<td>
+			<div class="input-group mb-3">
+				<button class="btn btn-outline-secondary dropdown-toggle"
+						type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<i class="fa-solid fa-user-gear"></i>
+				</button>
+
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" asp-action="MenuGuncelle" asp-controller="Admin" asp-route-Id="@item.Id"><i class="fa-solid fa-user-pen"></i> Güncelle</a></li>
+					<li><a class="dropdown-item" asp-action="MenuSil" asp-controller="Admin" asp-route-Id="@item.Id" onclick="return confirmReservation();"><i class="fa-solid fa-user-slash"></i> Sil</a></li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+}
+<script>
+	function confirmReservation() {
+		return confirm("Yemek Silinsin Mi?");
+	}
+</script>
