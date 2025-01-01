@@ -37,7 +37,7 @@
 			<div class="container-rez">
 				<div class="row">
 					<h2 class="text-center">Rezervasyon Formu</h2>
-					<form asp-action="Index" method="post">
+					<form asp-action="OdemeYap" method="post">
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label for="GirisTarihi">Giriş Tarihi</label>
@@ -69,7 +69,7 @@
 
 						<div class="row">
 							<div class="col-md-6 form-group">
-								<input type="submit" value="Rezervasyon Yap" class="btn btn-primary" onclick="return confirmReservation();">
+								<input type="submit" value="Rezervasyon Yap" class="btn btn-primary">
 							</div>
 						</div>
 					</form>
@@ -84,7 +84,7 @@
 				<div class="col-md-9 text-center element-animate">
 					<h2>Rahatlayın ve Tatilinizin Keyfini Çıkarın</h2>
 					<p class="lead mb-5">Eşsiz manzaralı ve konforlu otelimizde kendinizi evinizde hissedin. Size özel sunduğumuz hizmetlerimizin keyfini çıkarın.</p>
-					<div class="btn-play-wrap"><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn-play popup-vimeo"><span class="ion-ios-play"></span></a></div>
+					<div class="btn-play-wrap"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn-play popup-vimeo"><span class="ion-ios-play"></span></a></div>
 				</div>
 			</div>
 		</div>
@@ -102,13 +102,6 @@
 	<script src="~/RezTemp/js/jquery.magnific-popup.min.js"></script>
 	<script src="~/RezTemp/js/magnific-popup-options.js"></script>
 	<script src="~/RezTemp/js/main.js"></script>
-
-	<script>
-		function confirmReservation() {
-			var toplamTutar = document.getElementById("ToplamTutar").value;
-			return confirm("Toplam Tutar: " + toplamTutar + " TL\nRezervasyonu onaylıyor musunuz?");
-		}
-	</script>
 
 	<script>
 		const girisTarihiInput = document.getElementById('GirisTarihi');

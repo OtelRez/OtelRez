@@ -29,7 +29,6 @@ namespace OtelRez.MVC.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            RezOlusturVM rezOlusturVM = new RezOlusturVM();
             var odaTurleri = await _rezervasyonManager.GetOdaTurleriAsync();
             ViewBag.OdaTurleri = odaTurleri.Select(t => new SelectListItem
             {
@@ -57,6 +56,37 @@ namespace OtelRez.MVC.Controllers
 
                 return RedirectToAction("Index", "RezervasyonOlustur");
             }
+            return RedirectToAction("OdemeYap", rezOlusturVM);
+        }
+
+        [HttpGet]
+        public IActionResult OdemeYap()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OdemeYap(RezOlusturVM rezOlusturVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                _notyfService.Warning("Lütfen tüm bilgileri doldurun.");
+                return RedirectToAction("Index");
+            }
+
+            rezOlusturVM.ToplamTutar = _rezervasyonManager.ToplamTutar(
+                rezOlusturVM.OdaTurId,
+                rezOlusturVM.GirisTarihi,
+                rezOlusturVM.CikisTarihi
+            );
+
+            return View(rezOlusturVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Tamamla(RezOlusturVM rezOlusturVM)
+        {
+            int kullaniciId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
 
             try
             {
@@ -74,7 +104,7 @@ namespace OtelRez.MVC.Controllers
                 if (sonuc)
                 {
                     _notyfService.Success("Rezervasyon başarıyla oluşturuldu.");
-                    return RedirectToAction("Index", "RezervasyonOlustur");
+                    return RedirectToAction("Rezervasyonlarim", "Sayfa");
                 }
                 else
                 {
@@ -102,7 +132,6 @@ namespace OtelRez.MVC.Controllers
 
                 return RedirectToAction("Index", "RezervasyonOlustur");
             }
-
         }
     }
 }

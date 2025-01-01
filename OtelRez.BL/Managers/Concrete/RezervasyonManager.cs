@@ -37,7 +37,6 @@ namespace OtelRez.BL.Managers.Concrete
             _rezervasyonRepository = new Repository<Rezervasyon>();
         }
 
-
         // Oda Türlerini getir
         public async Task<List<OdaTur>> GetOdaTurleriAsync()
         {
@@ -106,39 +105,5 @@ namespace OtelRez.BL.Managers.Concrete
 
 			return toplamTutar;
 		}
-
-
-		//public int GetOdaTurIdByAd(string odaTurAdi)
-		//{
-		//    int odaTurId = -1; // Eğer oda türü bulunamazsa -1 döner
-
-		//    string query = "SELECT Id FROM OdaTurleri WHERE TurAdi = @TurAdi";
-
-		//    using (SqlConnection connection = new SqlConnection(_connectionString))
-		//    {
-		//        using (SqlCommand command = new SqlCommand(query, connection))
-		//        {
-		//            command.Parameters.AddWithValue("@TurAdi", odaTurAdi);
-
-		//            try
-		//            {
-		//                connection.Open();
-		//                object result = command.ExecuteScalar();
-
-		//                if (result != null)
-		//                {
-		//                    odaTurId = Convert.ToInt32(result);
-		//                }
-		//            }
-		//            catch (Exception ex)
-		//            {
-		//                Console.WriteLine("Hata: " + ex.Message);
-		//            }
-		//        }
-		//    }
-
-		//    return odaTurId;
-		//}
-
 	}
 }

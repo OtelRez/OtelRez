@@ -1,0 +1,97 @@
+﻿@using OtelRez.MVC.Models.VMs.Rezervasyon
+@model RezOlusturVM
+
+<head>
+    <title>Rezervasyon</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="~/RezTemp/css/bootstrap.css">
+    <link rel="stylesheet" href="~/RezTemp/css/animate.css">
+    <link rel="stylesheet" href="~/RezTemp/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/RezTemp/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/RezTemp/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/RezTemp/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/RezTemp/css/style.css">
+</head>
+
+<section class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-5">ÖDEME YAP</h2>
+
+                <form action="#" method="#">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="">Kart Sahibinin Adı</label>
+                            <div style="position: relative;">
+                                <span style="position: absolute; right: 10px; top: 10px;"></span>
+                                <input type="text" class="form-control" id="cardholder-name" name="cardholder_name" required placeholder="Örneğin: Ali Veli">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Kart Numarası</label>
+                            <div style="position: relative;">
+                                <span style="position: absolute; right: 10px; top: 10px;"></span>
+                                <input type="text" class="form-control" id="card-number" name="card_number" required placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="">Son Kullanma Tarihi</label>
+                            <input type="text" class="form-control" id="expiry-date" name="expiry_date" required placeholder="MM/YY" maxlength="5">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="">CVV</label>
+                            <input type="password" class="form-control"  id="cvv" name="cvv" required placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <h3 class="mb-5">Rezervasyon Bilgileri</h3>
+                <div class="media d-block room mb-0">
+                    <figure>
+                        @*Seçilen oda türünün resmi*@
+                        <img src="" alt="Generic placeholder image" class="img-fluid">
+                        <div class="overlap-text">
+                            <span>
+                                Featured Room
+                                <span class="ion-ios-star"></span>
+                                <span class="ion-ios-star"></span>
+                                <span class="ion-ios-star"></span>
+                            </span>
+                        </div>
+                    </figure>
+
+                    <div class="media-body">
+                        <h3 class="mt-0"><a>@Model.OdaTurId</a></h3>
+                        
+                        <ul class="room-specs">
+                            @* seçilen oda türünün özellikleri*@
+                        </ul>
+
+                        <p>@Model.GirisTarihi.ToString("dd-MM-yyyy") - @Model.CikisTarihi.ToString("dd-MM-yyyy")</p>
+                        <p>Toplam Tutar : @Model.ToplamTutar ₺</p>
+
+                        <form asp-action="Tamamla" method="post">
+                            <input type="hidden" asp-for="OdaTurId" />
+                            <input type="hidden" asp-for="GirisTarihi" />
+                            <input type="hidden" asp-for="CikisTarihi" />
+                            <input type="hidden" asp-for="ToplamTutar" />
+
+                            <button type="submit" class="btn btn-primary">Rezervasyonu Tamamla</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
