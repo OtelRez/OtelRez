@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OtelRez.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class mig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -375,8 +375,8 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Adi", "DogumTarihi", "Mail", "RoleId", "Sifre", "Soyadi", "Tel" },
                 values: new object[,]
                 {
-                    { 1, "Emre", new DateOnly(1998, 9, 9), "emre@gmail.com", 3, "qweasd", "Andaç", "05456853541" },
-                    { 2, "Betül Rana", new DateOnly(1998, 9, 9), "betul@gmail.com", 3, "qweasd", "Özer", "05648623598" }
+                    { 1, "Emre", new DateOnly(1998, 9, 9), "emre@gmail.com", 3, "qweasd", "Andaç", "05056671324" },
+                    { 2, "Betül Rana", new DateOnly(1998, 9, 9), "betul@gmail.com", 3, "qweasd", "Özer", "05048623598" }
                 });
 
             migrationBuilder.InsertData(
@@ -469,9 +469,11 @@ namespace OtelRez.DAL.Migrations
                 columns: new[] { "Id", "Cikis", "CreateTime", "Giris", "KullaniciId", "OdaId", "ToplamTutar" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2024, 12, 31), new DateTime(2024, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 12, 4000 },
-                    { 2, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2024, 12, 31), new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 4, 2000 },
-                    { 3, new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2024, 12, 31), new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 10, 20000 }
+                    { 1, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2025, 1, 1), new DateTime(2024, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 12, 6400 },
+                    { 2, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2025, 1, 1), new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 4, 3600 },
+                    { 3, new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2025, 1, 1), new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 10, 6800 },
+                    { 4, new DateTime(2025, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2025, 1, 1), new DateTime(2025, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 7, 3200 },
+                    { 5, new DateTime(2025, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateOnly(2025, 1, 1), new DateTime(2025, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 16, 9000 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -29,9 +29,11 @@ namespace OtelRez.Entity.Config.Concrete
                .WithMany(p => p.Rezervasyon)
                .HasForeignKey(p => p.OdaId);
 
-            builder.HasData(new Rezervasyon() { Id = 1, Giris = DateTime.Parse("2024-12-18"), Cikis = DateTime.Parse("2024-12-22"), KullaniciId = 1, OdaId = 12 , ToplamTutar = 4000 });
-            builder.HasData(new Rezervasyon() { Id = 2, Giris = DateTime.Parse("2024-12-20"), Cikis = DateTime.Parse("2024-12-22"), KullaniciId = 1, OdaId = 4 , ToplamTutar = 2000});
-            builder.HasData(new Rezervasyon() { Id = 3, Giris = DateTime.Parse("2024-11-18"), Cikis = DateTime.Parse("2024-12-05"), KullaniciId = 2, OdaId = 10, ToplamTutar = 20000 });
+            builder.HasData(new Rezervasyon() { Id = 1, Giris = DateTime.Parse("2024-12-18"), Cikis = DateTime.Parse("2024-12-22"), KullaniciId = 1, OdaId = 12 , ToplamTutar = 6400 });
+            builder.HasData(new Rezervasyon() { Id = 2, Giris = DateTime.Parse("2024-12-20"), Cikis = DateTime.Parse("2024-12-22"), KullaniciId = 1, OdaId = 4 , ToplamTutar = 3600});
+            builder.HasData(new Rezervasyon() { Id = 3, Giris = DateTime.Parse("2024-11-18"), Cikis = DateTime.Parse("2024-12-22"), KullaniciId = 2, OdaId = 10, ToplamTutar = 6800 });
+            builder.HasData(new Rezervasyon() { Id = 4, Giris = DateTime.Parse("2025-02-25"), Cikis = DateTime.Parse("2025-02-27"), KullaniciId = 2, OdaId = 7, ToplamTutar = 3200 });
+            builder.HasData(new Rezervasyon() { Id = 5, Giris = DateTime.Parse("2025-03-12"), Cikis = DateTime.Parse("2025-03-15"), KullaniciId = 1, OdaId = 16, ToplamTutar = 9000 });
         }
     }
 }

@@ -27,11 +27,11 @@ namespace OtelRez.BL.Managers.Concrete
             // Mail gönderim işlemi
             try
             {
-                var fromAddress = new MailAddress("istkafullkata@gmail.com", "YourApp");
+                var fromAddress = new MailAddress("istkafullkata@gmail.com", "Marian Otel Info");
                 var toAddress = new MailAddress(user.Mail);
-                const string fromPassword = "xofn vdfy pwql fjbj"; // Şifreyi buraya ekleyin
+                const string fromPassword = "xofn vdfy pwql fjbj";
                 const string subject = "Şifrenizi Hatırlatıyoruz";
-                string body = $"Merhaba, şifreniz: {user.Sifre}";
+                string body = $"Merhaba {user.Adi} {user.Soyadi}, şifreniz: {user.Sifre}";
 
                 var smtp = new SmtpClient
                 {

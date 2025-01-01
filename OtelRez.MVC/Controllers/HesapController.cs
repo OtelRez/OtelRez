@@ -125,6 +125,13 @@ namespace OtelRez.MVC.Controllers
                 return View(kayitVM);
             }
 
+            var kayitli = kullaniciManager.GetAllInclude(p => p.Mail == kayitVM.Mail || p.Tel == kayitVM.Tel).FirstOrDefault();
+            if (kayitli != null)
+            {
+                notyfService.Warning("Bu Email hesabı ya da telefon numarası daha önce kayıt olmuş.");
+                return View(kayitVM);
+            }
+
             Kullanici kullanici = new Kullanici();
             kullanici.Adi = kayitVM.Adi;
             kullanici.Soyadi = kayitVM.Soyadi;

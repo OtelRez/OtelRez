@@ -12,8 +12,8 @@ using OtelRez.DAL.DbContexts;
 namespace OtelRez.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241231102154_init")]
-    partial class init
+    [Migration("20250101163338_mig")]
+    partial class mig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -359,7 +359,7 @@ namespace OtelRez.DAL.Migrations
                             RoleId = 3,
                             Sifre = "qweasd",
                             Soyadi = "Andaç",
-                            Tel = "05456853541"
+                            Tel = "05056671324"
                         },
                         new
                         {
@@ -370,7 +370,7 @@ namespace OtelRez.DAL.Migrations
                             RoleId = 3,
                             Sifre = "qweasd",
                             Soyadi = "Özer",
-                            Tel = "05648623598"
+                            Tel = "05048623598"
                         });
                 });
 
@@ -1214,31 +1214,51 @@ namespace OtelRez.DAL.Migrations
                         {
                             Id = 1,
                             Cikis = new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateOnly(2024, 12, 31),
+                            CreateTime = new DateOnly(2025, 1, 1),
                             Giris = new DateTime(2024, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             KullaniciId = 1,
                             OdaId = 12,
-                            ToplamTutar = 4000
+                            ToplamTutar = 6400
                         },
                         new
                         {
                             Id = 2,
                             Cikis = new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateOnly(2024, 12, 31),
+                            CreateTime = new DateOnly(2025, 1, 1),
                             Giris = new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             KullaniciId = 1,
                             OdaId = 4,
-                            ToplamTutar = 2000
+                            ToplamTutar = 3600
                         },
                         new
                         {
                             Id = 3,
-                            Cikis = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreateTime = new DateOnly(2024, 12, 31),
+                            Cikis = new DateTime(2024, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateOnly(2025, 1, 1),
                             Giris = new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             KullaniciId = 2,
                             OdaId = 10,
-                            ToplamTutar = 20000
+                            ToplamTutar = 6800
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Cikis = new DateTime(2025, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateOnly(2025, 1, 1),
+                            Giris = new DateTime(2025, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            KullaniciId = 2,
+                            OdaId = 7,
+                            ToplamTutar = 3200
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Cikis = new DateTime(2025, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreateTime = new DateOnly(2025, 1, 1),
+                            Giris = new DateTime(2025, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            KullaniciId = 1,
+                            OdaId = 16,
+                            ToplamTutar = 9000
                         });
                 });
 
