@@ -57,25 +57,38 @@
             <div class="col-md-1"></div>
             <div class="col-md-5">
                 <h3 class="mb-5">Rezervasyon Bilgileri</h3>
-                <div class="media d-block room mb-0">
-                    <figure>
-                        @*Seçilen oda türünün resmi*@
-                        <img src="" alt="Generic placeholder image" class="img-fluid">
-                        <div class="overlap-text">
-                            <span>
-                                Featured Room
-                                <span class="ion-ios-star"></span>
-                                <span class="ion-ios-star"></span>
-                                <span class="ion-ios-star"></span>
-                            </span>
-                        </div>
+                <div class="media d-block room mb-0" style="text-align: center;">
+                    <figure style="margin: 0; display: inline-block;">
+                        <img src="@Model.OdaTurPhotoPath" alt="Generic placeholder image" class="img-fluid" style="max-width: 100%; height: auto;">
                     </figure>
 
+					<br />
+					<br />
+
                     <div class="media-body">
-                        <h3 class="mt-0"><a>@Model.OdaTurId</a></h3>
+                        <h3 class="mt-0"><a>@Model.OdaTurAdi</a></h3>
                         
                         <ul class="room-specs">
-                            @* seçilen oda türünün özellikleri*@
+                            @if (Model.Wifi == true)
+                            {
+                                <li><img src="~/OtelTemp/assets/icons/wifi.png">Wifi</li>
+                            }
+                            @if (Model.Balkon == true)
+                            {
+                                <li><img src="~/OtelTemp/assets/icons/building.png">Balkon</li>
+                            }
+                            @if (Model.Jakuzi == true)
+                            {
+                                <li><img src="~/OtelTemp/assets/icons/jacuzzi.png">Jakuzi</li>
+                            }
+                            @if (Model.Minibar == true)
+                            {
+                                <li><img src="~/OtelTemp/assets/icons/minibars.png">Mini Bar</li>
+                            }
+                            @if (Model.OdaServisi == true)
+                            {
+                                <li><img src="~/OtelTemp/assets/icons/food-service.png">Oda Servisi</li>
+                            }
                         </ul>
 
                         <p>@Model.GirisTarihi.ToString("dd-MM-yyyy") - @Model.CikisTarihi.ToString("dd-MM-yyyy")</p>

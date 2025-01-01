@@ -105,5 +105,11 @@ namespace OtelRez.BL.Managers.Concrete
 
 			return toplamTutar;
 		}
-	}
+
+        public async Task<OdaTur> GetOdaTurByIdAsync(int odaTurId)
+        {
+            return await _context.OdaTurleri
+                .FirstOrDefaultAsync(o => o.Id == odaTurId);
+        }
+    }
 }

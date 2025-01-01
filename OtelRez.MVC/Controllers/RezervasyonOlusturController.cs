@@ -56,6 +56,13 @@ namespace OtelRez.MVC.Controllers
 
                 return RedirectToAction("Index", "RezervasyonOlustur");
             }
+
+            var odaTur = odaTurManager.GetById(rezOlusturVM.OdaTurId);
+            if (odaTur != null)
+            {
+                rezOlusturVM.OdaTurAdi = odaTur.TurAdi;
+                rezOlusturVM.OdaTurPhotoPath = odaTur.PhotoPath;
+            }
             return RedirectToAction("OdemeYap", rezOlusturVM);
         }
 
@@ -79,6 +86,15 @@ namespace OtelRez.MVC.Controllers
                 rezOlusturVM.GirisTarihi,
                 rezOlusturVM.CikisTarihi
             );
+
+            var odaTur = await _rezervasyonManager.GetOdaTurByIdAsync(rezOlusturVM.OdaTurId);
+            rezOlusturVM.OdaTurAdi = odaTur?.TurAdi;
+            rezOlusturVM.OdaTurPhotoPath = odaTur?.PhotoPath;
+            rezOlusturVM.Wifi = odaTur?.WiFi;
+            rezOlusturVM.OdaServisi = odaTur?.OdaServisi;
+            rezOlusturVM.Balkon = odaTur?.Balkon;
+            rezOlusturVM.Jakuzi = odaTur?.Jakuzi;
+            rezOlusturVM.Minibar = odaTur?.Minibar;
 
             return View(rezOlusturVM);
         }
